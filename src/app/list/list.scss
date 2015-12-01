@@ -1,0 +1,119 @@
+#list_tabs{
+  .tabs{
+    top: 0;
+    height: 35px;
+    line-height: 35px;
+    border: 0;
+    .tab-item-active{
+      position: relative;
+      color: $balanced;
+      &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10%;
+        bottom: 0;
+        width: 80%;
+        height: 2px;
+        background: $balanced;
+      }
+    }
+  }
+}
+
+.icon.icon-status-coffee{
+  width: 40px;
+  background: url(../assets/images/coffee@2x.png) no-repeat center;
+  background-size: 40px 40px;
+  left: 0;
+}
+
+.icon.ion-ios-arrow-right {
+  right: 0;
+}
+
+#list_view{
+  .task-list .list{
+    margin-top: 40px;
+    >.item{
+      padding-top: 5px;
+      padding-right: 5px;
+      padding-bottom: 0;
+      margin-bottom: 5px;
+      &.activated{
+        background: $white;
+      }
+    }
+  }
+  .task-header{
+    position: relative;
+    &.standard .ellipsis{
+      color: #fff;
+      &:before{
+        content: '';
+        display: block;
+        width: 235px;
+        height: 90%;
+        position: absolute;
+        left: -20px;
+        bottom: 1px;
+        background: $assertive;
+        z-index: -1;
+      }
+      &:after{
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border: solid 15px transparent;
+        border-right-color: #fff;
+        position: absolute;
+        left: 185px;
+        bottom: 0;
+      }
+    }
+    .updated-date{
+      font-size: 12px;
+      color: #9b9b9b;
+      text-align: right;
+    }
+  }
+  .task-header:after{
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120%;
+    height: 1px;
+    background: $border-color;
+    z-index: 10;
+  }
+  .task-status{
+    font-size: 12px;
+    color: #fff;
+    // background: $assertive;
+    display: inline-block;
+    padding: 0 2px;
+    vertical-align: middle;
+    border-radius: 2px;
+    &.assertive-bg{
+      background: $assertive;
+    }
+    &.positive-bg{
+      background: $positive;
+    }
+    &.energized-bg{
+      background: $energized;
+    }
+    &.balanced-bg{
+      background: $balanced;
+    }
+  }
+  .bar-footer{
+    .button{
+      height: 44px;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<ion-view view-title="任务列表" cache-view="false" id="list_view">
+  <!-- <ion-tabs class="tabs-top tabs-background-light" id="list_tabs">
+    <ion-tab title="发布中" on-select="list.onTabSelect(0)"></ion-tab>
+    <ion-tab title="进行中" on-select="list.onTabSelect(1)"></ion-tab>
+    <ion-tab title="待评价" on-select="list.onTabSelect(2)"></ion-tab>
+    <ion-tab title="已完成" on-select="list.onTabSelect(4)"></ion-tab>
+  </ion-tabs> -->
+
+  <div class="tabs-top tabs-background-light" id="list_tabs">
+    <div class="tab-nav tabs">
+      <a class="tab-item" ng-class="{'tab-item-active': list.type == 0}" ng-click="list.type=0">
+        <span class="tab-title">发布中</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.type == 1}" ng-click="list.type=1">
+        <span class="tab-title">进行中</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.type == 3}" ng-click="list.type=3">
+        <span class="tab-title">待评价</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.type == 4}" ng-click="list.type=4">
+        <span class="tab-title">已完成</span>
+      </a>
+    </div>
+  </div>
+  
+  <ion-content>
+    <ion-list class="task-list">
+      <ion-item class="item-borderless" ng-repeat="task in list.tasks" ng-click="list.showDetail(task.id)">
+        <div class="row task-header" ng-class="{standard: task.type==1}">
+          <div class="col-75 ellipsis">
+            <span ng-show="task.type==1">【标】</span>
+            <span class="task-status" ng-class="task.bgClass" ng-hide="task.type==1">{{task.status | status}}</span>
+            <span class="task-title">{{task.title}}</span>
+          </div>
+          <div class="col-25 updated-date">{{task.publishDate}}</div>
+        </div>
+        <div class="item item-borderless item-icon-left item-icon-right">
+          <i class="icon icon-status-coffee"></i>
+          <div ng-show="task.status==0">{{task.storeName}}</div>
+          <div ng-show="task.status!=0">
+            {{task.acceptorName}}
+            <span class="padding-left">{{task.acceptedDate}}</span>
+          </div>
+          <div class="ellipsis" ng-bind-html="task.desc"></div>
+          <i class="icon ion-ios-arrow-right stable"></i>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <section class="bottom">
+    <div class="padding">
+      <button class="button button-block button-balanced" ng-click="list.publish()">发布任务</button>
+    </div>
+  </section>
+</ion-view>

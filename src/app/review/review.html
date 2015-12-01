@@ -1,0 +1,54 @@
+<ion-view view-title="发表评价" id="review_view">
+  <ion-content>
+    <div class="item item-borderless item-avatar margin-vertical">
+      <img src="assets/images/avatar-girl@2x.png">
+      <h2>{{review.info.acceptorCompany}}</h2>
+      <p>
+        <span class="padding-right">{{review.info.acceptorName}}</span>
+        <span>{{review.info.acceptorMobileNumber}}</span>
+      </p>
+    </div>
+
+    <textarea rows="5" placeholder="请写下您的评价" ng-model="review.comment"></textarea>
+
+    <section class="ratings">
+      <div class="rating-item clearfix">
+        <div class="pull-left">工作态度</div>
+        <div class="pull-right full-height score">
+          <i class="star" ng-class="{active: review.attitude>=1}" ng-click="review.attitude=1"></i>
+          <i class="star" ng-class="{active: review.attitude>=2}" ng-click="review.attitude=2"></i>
+          <i class="star" ng-class="{active: review.attitude>=3}" ng-click="review.attitude=3"></i>
+          <i class="star" ng-class="{active: review.attitude>=4}" ng-click="review.attitude=4"></i>
+          <i class="star" ng-class="{active: review.attitude==5}" ng-click="review.attitude=5"></i>
+        </div>
+      </div>
+      <div class="rating-item clearfix">
+        <div class="pull-left">满意程度</div>
+        <div class="pull-right full-height score">
+          <i class="star" ng-class="{active: review.satisfaction>=1}" ng-click="review.satisfaction=1"></i>
+          <i class="star" ng-class="{active: review.satisfaction>=2}" ng-click="review.satisfaction=2"></i>
+          <i class="star" ng-class="{active: review.satisfaction>=3}" ng-click="review.satisfaction=3"></i>
+          <i class="star" ng-class="{active: review.satisfaction>=4}" ng-click="review.satisfaction=4"></i>
+          <i class="star" ng-class="{active: review.satisfaction==5}" ng-click="review.satisfaction=5"></i>
+        </div>
+      </div>
+      <div class="rating-item clearfix">
+        <div class="pull-left">方法传授</div>
+        <div class="pull-right full-height score">
+          <i class="star" ng-class="{active: review.method>=1}" ng-click="review.method=1"></i>
+          <i class="star" ng-class="{active: review.method>=2}" ng-click="review.method=2"></i>
+          <i class="star" ng-class="{active: review.method>=3}" ng-click="review.method=3"></i>
+          <i class="star" ng-class="{active: review.method>=4}" ng-click="review.method=4"></i>
+          <i class="star" ng-class="{active: review.method==5}" ng-click="review.method=5"></i>
+        </div>
+      </div>
+    </section>
+
+  </ion-content>
+
+  <section class="bottom">
+    <div class="padding">
+      <button class="button button-block button-balanced" ng-click="review.submit()">提交</button>
+    </div>
+  </section>
+</ion-view>

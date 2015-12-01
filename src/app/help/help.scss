@@ -1,0 +1,25 @@
+#help_view{
+  .card{
+    background: #FAF5EA;
+    border: solid 4px $white;
+    padding: 20px 0;
+    line-height: 1.8;
+    margin: 40% 10% 10%;
+    position: relative;
+    overflow: visible;
+    .avatar{
+      position: absolute;
+      top: 0;
+      left: 33.3%;
+      width: 33.3%;
+      margin-top: -34%;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .button{
+      background: $white;
+    }
+  }
+}

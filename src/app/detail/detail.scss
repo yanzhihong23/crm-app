@@ -1,0 +1,146 @@
+.info{
+  padding: 20px;
+  background: #fff;
+  .avatar{
+    float: left;
+    padding-right: 15px;
+    padding-top: 4px;
+  }
+  .desc{
+    line-height: 1.6;
+  }
+  .company{
+    font-size: 16px;
+  }
+  .user, .task{
+    color: #929292;
+  }
+  .phone{
+    padding-left: 10px;
+  }
+}
+
+
+.timeline{
+  color: #929292; 
+  padding: 20px;
+  .line-item{
+    min-height: 50px;
+    margin-left: 70px;
+    position: relative;
+    .date{
+      font-size: 12px;
+    }
+    .status{
+      font-size: 13px;
+    }
+    &:not(:last-child):before{
+      content: '';
+      display: block;
+      width: 4px;
+      height: 100%;
+      background: #D8D8D8;
+      position: absolute;
+      top: 10px;
+      left: -40px;
+    }
+    &:after{
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      background: #D8D8D8;
+      position: absolute;
+      top: 0;
+      left: -48px;
+    }
+    &.active,&.current{
+      color: #32B77D;
+    }
+  }
+}
+
+.timeline .line-item.active:not(:last-child):before{
+  background: $balanced;
+}
+
+.timeline .line-item.active:after{
+  background: $balanced;
+}
+
+.line-item.current:after{
+  background: $balanced;
+  width: 30px;
+  height: 30px;
+  top: -5px;
+  left: -52px;
+}
+
+.line-item.current{
+  font-size: 16px;
+}
+
+.button:disabled{
+  background: #95D8BB;
+}
+
+.review{
+  padding: 20px; 
+}
+
+.cs{
+  color: #32B77D;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+.cs .phone{
+  text-decoration: underline;
+}
+
+      
+#detail_view{
+  .bar-footer{
+    a{
+      text-decoration: none;
+    }
+    .button{
+      height: 44px;
+      margin: 0;
+    }
+  }
+  .card{
+    margin: 10px 10px;
+    box-shadow: none;
+  }
+
+  .row .card{
+    margin: 0 10px;
+    &:nth-child(2){
+      margin: 0;
+    }
+    .count{
+      font-size: 18px;
+      line-height: 30px;
+      color: $assertive;
+      padding-top: 10px;
+    }
+    .desc{
+      font-size: 12px;
+      color: $gray;
+    }
+  }
+
+  .item-avatar{
+    p{
+      a{
+        text-decoration: none;
+        i{
+          padding-left: 4px;
+        }
+      }
+    }
+  }
+}
