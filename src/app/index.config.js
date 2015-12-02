@@ -31,7 +31,7 @@
       }
     });
 
-    localStorageServiceProvider.setPrefix('task');
+    localStorageServiceProvider.setPrefix('crmApp');
 
     $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleText(false);
   }

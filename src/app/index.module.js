@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('crmApp', ['ngAnimate', 'ngTouch', 'ngMessages', 'ui.router', 'ionic', 'LocalStorageModule']);
+    .module('crmApp', ['ngAnimate', 'ngTouch', 'ngMessages', 'ui.router', 'ionic', 'angular-md5', 'LocalStorageModule']);
 
 })();

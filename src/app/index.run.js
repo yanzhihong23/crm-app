@@ -15,9 +15,6 @@
   	  $ionicLoading.hide();
   	});
 
-  	// init headers
-  	AppService.initHeaders();
-
     $log.debug('runBlock end');
   }
 
