@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, $httpProvider, localStorageServiceProvider) {
+  function config($logProvider, $httpProvider, $ionicConfigProvider, localStorageServiceProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -32,6 +32,8 @@
     });
 
     localStorageServiceProvider.setPrefix('task');
+
+    $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleText(false);
   }
 
 })();

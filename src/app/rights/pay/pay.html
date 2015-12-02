@@ -1,0 +1,32 @@
+<ion-view view-title="申请开店权/经销权">
+
+  <ion-content class="has-bottom">
+    <article class="list margin-vertical">
+      <div class="item item-icon-right" ng-click="rightsPay.showPayModeAction()">
+        付款方式
+        <span class="item-note">请选择</span>
+        <i class="icon ion-ios-arrow-down gray"></i>
+      </div>
+      <div class="item item-icon-right" ng-click="rightsPay.showPayTypeAction()">
+        付款类型
+        <span class="item-note">请选择</span>
+        <i class="icon ion-ios-arrow-down gray"></i>
+      </div>
+      <div class="item item-input">
+        <span class="input-label">已付金额(元)</span>
+        <input type="number" class="text-right" placeholder="请填写" required>
+      </div>
+      <div class="item item-input">
+        <span class="input-label">付款金额(元)</span>
+        <input type="number" class="text-right" placeholder="请填写" required>
+      </div>
+    </article>
+  </ion-content>
+
+  <section class="bottom">
+    <div class="padding">
+      <button class="button button-block button-balanced" ng-click="rightsPay.next()">提交</button>
+    </div>
+  </section>
+
+</ion-view>

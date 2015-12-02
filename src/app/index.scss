@@ -12,7 +12,10 @@ $stable: #9b9b9b;
 $gray: #9B9B9B;
 $white: #fff;
 $dark:  #374252;
+
 $button-border-width: 0;
+$sheet-options-text-color: #32B77D;
+
 @import "../../bower_components/ionic/scss/ionic";
 $border-color: #d5d5d5;
 
@@ -30,7 +33,7 @@ $border-color: #d5d5d5;
   -webkit-box-flex: 1;
 }
 
-.item{
+.item, .input-label{
   font-size: 14px;
 }
 
@@ -80,6 +83,40 @@ $border-color: #d5d5d5;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.bar-header{
+  border-bottom-width: 0;
+}
+
+.item-icon-right{
+  padding-right: 35px;
+  .item-note{
+    padding-right: 5px;
+  }
+  .icon{
+    right: 5px;
+  }
+}
+
+::-webkit-input-placeholder{
+  color: $gray;
+}
+
+.bottom{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #f2f2f2;
+}
+
+.scroll-content.has-bottom{
+  bottom: 80px;
+}
+
+.full-height .scroll{
+  height: 100%;
+}
+
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector
