@@ -3,10 +3,10 @@
 
   angular
     .module('crmApp')
-    .controller('RightsPreviewController', RightsPreviewController);
+    .controller('PreviewController', PreviewController);
 
   /** @ngInject */
-  function RightsPreviewController($state) {
+  function PreviewController($state) {
     var vm = this;
 
     vm.submit = submit;

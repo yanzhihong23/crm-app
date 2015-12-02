@@ -6,17 +6,17 @@
   </ion-nav-buttons>
   <ion-content>
     <section class="list margin-vertical">
-      <a class="item item-icon-right" ui-sref="rights:list">
-        <h2>申请开店权</h2>
+      <a class="item item-icon-right" ui-sref="list({type:'rightsApply'})">
+        <h2>申请开店权/经销权</h2>
         <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </a>
-      <ion-item class="item-icon-right" ui-sref="account:list">
+      <ion-item class="item-icon-right" ui-sref="list({type:'accountApply'})">
         <h2>申请开户</h2>
         <p>获得开店权后即可选择具体小区申请开户</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right">
+      <ion-item class="item-icon-right" ui-sref="list({type:'groundingApply'})">
         <h2>申请店铺上架</h2>
         <p>小区地址审核通过后，即可申请店铺上架开始赚钱</p>
         <i class="icon ion-ios-arrow-right gray"></i>
@@ -24,12 +24,12 @@
     </section>
 
     <section class="list margin-vertical">
-      <ion-item class="item-icon-right">
+      <ion-item class="item-icon-right" ui-sref="list({type:'user'})">
         <h2>用户信息报备</h2>
         <p>私密及时的用户信息记录本</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right">
+      <ion-item class="item-icon-right" ui-sref="list({type:'invitation'})">
         <h2>邀约记录</h2>
         <p>邀约用户洽谈的贴心备忘录</p>
         <i class="icon ion-ios-arrow-right gray"></i>
@@ -38,8 +38,8 @@
     
     <!-- 主管 -->
     <section class="list margin-vertical">
-      <ion-item class="item-icon-right">
-        <h2>信息审批</h2>
+      <ion-item class="item-icon-right" ui-sref="list({type:'infoAudit'})">
+        <h2>信息审核</h2>
         <p>审批部分非标准金额信息</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
@@ -47,8 +47,8 @@
     
     <!-- 财务 -->
     <section class="list margin-vertical">
-      <ion-item class="item-icon-right">
-        <h2>去审批</h2>
+      <ion-item class="item-icon-right" ui-sref="list({type:'rightsAudit'})">
+        <h2>开店权/经销权审核</h2>
         <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
@@ -56,12 +56,12 @@
 
     <!-- 运营 -->
     <section class="list margin-vertical">
-      <ion-item class="item-icon-right">
+      <ion-item class="item-icon-right" ui-sref="list({type:'addrAudit'})">
         <h2>店铺地址审核</h2>
         <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right">
+      <ion-item class="item-icon-right" ui-sref="list({type:'picAudit'})">
         <h2>店铺图片审核</h2>
         <p>提交店铺图片，立即付款，审核通过后立即开店成功</p>
         <i class="icon ion-ios-arrow-right gray"></i>

@@ -13,11 +13,11 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
       })
-      .state('rights:list', {
-        url: '/rights/list',
-        templateUrl: 'app/rights/list/list.html',
-        controller: 'RightsListController',
-        controllerAs: 'rightsList'
+      .state('list', {
+        url: '/list/:type',
+        templateUrl: 'app/list/list.html',
+        controller: 'ListController',
+        controllerAs: 'list'
       })
       .state('rights:add', {
         url: '/rights/add',
@@ -37,23 +37,17 @@
         controller: 'RightsPayController',
         controllerAs: 'rightsPay'
       })
-      .state('rights:preview', {
-        url: '/rights/preview',
-        templateUrl: 'app/rights/preview/preview.html',
-        controller: 'RightsPreviewController',
-        controllerAs: 'rightsPreview'
+      .state('preview', {
+        url: '/preview',
+        templateUrl: 'app/preview/preview.html',
+        controller: 'PreviewController',
+        controllerAs: 'preview'
       })
-      .state('rights:result', {
-        url: '/rights/result',
-        templateUrl: 'app/rights/result/result.html',
-        controller: 'RightsResultController',
-        controllerAs: 'rightsResult'
-      })
-      .state('account:list', {
-        url: '/account/account',
-        templateUrl: 'app/account/list/list.html',
-        controller: 'AccountListController',
-        controllerAs: 'accountList'
+      .state('result', {
+        url: '/result',
+        templateUrl: 'app/result/result.html',
+        controller: 'ResultController',
+        controllerAs: 'result'
       })
       .state('account:add', {
         url: '/account/add',

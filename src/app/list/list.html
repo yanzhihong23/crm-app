@@ -1,19 +1,49 @@
-<ion-view view-title="申请开店权/经销权">
+<ion-view view-title="{{list.title}}">
+
   <ion-nav-buttons side="right">
     <a class="button" ui-sref="rights:add">
       添加
     </a>
   </ion-nav-buttons>
-  <section class="tabs-top tabs-background-light crm-tabs">
+
+  <section class="tabs-top tabs-background-light crm-tabs" ng-if="list.tabsType=='apply'||list.tabsType=='rightsApply'">
     <div class="tab-nav tabs">
-      <a class="tab-item" ng-class="{'tab-item-active': rightsList.type == 0}" ng-click="rightsList.type=0">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0" ng-hide="list.tabsType=='rightsApply'">
+        <span class="tab-title">未申请</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
         <span class="tab-title">申请中</span>
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active': rightsList.type == 1}" ng-click="rightsList.type=1">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 2}" ng-click="list.status=2" ng-hide="list.tabsType=='rightsApply'">
+        <span class="tab-title">申请未通过</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 3}" ng-click="list.status=3">
         <span class="tab-title">申请成功</span>
       </a>
     </div>
   </section>
+  <section class="tabs-top tabs-background-light crm-tabs" ng-if="list.tabsType=='audit'">
+    <div class="tab-nav tabs">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
+        <span class="tab-title">待审核</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
+        <span class="tab-title">已审核</span>
+      </a>
+    </div>
+  </section>
+  <section class="tabs-top tabs-background-light crm-tabs" ng-if="list.tabsType=='invitation'">
+    <div class="tab-nav tabs">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
+        <span class="tab-title">已邀约</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
+        <span class="tab-title">已到访</span>
+      </a>
+    </div>
+  </section>
+
+
   <ion-content>
     <article class="list margin-vertical">
       <header class="list-header">2015.11.15</header>
