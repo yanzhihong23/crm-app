@@ -11,6 +11,7 @@
 
     vm.showApplyTypeAction = showApplyTypeAction;
     vm.showApplicantTypeAction = showApplicantTypeAction;
+    vm.showAgencyTypeAction = showAgencyTypeAction;
     vm.next = next;
 
     function showApplyTypeAction() {
@@ -39,6 +40,24 @@
         ],
         // destructiveText: 'Delete',
         titleText: '选择申请人类别',
+        cancelText: '取消',
+        cancel: function() {
+          // add cancel code..
+        },
+        buttonClicked: function(index) {
+         return true;
+        }
+      });
+    }
+
+    function showAgencyTypeAction() {
+      var applicantTypeAction = $ionicActionSheet.show({
+        buttons: [
+         { text: '独家' },
+         { text: '非独家' }
+        ],
+        // destructiveText: 'Delete',
+        titleText: '选择代理类型',
         cancelText: '取消',
         cancel: function() {
           // add cancel code..

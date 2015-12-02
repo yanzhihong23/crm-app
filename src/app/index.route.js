@@ -61,6 +61,12 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
+      .state('pic:upload', {
+        url: '/pic/upload',
+        templateUrl: 'app/pic/upload.html',
+        controller: 'PicController',
+        controllerAs: 'pic'
+      })
       ;
 
     $urlRouterProvider.otherwise('/');

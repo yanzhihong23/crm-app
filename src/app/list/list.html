@@ -1,7 +1,7 @@
 <ion-view view-title="{{list.title}}">
 
   <ion-nav-buttons side="right">
-    <a class="button" ui-sref="rights:add">
+    <a class="button" ng-click="list.add()" ng-show="list.hasAdd">
       添加
     </a>
   </ion-nav-buttons>
