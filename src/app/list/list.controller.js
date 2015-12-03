@@ -23,7 +23,7 @@
         vm.hasAdd = false;
         break;
       case 'groundingApply':
-        vm.title = '申请店铺上架';
+        vm.title = '申请开店';
         vm.tabsType = 'apply';
         vm.hasAdd = false;
         break;
