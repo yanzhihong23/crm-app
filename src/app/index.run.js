@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, $ionicLoading, utils, AppService) {
+  function runBlock($log, $rootScope, $ionicLoading, utils, UserService) {
     $rootScope.$on('loading:show', function() {
       $ionicLoading.show();
     });

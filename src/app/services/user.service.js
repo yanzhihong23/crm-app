@@ -3,10 +3,10 @@
 
   angular
     .module('crmApp')
-    .service('AppService', AppService);
+    .service('UserService', UserService);
 
   /** @ngInject */
-  function AppService($location, localStorageService, utils) {
+  function UserService($location, localStorageService, utils) {
     
   	this.setUser = function(user) {
       localStorageService.set('user', user);

@@ -6,7 +6,7 @@
     .controller('ListController', ListController);
 
   /** @ngInject */
-  function ListController($log, $state, $stateParams, localStorageService) {
+  function ListController($log, $state, $stateParams, ApiService) {
     var vm = this, type = $stateParams.type, addState, detailState;
 
     vm.status = 0;
@@ -18,6 +18,8 @@
         vm.hasAdd = true;
         addState = 'rights:add';
         detailState = 'preview';
+
+        vm.status = 1;
         break;
       case 'accountApply':
         vm.title = '申请开户';
@@ -68,6 +70,12 @@
 
     vm.add = add;
     vm.select = select;
+
+    $scope.$watch(function() {
+      return vm.status;
+    }, function(val, old) {
+
+    });
 
     function add() {
       $state.go(addState);

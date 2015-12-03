@@ -12,6 +12,7 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
+        controllerAs: 'home'
       })
       .state('list', {
         url: '/list/:type',

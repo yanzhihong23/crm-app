@@ -6,21 +6,21 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController(ApiService, $state, localStorageService) {
+  function LoginController($log, ApiService, $state, UserService, utils) {
     var vm = this;
 
     vm.user = {
-      // username: '18616725872',
+      // username: '18616725872', // ceo
       // password: 'zjdd1234',
-      // username: '13764903755',
-      // password: '123456'
+      // username: '13764903755', // 销售主管
+      username: '13020189461', // 销售
+      password: '123456'
     };
 
     vm.submit = submit;
 
     function submit() {
       ApiService.login(vm.user).success(function(data) {
-        $log.debug('controller');
         if(+data.flag === 1) {
           // toastr.success('登录成功', 'Toastr fun!');
 
@@ -33,8 +33,9 @@
           // save user info
           UserService.setUser(vm.user);
 
-          $state.go('list');
 
+          utils.disableBack();
+          $state.go('home');
         } else {
           // toastr.error('用户名或密码错误', 'Error');
         }
