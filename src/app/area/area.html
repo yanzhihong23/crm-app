@@ -1,0 +1,9 @@
+<ion-view view-title="{{area.title}}">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="item in area.list" ng-click="area.select($index)">
+        {{item.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
