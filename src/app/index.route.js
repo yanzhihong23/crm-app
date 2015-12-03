@@ -20,6 +20,24 @@
         controller: 'ListController',
         controllerAs: 'list'
       })
+      .state('list:apply:rights', {
+        url: '/list/apply/rights',
+        templateUrl: 'app/list/rights.apply.html',
+        controller: 'RightsApplyListController',
+        controllerAs: 'list'
+      })
+      .state('list:apply:account', {
+        url: '/list/apply/account',
+        templateUrl: 'app/list/account.apply.html',
+        controller: 'AccountApplyListController',
+        controllerAs: 'list'
+      })
+      .state('list:apply:grounding', {
+        url: '/list/apply/grounding',
+        templateUrl: 'app/list/grounding.apply.html',
+        controller: 'GroundingApplyListController',
+        controllerAs: 'list'
+      })
       .state('rights:add', {
         url: '/rights/add',
         templateUrl: 'app/rights/add/add.html',

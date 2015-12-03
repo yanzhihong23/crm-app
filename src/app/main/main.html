@@ -6,17 +6,17 @@
   </ion-nav-buttons>
   <ion-content>
     <section class="list margin-vertical" ng-if="home.roleId==2||home.roleId==3">
-      <a class="item item-icon-right" ui-sref="list({type:'rightsApply'})">
+      <a class="item item-icon-right" ui-sref="list:apply:rights">
         <h2>申请开店权/经销权</h2>
         <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </a>
-      <ion-item class="item-icon-right" ui-sref="list({type:'accountApply'})">
+      <ion-item class="item-icon-right" ui-sref="list:apply:account">
         <h2>申请开户</h2>
         <p>获得开店权后即可选择具体小区申请开户</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list({type:'groundingApply'})">
+      <ion-item class="item-icon-right" ui-sref="list:apply:grounding">
         <h2>申请开店</h2>
         <p>小区地址审核通过后，即可申请店铺上架开始赚钱</p>
         <i class="icon ion-ios-arrow-right gray"></i>
@@ -25,8 +25,8 @@
 
     <section class="list margin-vertical">
       <ion-item class="item-icon-right" ui-sref="list({type:'client'})">
-        <h2>用户信息报备</h2>
-        <p>私密及时的用户信息记录本</p>
+        <h2>客户信息报备</h2>
+        <p>私密及时的客户信息记录本</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
       <ion-item class="item-icon-right" ui-sref="list({type:'invitation'})">
@@ -49,7 +49,7 @@
     <section class="list margin-vertical" ng-if="home.roleId==4">
       <ion-item class="item-icon-right" ui-sref="list({type:'rightsAudit'})">
         <h2>开店权/经销权审核</h2>
-        <p>提交申请，立即付款，审核通过后立即获得开店权</p>
+        <p>审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
     </section>
@@ -58,12 +58,12 @@
     <section class="list margin-vertical" ng-if="home.roleId==6">
       <ion-item class="item-icon-right" ui-sref="list({type:'addrAudit'})">
         <h2>店铺地址审核</h2>
-        <p>提交申请，立即付款，审核通过后立即获得开店权</p>
+        <p>审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
       <ion-item class="item-icon-right" ui-sref="list({type:'picAudit'})">
         <h2>店铺图片审核</h2>
-        <p>提交店铺图片，立即付款，审核通过后立即开店成功</p>
+        <p>审核通过后立即开店成功</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
     </section>
