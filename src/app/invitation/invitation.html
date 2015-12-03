@@ -1,0 +1,40 @@
+<ion-view view-title="添加邀约">
+  <form name="invitationForm" ng-sbumit="invitation.save()">
+    <ion-content class="has-bottom">
+      <article class="list margin-vertical">
+        <div class="item item-input">
+          <span class="input-label">姓名</span>
+          <input type="text" placeholder="输入申请者姓名" required>
+        </div>
+        <div class="item item-input">
+          <span class="input-label">联系电话</span>
+          <input type="text" placeholder="输入11位手机号码" required>
+        </div>
+        <div class="item item-input">
+          <span class="input-label">预计到访时间</span>
+          <input type="text" placeholder="输入约定到访的时间" required>
+        </div>
+        <div class="item item-input item-icon-right" ng-click="invitation.showApplyRoleAction()">
+          <span class="input-label">申请角色</span>
+          <span class="item-note">请选择</span>
+          <i class="icon ion-ios-arrow-down gray"></i>
+        </div>
+        <div class="item item-input item-icon-right" ng-click="invitation.showStatusAction()">
+          <span class="input-label">用户状态</span>
+          <span class="item-note">请选择</span>
+          <i class="icon ion-ios-arrow-down gray"></i>
+        </div>
+        <div class="item item-input">
+          <span class="input-label">备注</span>
+          <textarea rows="1" ng-model="invitation.info.remark" maxlength="140" placeholder="添加备注"></textarea>
+        </div>
+      </article>
+    </ion-content>
+
+    <section class="bottom">
+      <div class="padding">
+        <button type="submit" class="button button-block button-balanced" ng-disabled="invitationForm.$invalid">保存</button>
+      </div>
+    </section>
+  </form>
+</ion-view>

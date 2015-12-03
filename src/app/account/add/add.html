@@ -18,33 +18,33 @@
           <span class="input-label">联系电话</span>
           <input type="text" ng-model="info.phone" placeholder="请输入11位手机号码" required>
         </div>
-        <div class="item item-icon-right">
-          省份
-          <span class="item-note">请选择</span>
+        <div class="item item-input item-icon-right" ng-click="accountAdd.selectArea('province')">
+          <span class="input-label">省份</span>
+          <span class="item-note">{{accountAdd.selected.province.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
-        <div class="item item-icon-right">
-          城市
-          <span class="item-note">请选择</span>
+        <div class="item item-input item-icon-right" ng-click="accountAdd.selectArea('city')">
+          <span class="input-label">城市</span>
+          <span class="item-note">{{accountAdd.selected.city.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
-        <div class="item item-icon-right">
-          区/县
-          <span class="item-note">请选择</span>
+        <div class="item item-input item-icon-right" ng-click="accountAdd.selectArea('district')">
+          <span class="input-label">区/县</span>
+          <span class="item-note">{{accountAdd.selected.district.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
-        <div class="item item-icon-right">
-          街道
-          <span class="item-note">请选择</span>
+        <div class="item item-input item-icon-right" ng-click="accountAdd.selectArea('street')">
+          <span class="input-label">街道</span>
+          <span class="item-note">{{accountAdd.selected.street.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
         <div class="item item-input">
           <span class="input-label">详细地址</span>
-          <input type="text" ng-model="info.address" placeholder="" required>
+          <input type="text" ng-model="info.address" placeholder="请输入详细地址" required>
         </div>
         <div class="item item-input">
           <span class="input-label">小区名</span>
-          <input type="text" ng-model="info.address" placeholder="" required>
+          <input type="text" ng-model="info.address" placeholder="请输入小区名" required>
         </div>
       </article>
     </ion-content>

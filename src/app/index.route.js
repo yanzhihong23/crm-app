@@ -51,7 +51,7 @@
       })
       .state('account:add', {
         url: '/account/add',
-        templateUrl: 'app/rights/add/add.html',
+        templateUrl: 'app/account/add/add.html',
         controller: 'AccountAddController',
         controllerAs: 'accountAdd'
       })
@@ -66,6 +66,30 @@
         templateUrl: 'app/pic/upload.html',
         controller: 'PicController',
         controllerAs: 'pic'
+      })
+      .state('client:add', {
+        url: '/client/add',
+        templateUrl: 'app/client/add.html',
+        controller: 'ClientAddController',
+        controllerAs: 'clientAdd'
+      })
+      .state('client:preview', {
+        url: '/client/preview',
+        templateUrl: 'app/client/preview.html',
+        controller: 'ClientPreviewController',
+        controllerAs: 'clientPreview'
+      })
+      .state('invitation', {
+        url: '/invitation',
+        templateUrl: 'app/invitation/invitation.html',
+        controller: 'InvitationController',
+        controllerAs: 'invitation'
+      })
+      .state('area', {
+        url: '/area/:type',
+        templateUrl: 'app/area/area.html',
+        controller: 'AreaController',
+        controllerAs: 'area'
       })
       ;
 

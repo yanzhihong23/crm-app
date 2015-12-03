@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function ListController($log, $state, $stateParams, localStorageService) {
-    var vm = this, type = $stateParams.type;
+    var vm = this, type = $stateParams.type, addState, detailState;
 
     vm.status = 0;
 
@@ -16,26 +16,33 @@
         vm.title = '申请开店权/经销权';
         vm.tabsType = 'rightsApply';
         vm.hasAdd = true;
+        addState = 'rights:add';
+        detailState = 'preview';
         break;
       case 'accountApply':
         vm.title = '申请开户';
         vm.tabsType = 'apply';
         vm.hasAdd = false;
+        detailState = 'account:add';
         break;
       case 'groundingApply':
         vm.title = '申请开店';
         vm.tabsType = 'apply';
         vm.hasAdd = false;
         break;
-      case 'user':
+      case 'client':
         vm.title = '用户信息报备';
         vm.tabsType = '';
         vm.hasAdd = true;
+        addState = 'client:add';
+        detailState = 'client:preview';
         break;
       case 'invitation':
         vm.title = '邀约记录';
         vm.tabsType = 'invitation';
         vm.hasAdd = true;
+        addState = 'invitation';
+        detailState = 'invitation';
         break;
       case 'infoAudit':
         vm.title = '信息审核';
@@ -60,9 +67,14 @@
     }
 
     vm.add = add;
+    vm.select = select;
 
     function add() {
-      $state.go('rights:add');
+      $state.go(addState);
+    }
+
+    function select() {
+      $state.go(detailState);
     }
 
 
