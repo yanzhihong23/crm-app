@@ -1,0 +1,36 @@
+<ion-view view-title="客户信息报备">
+
+  <ion-nav-buttons side="right">
+    <a class="button" ui-sref="client:add">
+      添加
+    </a>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="list.doRefresh()">
+    </ion-refresher>
+
+    <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
+      <header class="list-header">{{date}}</header>
+      <a class="item item-icon-right" ng-repeat="item in items" ui-sref="client:preview({id: {{item.id}} })">
+        <div class="row row-no-padding">
+          <div class="col">
+            <div><span class="gray">姓名: </span>{{item.name}}</div>
+          </div>
+          <div class="col">
+            <div><span class="gray">申请角色: </span>{{item.applyRole | applyRole}}</div>
+          </div>
+        </div>
+        <i class="icon ion-ios-arrow-right gray"></i>
+      </a>
+    </article>
+
+    <ion-infinite-scroll
+      ng-if="list.hasMoreData"
+      on-infinite="list.loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

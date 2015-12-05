@@ -15,5 +15,9 @@
     this.getUser = function() {
       return localStorageService.get('user');
     };
+
+    this.getUserId = function() {
+      return this.getUser().userId;
+    };
   }
 })();

@@ -2,52 +2,56 @@
   
   <ion-content>
     <div class="list margin-vertical">
-      <div class="item item-icon-right" ng-click="rightsAdd.showApplyTypeAction()">
+      <div class="item item-icon-right" ng-click="add.showApplyTypeAction()">
         申请类型
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.applyType.text}}</span>
         <i class="icon ion-ios-arrow-down gray"></i>
       </div>
-      <div class="item item-icon-right" ng-click="rightsAdd.showApplicantTypeAction()">
+      <div class="item item-icon-right" ng-click="add.showApplicantTypeAction()">
         申请人类别
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.applicantType.text}}</span>
         <i class="icon ion-ios-arrow-down gray"></i>
       </div>
     </div>
 
     <div class="list margin-vertical">
-      <div class="item item-icon-right">
+      <div class="item item-icon-right" ng-click="add.selectArea('province')">
         省份
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.area.province.name || '请选择'}}</span>
         <i class="icon ion-ios-arrow-right gray"></i>
       </div>
-      <div class="item item-icon-right">
+      <div class="item item-icon-right" ng-click="add.selectArea('city')">
         城市
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.area.city.name || '请选择'}}</span>
         <i class="icon ion-ios-arrow-right gray"></i>
       </div>
-      <div class="item item-icon-right">
+      <div class="item item-icon-right" ng-click="add.selectArea('district')">
         区/县
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.area.district.name || '请选择'}}</span>
         <i class="icon ion-ios-arrow-right gray"></i>
       </div>
     </div>
 
     <div class="list margin-vertical">
-      <div class="item item-icon-right" ng-click="rightsAdd.showAgencyTypeAction()">
+      <div class="item item-icon-right" ng-click="add.showAgencyTypeAction()" ng-if="add.info.applyType.id==0">
         代理类型
-        <span class="item-note">请选择</span>
+        <span class="item-note">{{add.info.agencyType.text}}</span>
         <i class="icon ion-ios-arrow-down gray"></i>
       </div>
-      <div class="item item-input">
+      <div class="item item-input" ng-if="add.info.applyType.id==1">
+        <span class="input-label">小店个数</span>
+        <input type="tel" ng-model="add.info.storeCount" class="text-right" placeholder="请填写" required>
+      </div>
+      <div class="item item-input" ng-if="add.info.applyType.id==0">
         <span class="input-label">经销权个数</span>
-        <input type="number" class="text-right" placeholder="请填写" required>
+        <input type="tel" ng-model="add.info.dealerCount" class="text-right" placeholder="{{add.dealerCountLimt}}" required>
       </div>
     </div>
   </ion-content>
 
   <section class="bottom">
     <div class="padding">
-      <button class="button button-block button-balanced" ng-click="rightsAdd.next()">下一步</button>
+      <button class="button button-block button-balanced" ng-click="add.next()">下一步</button>
     </div>
   </section>
   

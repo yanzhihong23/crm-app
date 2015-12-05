@@ -1,27 +1,27 @@
-<ion-view view-title="添加邀约">
-  <form name="invitationForm" ng-sbumit="invitation.save()">
+<ion-view view-title="{{invitation.title}}">
+  <form name="invitationForm" ng-submit="invitation.save()">
     <ion-content class="has-bottom">
       <article class="list margin-vertical">
         <div class="item item-input">
           <span class="input-label">姓名</span>
-          <input type="text" placeholder="输入申请者姓名" required>
+          <input type="text" ng-model="invitation.info.name" placeholder="客户姓名" maxlength="20" required>
         </div>
         <div class="item item-input">
           <span class="input-label">联系电话</span>
-          <input type="text" placeholder="输入11位手机号码" required>
+          <input type="text" ng-model="invitation.info.phone" placeholder="11位手机号码" maxlength="11" required>
         </div>
         <div class="item item-input">
           <span class="input-label">预计到访时间</span>
-          <input type="text" placeholder="输入约定到访的时间" required>
+          <input type="text" ng-model="invitation.info.visitDate" placeholder="2015-12-25" required>
         </div>
         <div class="item item-input item-icon-right" ng-click="invitation.showApplyRoleAction()">
           <span class="input-label">申请角色</span>
-          <span class="item-note">请选择</span>
+          <span class="item-note">{{invitation.info.applyRole.id | applyRole}}</span>
           <i class="icon ion-ios-arrow-down gray"></i>
         </div>
         <div class="item item-input item-icon-right" ng-click="invitation.showStatusAction()">
           <span class="input-label">用户状态</span>
-          <span class="item-note">请选择</span>
+          <span class="item-note">{{invitation.info.status.id | inviteStatus}}</span>
           <i class="icon ion-ios-arrow-down gray"></i>
         </div>
         <div class="item item-input">

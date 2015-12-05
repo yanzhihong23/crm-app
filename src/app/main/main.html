@@ -23,13 +23,13 @@
       </ion-item>
     </section>
 
-    <section class="list margin-vertical">
-      <ion-item class="item-icon-right" ui-sref="list({type:'client'})">
+    <section class="list margin-vertical" ng-if="home.roleId==2||home.roleId==3">
+      <ion-item class="item-icon-right" ui-sref="list:client">
         <h2>客户信息报备</h2>
         <p>私密及时的客户信息记录本</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list({type:'invitation'})">
+      <ion-item class="item-icon-right" ui-sref="list:invitation">
         <h2>邀约记录</h2>
         <p>邀约用户洽谈的贴心备忘录</p>
         <i class="icon ion-ios-arrow-right gray"></i>
@@ -47,7 +47,7 @@
     
     <!-- 财务 -->
     <section class="list margin-vertical" ng-if="home.roleId==4">
-      <ion-item class="item-icon-right" ui-sref="list({type:'rightsAudit'})">
+      <ion-item class="item-icon-right" ui-sref="list:audit:rights">
         <h2>开店权/经销权审核</h2>
         <p>审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>

@@ -1,0 +1,70 @@
+<ion-view view-title="审核状态" id="result">
+  <ion-nav-buttons side="right">
+    <a class="button" ui-sref="rights:preview({id:result.id})">
+      详情
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="full-height">
+    <article ng-if="result.info.applyStatus==0" class="full-height">
+      <section class="row row-center text-center info">
+        <div class="col col-center">
+          <div class="waiting rotating"><i class="icon ion-load-a balanced"></i></div>
+          <div>恭喜您，您的申请已提交！</div>
+          <div ng-if="result.info.isTriggered">请耐心等待财务审核！</div>
+
+          <div>POS刷卡流水号：100230</div>
+        </div>
+      </section>
+        
+      <section class="tips padding" ng-if="!result.info.isTriggered">
+        <div class="gray padding-vertical">
+          <i class="icon ion-information-circled"></i>
+          提醒：请及时到财务处交款，实际交款成功后请发起收款申请提交财务，等待财务审核！
+        </div>
+
+        <div class="assertive padding-vertical">
+          <i class="icon ion-alert-circled"></i>
+          选择POS机刷卡方式付款的用户，请在刷卡时向工作人员提供POS刷卡流水号 
+        </div>
+
+        <div class="padding">
+          <button class="button button-block button-balanced" ng-click="result.triggerApply()">发起收款申请</button>
+        </div>
+      </section>
+    </article>
+
+    <article ng-if="result.info.applyStatus==1" class="full-height">
+      <section class="row row-center text-center info">
+        <div class="col col-center">
+          <div class="waiting"><i class="icon ion-checkmark-circled balanced"></i></div>
+          <div>恭喜您，付款已确认！</div>
+        </div>
+      </section>
+
+      <section class="tips padding" ng-if="result.info.payType.id==1">
+        <div class="assertive">
+          <i class="icon ion-information-circled"></i>
+          付款已成功，请及时联系财务领取相应票据。
+        </div>
+        <div class="padding">
+          <button class="button button-block button-balanced" ng-click="result.generateContract()">立即生成合同</button>
+        </div>
+      </section>
+
+      <section class="tips padding" ng-if="result.info.payType.id==0">
+        <div class="gray padding-vertical">
+          <i class="icon ion-information-circled"></i>
+          定金已支付成功，请及时联系财务领取相应票据。
+        </div>
+        <div class="assertive padding-vertical">
+          <i class="icon ion-alert-circled"></i>
+          该区域的开店权将为您保留3天，请于3天内交足余款，获得开店权。
+        </div>
+        <div class="padding">
+          <button class="button button-block button-balanced" ng-click="result.generateContract()">去支付尾款</button>
+        </div>
+      </section>
+    </article>
+    
+  </ion-content>
+</ion-view>

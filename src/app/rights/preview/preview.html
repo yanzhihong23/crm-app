@@ -1,0 +1,110 @@
+<ion-view view-title="{{preview.title}}">
+  <ion-content ng-class="{'has-bottom': !preview.id || preview.isAudit}">
+    <article class="list margin-vertical">
+      <div class="item">
+        时间
+        <span class="item-note">{{preview.info.date}}</span>
+      </div>
+      <div class="item">
+        姓名
+        <span class="item-note">{{preview.info.realname}}</span>
+      </div>
+      <div class="item">
+        身份证号
+        <span class="item-note">{{preview.info.idNo}}</span>
+      </div>
+      <div class="item">
+        联系电话
+        <span class="item-note">{{preview.info.phone}}</span>
+      </div>
+      <div class="item">
+        紧急联系人
+        <span class="item-note">{{preview.info.emergencyContact}}</span>
+      </div>
+      <div class="item">
+        紧急联系人电话
+        <span class="item-note">{{preview.info.emergencyPhone}}</span>
+      </div>
+      <div class="item">
+        申请类型
+        <span class="item-note">{{preview.info.applyType.id | applyType}}</span>
+      </div>
+      <div class="item">
+        申请人类型
+        <span class="item-note">{{preview.info.applicantType.id | applicantType}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.applicantType.id==1">
+        公司名称
+        <span class="item-note">{{preview.info.companyName}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.applyType.id==0">
+        经销权个数
+        <span class="item-note">{{preview.info.dealerCount}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.applyType.id==1">
+        小店个数
+        <span class="item-note">{{preview.info.storeCount}}</span>
+      </div>
+      <div class="item">
+        地区
+        <span class="item-note">
+          {{preview.info.area.province.name}} /
+          {{preview.info.area.city.name}} /
+          {{preview.info.area.district.name}}
+        </span>
+      </div>
+      <div class="item">
+        付款方式
+        <span class="item-note">{{preview.info.payMode.id | payMode}}</span>
+      </div>
+      <div class="item">
+        付款类型
+        <span class="item-note">{{preview.info.payType.id | payment}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.payerName">
+        付款人姓名
+        <span class="item-note">{{preview.info.payerName}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.payMode.id==1">
+        付款支付宝帐号
+        <span class="item-note">{{preview.info.alipayAccount}}</span>
+      </div>
+
+      <section ng-if="preview.info.payMode.id==0">
+        <div class="item">
+          付款银行
+          <span class="item-note">{{preview.info.bank.name}}</span>
+        </div>
+        <div class="item">
+          付款支行
+          <span class="item-note">{{preview.info.bankBranch}}</span>
+        </div>
+        <div class="item">
+          银行帐号
+          <span class="item-note">{{preview.info.bankAccount}}</span>
+        </div>
+      </section>
+
+      <div class="item">
+        已付金额
+        <span class="item-note">{{preview.info.paidAmount | currency:'￥'}}</span>
+      </div>
+      <div class="item">
+        付款金额
+        <span class="item-note">{{preview.info.payAmount | currency:'￥'}}</span>
+      </div>
+    </article>
+  </ion-content>
+
+  <section class="bottom" ng-if="!preview.id">
+    <div class="padding">
+      <button type="submit" class="button button-block button-balanced" ng-click="preview.submit()">确认提交</button>
+    </div>
+  </section>
+
+  <section class="bottom" ng-if="preview.isAudit">
+    <div class="padding">
+      <button type="submit" class="button button-block button-balanced" ng-click="preview.audit()">确认收款</button>
+    </div>
+  </section>
+</ion-view>

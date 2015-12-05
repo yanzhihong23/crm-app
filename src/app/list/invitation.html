@@ -1,7 +1,7 @@
-<ion-view view-title="申请开店权/经销权">
+<ion-view view-title="邀约记录">
 
   <ion-nav-buttons side="right">
-    <a class="button" ui-sref="rights:add">
+    <a class="button" ui-sref="invitation">
       添加
     </a>
   </ion-nav-buttons>
@@ -9,10 +9,10 @@
   <section class="tabs-top tabs-background-light crm-tabs">
     <div class="tab-nav tabs">
       <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
-        <span class="tab-title">申请中</span>
+        <span class="tab-title">已邀约</span>
       </a>
       <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
-        <span class="tab-title">申请成功</span>
+        <span class="tab-title">已到访</span>
       </a>
     </div>
   </section>
@@ -23,17 +23,16 @@
       on-refresh="list.doRefresh()">
     </ion-refresher>
 
-    <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
+    <article class="list margin-vertical"  ng-repeat="(date, items) in list.map">
       <header class="list-header">{{date}}</header>
-      <a class="item item-icon-right" ng-repeat="item in items" ui-sref="rights:result({id: item.id})">
+      <a class="item item-icon-right" ng-repeat="item in items" ui-sref="invitation({id:item.id})">
         <div class="row row-no-padding">
           <div class="col">
             <div><span class="gray">姓名: </span>{{item.name}}</div>
             <div><span class="gray">电话: </span>{{item.phone}}</div>
           </div>
           <div class="col">
-            <div><span class="gray">合作类型: </span>{{item.applyType | applyRole}}</div>
-            <div><span class="gray">付款类型: </span>{{item.paymentType | payment}}</div>
+            <div><span class="gray">合作类型: </span>{{item.applyRole | applyRole}}</div>
           </div>
         </div>
         <i class="icon ion-ios-arrow-right gray"></i>

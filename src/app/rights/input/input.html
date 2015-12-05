@@ -1,38 +1,38 @@
 <ion-view view-title="申请开店权/经销权">
-  <form name="inputForm" ng-submit="rightsInput.next()">
+  <form name="inputForm" ng-submit="add.next()">
     <ion-content>
       <article class="list margin-vertical">
-        <div class="item item-input">
+        <div class="item item-input" ng-if="add.info.applicantType.id==1">
           <span class="input-label">公司名字</span>
-          <input type="text" ng-model="info.companyName" placeholder="请输入申请者公司名字" required>
+          <input type="text" ng-model="add.info.companyName" placeholder="申请者公司名字" maxlength="20" required>
         </div>
         <div class="item item-input">
           <span class="input-label">姓名</span>
-          <input type="text" ng-model="info.realname" placeholder="请输入申请者姓名" required>
+          <input type="text" ng-model="add.info.realname" placeholder="申请者姓名" maxlength="20" required>
         </div>
         <div class="item item-input">
           <span class="input-label">身份证号</span>
-          <input type="text" ng-model="info.idNo" placeholder="请输入申请者身份证号" required>
+          <input type="text" ng-model="add.info.idNo" placeholder="申请者身份证号" maxlength="18" required>
         </div>
         <div class="item item-input">
           <span class="input-label">联系电话</span>
-          <input type="text" ng-model="info.phone" placeholder="请输入11位手机号码" required>
+          <input type="text" ng-model="add.info.phone" placeholder="11位手机号码" maxlength="11" required>
         </div>
         <div class="item item-input">
           <span class="input-label">邮寄地址</span>
-          <input type="text" ng-model="info.mailAddress" placeholder="xx路yy号" required>
+          <input type="text" ng-model="add.info.postAddr" placeholder="xx路yy号" maxlength="30" required>
         </div>
         <div class="item item-input">
           <span class="input-label">邮箱</span>
-          <input type="text" ng-model="info.email" placeholder="example@eg.com" required>
+          <input type="text" ng-model="add.info.email" placeholder="example@eg.com" maxlength="30" required>
         </div>
         <div class="item item-input">
           <span class="input-label">紧急联系人</span>
-          <input type="text" ng-model="info.emergencyContact" placeholder="点点" required>
+          <input type="text" ng-model="add.info.emergencyContact" placeholder="点点" maxlength="20" required>
         </div>
         <div class="item item-input">
           <span class="input-label">紧急联系人电话</span>
-          <input type="text" ng-model="info.emergencyPhone" placeholder="" required>
+          <input type="text" ng-model="add.info.emergencyPhone" placeholder="13988888888" maxlength="11" required>
         </div>
       </article>
     </ion-content>

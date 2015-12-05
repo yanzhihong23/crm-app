@@ -14,6 +14,7 @@
       // password: 'zjdd1234',
       // username: '13764903755', // 销售主管
       username: '13020189461', // 销售
+      // username: '13092673467', // 财务
       password: '123456'
     };
 
@@ -29,7 +30,7 @@
           vm.user.realName = info.username;
           vm.user.orgId = info.orgid;
           vm.user.roleId = info.roleid;
-          vm.user.uId = info.uid;
+          vm.user.userId = info.uid;
           // save user info
           UserService.setUser(vm.user);
 

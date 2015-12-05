@@ -5,7 +5,7 @@
 
 $positive: #69B8DF;
 $balanced: #32B77D;
-$assertive: #FF7247;
+// $assertive: #FF7247;
 $calm: #69b8df;
 $energized: #f5a623;
 $stable: #9b9b9b;
@@ -116,9 +116,16 @@ $border-color: #d5d5d5;
   bottom: 80px;
 }
 
-.full-height .scroll{
-  height: 100%;
+.full-height{
+  &, .scroll{
+    height: 100%;
+  }
 }
+
+.half-height{
+  height: 50%;
+}
+
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */
