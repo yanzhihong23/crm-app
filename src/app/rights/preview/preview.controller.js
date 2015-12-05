@@ -108,7 +108,7 @@
           utils.disableBack();
           $state.go('list:apply:rights', {},{reload: true});
         } else {
-          $log.errot('add rights apply error');
+          $log.error('add rights apply error');
         }
       });
     }
