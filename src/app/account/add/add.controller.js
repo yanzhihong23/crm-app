@@ -6,13 +6,46 @@
     .controller('AccountAddController', AccountAddController);
 
   /** @ngInject */
-  function AccountAddController($state, utils, AreaService, $log) {
-    var vm = this;
-
-    vm.selected = AreaService.selected;
+  function AccountAddController($rootScope, $state, $stateParams, utils, AreaService, ApiService, UserService, $log) {
+    var vm = this, id = $stateParams.id, user = UserService.getUser();
 
     vm.submit = submit;
     vm.selectArea = selectArea;
+
+    init();
+
+    function init() {
+      ApiService.rightsApplyDetail({id: id}).success(function(data) {
+        if(data.flag === 1) {
+          var obj = data.data.result;
+          vm.info = {
+            companyName: obj.companyName,
+            realname: obj.applyName,
+            idNo: obj.personNum,
+            phone: obj.phone,
+            area: {
+              province: {
+                id: obj.capitalId,
+                name: obj.capital
+              },
+              city: {
+                id: obj.cityId,
+                name: obj.city
+              },
+              district: {
+                id: obj.districtId,
+                name: obj.district
+              }
+            },
+          };
+
+          AreaService.selected = vm.info.area;
+          AreaService.getCityList(obj.capitalId);
+          AreaService.getDistrictList(obj.cityId);
+          AreaService.getStreetList(obj.districtId);
+        }
+      })
+    }
 
     function selectArea(type) {
       switch(type) {
@@ -20,7 +53,7 @@
           $state.go('area', {type: type});
           break;
         case 'city':
-          if(vm.selected.province && vm.selected.province.id) {
+          if(vm.info.area.province && vm.info.area.province.id) {
             $state.go('area', {type: type});
           } else {
             utils.alert({
@@ -30,7 +63,7 @@
 
           break;
         case 'district':
-          if(vm.selected.city && vm.selected.city.id) {
+          if(vm.info.area.city && vm.info.area.city.id) {
             $state.go('area', {type: type});
           } else {
             utils.alert({
@@ -40,7 +73,7 @@
 
           break;
         case 'street':
-          if(vm.selected.district && vm.selected.district.id) {
+          if(vm.info.area.district && vm.info.area.district.id) {
             $state.go('area', {type: type});
           } else {
             utils.alert({
@@ -56,7 +89,20 @@
       utils.confirm({
         content: '确认提交该店铺地址申请',
         onOk: function() {
-          
+          doApply();
+        }
+      });
+    }
+
+    function doApply() {
+      vm.info.storeId = id;
+      vm.info.userId = user.userId;
+      ApiService.addAccountApply(vm.info).success(function(data) {
+        if(data.flag === 1) {
+          $rootScope.$broadcast('reload:list:rights:apply');
+          utils.goBack();
+        } else {
+          $log.error('account apply error');
         }
       });
     }

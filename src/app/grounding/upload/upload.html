@@ -1,0 +1,41 @@
+<ion-view view-title="上传店铺图片" id="upload_view">
+  <ion-content class="has-bottom">
+    <article class="margin text-center">
+      <div class="row row-center">
+        <div class="col col-center item">
+          <div class="icon ion-ios-plus-empty"></div>
+          <div class="gray">上传店面照片</div>
+          <input type="file" accept="image/*" ng-model="upload.file.one" base-sixty-four-input>
+          <img ng-src="{{upload.file.onePreview}}" class="preview" alt="">
+        </div>
+        <div class="col col-center item">
+          <div class="icon ion-ios-plus-empty"></div>
+          <div class="gray">仓库货物照片</div>
+          <input type="file" accept="image/*" ng-model="upload.file.two" base-sixty-four-input>
+          <img ng-src="{{upload.file.twoPreview}}" class="preview" alt="">
+        </div>
+      </div>
+      <div class="row row-center">
+        <div class="col col-center item">
+          <div class="icon ion-ios-plus-empty"></div>
+          <div class="gray">货配车辆照片</div>
+          <input type="file" accept="image/*" ng-model="upload.file.three" base-sixty-four-input>
+          <img ng-src="{{upload.file.threePreview}}" class="preview" alt="">
+        </div>
+        <div class="col col-center item">
+          <div class="icon ion-ios-plus-empty"></div>
+          <div class="gray">上传更多</div>
+          <input type="file" accept="image/*" ng-model="upload.file.four" base-sixty-four-input>
+          <img ng-src="{{upload.file.fourPreview}}" class="preview" alt="">
+        </div>
+      </div>
+    </article>
+
+  </ion-content>
+
+  <section class="bottom">
+    <div class="padding">
+      <button class="button button-block button-balanced" ng-click="upload.save()">保存</button>
+    </div>
+  </section>
+</ion-view>

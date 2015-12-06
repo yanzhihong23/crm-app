@@ -1,45 +1,81 @@
 <ion-view view-title="详细信息">
   <ion-content>
     <article class="list margin-vertical">
-      <div class="item">
+      <div class="item" ng-if="preview.info.companyName">
         公司名字
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.companyName}}</span>
       </div>
       <div class="item">
         姓名
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.realname}}</span>
       </div>
       <div class="item">
         身份证号
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.idNo}}</span>
       </div>
       <div class="item">
         联系电话
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.phone}}</span>
       </div>
       <div class="item">
-        省份
-        <span class="item-note">xxx</span>
+        地区
+        <span class="item-note">
+          {{preview.info.province}} /
+          {{preview.info.city}} /
+          {{preview.info.district}} /
+          {{preview.info.street}}
+        </span>
       </div>
-      <div class="item">
+      <!-- <div class="item">
         城市
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.city}}</span>
       </div>
       <div class="item">
         区/县
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.district}}</span>
       </div>
       <div class="item">
         街道
-        <span class="item-note">xxx</span>
-      </div>
+        <span class="item-note">{{preview.info.street}}</span>
+      </div> -->
       <div class="item">
         详细地址
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.address}}</span>
       </div>
       <div class="item">
         小区名
-        <span class="item-note">xxx</span>
+        <span class="item-note">{{preview.info.village}}</span>
+      </div>
+    </article>
+
+    <article ng-if="preview.isAudit && !preview.info.status">
+      <div class="padding-horizontal padding-bottom assertive">
+        注: 请确认该店铺地址可用，若不可用请标明原因
+      </div>
+      <div class="item item-input">
+        <span class="input-label">不通过原因</span>
+        <textarea rows="1" ng-model="preview.remark" maxlength="140" placeholder="如：该地址已经被使用"></textarea>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-block button-balanced" ng-click="preview.audit(1)">审核通过</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="preview.audit(-1)">审核不通过</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="list" ng-if="preview.info.status">
+      <div class="item assertive">
+        审批结果
+        <span class="item-note assertive">{{preview.info.statusStr}}</span>
+      </div>
+      <div class="item">
+        审批意见
+        <span class="item-note">
+          {{preview.info.remark}}
+        </span>
       </div>
     </article>
   </ion-content>

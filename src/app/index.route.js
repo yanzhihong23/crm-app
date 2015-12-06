@@ -28,14 +28,26 @@
       })
       .state('list:apply:account', {
         url: '/list/apply/account',
-        templateUrl: 'app/list/account.apply.html',
+        templateUrl: 'app/account/list/apply.html',
         controller: 'AccountApplyListController',
+        controllerAs: 'list'
+      })
+      .state('list:audit:account', {
+        url: '/list/audit/account',
+        templateUrl: 'app/account/list/audit.html',
+        controller: 'AccountAuditListController',
         controllerAs: 'list'
       })
       .state('list:apply:grounding', {
         url: '/list/apply/grounding',
-        templateUrl: 'app/list/grounding.apply.html',
+        templateUrl: 'app/grounding/list/apply.html',
         controller: 'GroundingApplyListController',
+        controllerAs: 'list'
+      })
+      .state('list:audit:grounding', {
+        url: '/list/audit/grounding',
+        templateUrl: 'app/grounding/list/audit.html',
+        controller: 'GroundingAuditListController',
         controllerAs: 'list'
       })
       .state('list:client', {
@@ -93,10 +105,16 @@
         controllerAs: 'result'
       })
       .state('account:add', {
-        url: '/account/add',
+        url: '/account/add/:id',
         templateUrl: 'app/account/add/add.html',
         controller: 'AccountAddController',
-        controllerAs: 'accountAdd'
+        controllerAs: 'add'
+      })
+      .state('account:preview', {
+        url: '/account/preview/:type/:id',
+        templateUrl: 'app/account/preview/preview.html',
+        controller: 'AccountPreviewController',
+        controllerAs: 'preview'
       })
       .state('login', {
         url: '/login',
@@ -104,11 +122,17 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
-      .state('pic:upload', {
-        url: '/pic/upload',
-        templateUrl: 'app/pic/upload.html',
-        controller: 'PicController',
-        controllerAs: 'pic'
+      .state('grounding:upload', {
+        url: '/grounding/upload/:id',
+        templateUrl: 'app/grounding/upload/upload.html',
+        controller: 'UploadController',
+        controllerAs: 'upload'
+      })
+      .state('grounding:preview', {
+        url: '/grounding/preview/:id',
+        templateUrl: 'app/grounding/preview/preview.html',
+        controller: 'PreviewController',
+        controllerAs: 'preview'
       })
       .state('client:add', {
         url: '/client/add',

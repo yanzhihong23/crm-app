@@ -6,8 +6,6 @@
     .controller('ListController', ListController)
     .controller('RightsApplyListController', RightsApplyListController)
     .controller('RightsAuditListController', RightsAuditListController)
-    .controller('AccountApplyListController', AccountApplyListController)
-    .controller('GroundingApplyListController', GroundingApplyListController)
     .controller('ClientListController', ClientListController)
     .controller('InvitationListController', InvitationListController);
 
@@ -136,6 +134,7 @@
     vm.status = 0;
     vm.doRefresh = init;
     vm.loadMore = load;
+    vm.select = select;
 
     $scope.$watch(function() {
       return vm.status;
@@ -147,7 +146,13 @@
       init();
     });
 
-    // init();
+    function select(id) {
+      if(vm.status === 0) {
+        $state.go('rights:preview', {id: id, type: 'audit'});
+      } else {
+        $state.go('rights:preview', {id: id, type: 'audited'});
+      }
+    }
 
     function init() {
       $log.debug('init');
@@ -180,7 +185,7 @@
               applyType: obj.applyType,
               paymentType: obj.paymoneyType,
               date: obj.createdDate,
-              id: obj.applyStoreId
+              id: obj.applyStoreId || obj.applyId
             };
 
             if(!vm.map[obj.createdDate]) {
@@ -196,66 +201,6 @@
       });
 
       pageIndex++;
-    }
-  }
-
-  function AccountApplyListController($log, $state, $scope, ApiService) {
-    var vm = this;
-
-    vm.status = -1;
-
-    vm.select = select;
-
-    $scope.$watch(function() {
-      return vm.status;
-    }, function(val, old) {
-      if(val === -1) { // rights success list
-
-      } else {
-        return false; // test only
-        ApiService.accountApplyList({type: vm.status})
-          .success(function(data) {
-            if(data.flag === 1) {
-
-            }
-          });
-      }
-    });
-
-    function select() {
-      if(vm.status === -1) {
-        $state.go('account:add');
-      } else {
-        $state.go('preview');
-      }
-    }
-  }
-
-  function GroundingApplyListController($log, $state, $scope, ApiService) {
-    var vm = this;
-
-    vm.status = 3;
-
-    vm.select = select;
-
-    $scope.$watch(function() {
-      return vm.status;
-    }, function(val, old) {
-      return false; // test only
-      ApiService.storeApplyList({type: vm.status})
-        .success(function(data) {
-          if(data.flag === 1) {
-
-          }
-        });
-    });
-
-    function select() {
-      if(vm.status === 3) {
-        $state.go('pic:upload');
-      } else {
-        $state.go('result');
-      }
     }
   }
 
@@ -342,7 +287,8 @@
       ApiService.invitedList({
         userId: UserService.getUserId(),
         pageIndex: pageIndex,
-        itemsPerPage: itemsPerPage
+        itemsPerPage: itemsPerPage,
+        status: vm.status
       }).success(function(data) {
         if(data.flag === 1) {
           var result = data.data.result;
@@ -351,10 +297,7 @@
           }
 
           // data format
-          result.filter(function(obj) {
-            // return obj.userState == vm.status;
-            return true;
-          }).forEach(function(obj) {
+          result.forEach(function(obj) {
             var item = {
               name: obj.inviteuserName,
               applyRole: obj.applyRole,

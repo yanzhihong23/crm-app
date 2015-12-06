@@ -1,10 +1,11 @@
-<ion-view view-title="上传店铺图片" id="upload_view">
-  <ion-content class="has-bottom">
+<ion-view view-title="店铺图片预览" id="upload_view">
+  <ion-content>
     <article class="margin text-center">
       <div class="row row-center">
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">上传店面照片</div>
+          <img ng-src="{{preview.imgs[0]}}" class="preview" alt="">
         </div>
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
@@ -24,10 +25,4 @@
     </article>
 
   </ion-content>
-
-  <section class="bottom">
-    <div class="padding">
-      <button class="button button-block button-balanced" ng-click="pic.save()">保存</button>
-    </div>
-  </section>
 </ion-view>

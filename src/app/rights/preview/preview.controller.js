@@ -9,11 +9,12 @@
   function RightsPreviewController($rootScope, $log, $state, $stateParams, $filter, ApiService, localStorageService, UserService, utils) {
     var vm = this, 
         id = $stateParams.id, 
-        isAudit = $stateParams.type === 'audit',
+        type = $stateParams.type,
         user = UserService.getUser();
 
     vm.id = id;
-    vm.isAudit = isAudit;
+    vm.type = type;
+    vm.user = user;
     vm.title = id ? '申请信息详情' : '申请信息确认';
 
     vm.submit = submit;
@@ -25,7 +26,7 @@
       if(!id) { // add new
         vm.info = localStorageService.get('rightsApplyInfo');
       } else {
-        if(isAudit) {
+        if(/audit/.test(type)) {
           getDetail();
         } else {
           // data saved in result page
@@ -86,8 +87,8 @@
             payAmount: obj.needPaymoney,
 
             bank: {
-              name: obj.payBank,
-              id: obj.payBankId
+              name: obj.payBankName,
+              id: obj.payBankCode
             },
             bankBranch: obj.paySubbranchBank,
             bankAccount: obj.bankNumome,
@@ -113,25 +114,36 @@
       });
     }
 
-    function audit() {
+    function audit(status) {
+      var content;
+      if(user.roleId === 4) {
+        content = '请再次确认收到' + vm.info.realname + '的付款金额' + $filter('currency')(vm.info.payAmount, '￥');
+      } else {
+        content = '请再次确认';
+      }
+
       utils.confirm({
-        content: '请再次确认收到' + vm.info.realname + '的付款金额' + $filter('currency')(vm.info.payAmount, '￥'),
+        content: content,
         onOk: function() {
-          ApiService.rightsAudit({
-            userId: user.userId,
-            roleId: user.roleId,
-            status: 1,
-            storeId: id
-          }).success(function(data) {
-            if(data.flag === 1) {
-              $rootScope.$broadcast('reload:list:audit:rights');
-              $state.go('list:audit:rights', {},{reload: true});
-            } else {
-              $log.error('rights audit error');
-            }
-          });
+          doAudit(status);
         }
-      })
+      });
+    }
+
+    function doAudit(status) {
+      ApiService.rightsAudit({
+        userId: user.userId,
+        roleId: user.roleId,
+        status: status,
+        storeId: id
+      }).success(function(data) {
+        if(data.flag === 1) {
+          $rootScope.$broadcast('reload:list:audit:rights');
+          $state.go('list:audit:rights', {},{reload: true});
+        } else {
+          $log.error('rights audit error');
+        }
+      });
     }
 
   }

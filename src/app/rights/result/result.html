@@ -12,7 +12,7 @@
           <div>恭喜您，您的申请已提交！</div>
           <div ng-if="result.info.isTriggered">请耐心等待财务审核！</div>
 
-          <div>POS刷卡流水号：100230</div>
+          <div ng-if="result.info.posNo">POS刷卡流水号：{{result.info.posNo}}</div>
         </div>
       </section>
         

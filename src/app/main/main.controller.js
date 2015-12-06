@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $state, UserService, ApiService) {
+  function MainController($log, $state, UserService, ApiService, $ionicNavBarDelegate) {
     var vm = this, user = UserService.getUser();
 
     vm.roleId = user.roleId;
@@ -18,5 +18,7 @@
     //   case 5: // 运营
     //   case 6: // 运营审核
     // }
+
+    
   }
 })();

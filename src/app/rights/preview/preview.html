@@ -84,7 +84,11 @@
           <span class="item-note">{{preview.info.bankAccount}}</span>
         </div>
       </section>
-
+      
+      <div class="item">
+        合同金额
+        <span class="item-note">{{preview.info.contractAmount | currency:'￥'}}</span>
+      </div>
       <div class="item">
         已付金额
         <span class="item-note">{{preview.info.paidAmount | currency:'￥'}}</span>
@@ -102,9 +106,22 @@
     </div>
   </section>
 
-  <section class="bottom" ng-if="preview.isAudit">
+  <!-- 财务 -->
+  <section class="bottom" ng-if="preview.type=='audit' && preview.user.roleId==4">
     <div class="padding">
-      <button type="submit" class="button button-block button-balanced" ng-click="preview.audit()">确认收款</button>
+      <button type="submit" class="button button-block button-balanced" ng-click="preview.audit(1)">确认收款</button>
+    </div>
+  </section>
+  
+  <!-- 主管 -->
+  <section class="bottom" ng-if="preview.type='audit' && preview.user.roleId==2">
+    <div class="row">
+      <div class="col">
+        <button class="col button button-block button-balanced" ng-click="preview.audit(1)">审核通过</button>
+      </div>
+      <div class="col">
+        <button class="col button button-block button-assertive" ng-click="preview.audit(0)">审核不通过</button>
+      </div>
     </div>
   </section>
 </ion-view>

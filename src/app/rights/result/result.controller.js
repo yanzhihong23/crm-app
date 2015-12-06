@@ -72,7 +72,9 @@
             bankBranch: obj.paySubbranchBank,
             bankAccount: obj.bankNumome,
 
-            alipayAccount: obj.payAlipayNum
+            alipayAccount: obj.payAlipayNum,
+
+            posNo: obj.possNum
           }
 
           localStorageService.set('rightsApplyPreview', vm.info);

@@ -8,31 +8,40 @@
       <a class="tab-item" ng-class="{'tab-item-active': list.status == 4}" ng-click="list.status=4">
         <span class="tab-title">申请中</span>
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active': list.status == 5}" ng-click="list.status=5" ng-hide="list.tabsType=='rightsApply'">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 6}" ng-click="list.status=6" ng-hide="list.tabsType=='rightsApply'">
         <span class="tab-title">申请未通过</span>
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active': list.status == 6}" ng-click="list.status=6">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 5}" ng-click="list.status=5">
         <span class="tab-title">申请成功</span>
       </a>
     </div>
   </section>
 
   <ion-content>
-    <article class="list margin-vertical">
-      <header class="list-header">2015.11.15</header>
-      <a class="item item-icon-right" ng-click="list.select()">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="list.doRefresh()">
+    </ion-refresher>
+
+    <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
+      <header class="list-header">{{date}}</header>
+      <a class="item item-icon-right" ng-repeat="item in items" ng-click="list.select(item.id)">
         <div class="row row-no-padding">
           <div class="col">
-            <div><span class="gray">姓名: </span>钟汉良</div>
-            <div><span class="gray">电话: </span>12912345678</div>
+            <span class="gray">姓名: </span>{{item.name}}
           </div>
           <div class="col">
-            <div><span class="gray">合作类型: </span>经销商</div>
-            <div><span class="gray">付款类型: </span>全额</div>
+            <span class="gray">电话: </span>{{item.phone}}
           </div>
         </div>
         <i class="icon ion-ios-arrow-right gray"></i>
       </a>
     </article>
+
+    <ion-infinite-scroll
+      ng-if="list.hasMoreData"
+      on-infinite="list.loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
   </ion-content>
 </ion-view>

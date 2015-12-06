@@ -12,6 +12,10 @@
     vm.selected = {};
 
     vm.select = select;
+    vm.getProvinceList = getProvinceList;
+    vm.getCityList = getCityList;
+    vm.getDistrictList = getDistrictList;
+    vm.getStreetList = getStreetList;
 
     getProvinceList();
 

@@ -77,7 +77,8 @@
         data: {
           page: obj.pageIndex || 0,
           pageCount: obj.itemsPerPage || 10,
-          userId: obj.userId
+          userId: obj.userId,
+          userState: obj.status
         }
       });
     };
@@ -113,11 +114,18 @@
     this.updateInvitation = function(obj) {
       return $http({
         method: 'POST',
-        url: APISERVER + '/applyFlow/updateInviteUserById',
+        url: APISERVER + '/applyFlow/updateInviteUser',
         header: headers,
         data: {
           inviteUserid: obj.id,
-          userState: obj.status.id
+          inviteuserName: obj.name,
+          inviteuserMobile: obj.phone,
+          visitTime: obj.visitDate,
+          applyRole: obj.applyRole.id,
+          userState: obj.status.id, // 0: 已邀约, 1: 已到访
+          remark: obj.remark,
+          userId: obj.userId,
+          fuctionSate: 2
         }
       });
     };
@@ -185,8 +193,8 @@
 
           payPersonName: obj.payerName,
 
-          payBank: obj.bank && obj.bank.name, // TODO
-          payBankId: obj.bank && obj.bank.id,
+          payBankName: obj.bank && obj.bank.name, // TODO
+          payBankCode: obj.bank && obj.bank.id,
           paySubbranchBank: obj.bankBranch,
           bankNumome: obj.bankAccount,
 
@@ -221,8 +229,15 @@
     // 开户申请列表
     this.accountApplyList = function(obj) {
       return $http({
-        method: 'GET',
-        url: APISERVER + '/storeinfo/applicationAccount/list/' + obj.type // 0: 申请中, 1: 申请成功, 2: 申请失败
+        method: 'POST',
+        url: APISERVER + '/storeinfo/applicationAccount/list',
+        headers: headers,
+        data: {
+          type: obj.type, // 0: 申请中, 1: 申请成功, 2: 申请失败
+          userId: obj.userId,
+          page: obj.pageIndex || 1,
+          pageCount: obj.itemsPerPage || 10,
+        }
       });
     };
 
@@ -235,13 +250,14 @@
           applyName: obj.realname,
           personNum: obj.idNo,
           phone: obj.phone,
-          capital: obj.provinceId,
-          city: obj.cityId,
-          district: obj.districtId,
-          street: obj.streetId,
+          capital: obj.area.province.id,
+          city: obj.area.city.id,
+          district: obj.area.district.id,
+          street: obj.area.street.id,
           detailAddress: obj.address,
           village: obj.village,
-          applyStoreId: obj.applyStoreId
+          applyStoreId: obj.storeId,
+          userId: obj.userId
         }
       });
     };
@@ -265,7 +281,7 @@
           whoCheck: obj.roleId,
           applyStatus: obj.status,
           page: obj.pageIndex || 1,
-          pageCount: obj.itemsPerPage || 10,
+          pageCount: obj.itemsPerPage || 10
         }
       });
     };
@@ -287,8 +303,15 @@
     // 地址审核(开户申请审核)列表
     this.addrAuditList = function(obj) {
       return $http({
-        method: 'GET',
-        url: APISERVER + '/storeinfo/myApproval/list/' + obj.type // 0: 待审批, 1: 已审批
+        method: 'POST',
+        url: APISERVER + '/storeinfo/myApproval/list',
+        headers: headers,
+        data: {
+          type: obj.type, // 0: 待审批, 1: 已审批
+          userId: obj.userId,
+          page: obj.pageIndex || 1,
+          pageCount: obj.itemsPerPage || 10,
+        }
       });
     };
 
@@ -299,8 +322,9 @@
         header: headers,
         data: {
           storeId: obj.storeId,
-          auditOpinion: obj.auditOpinion,
-          status: obj.status // 1: 通过, -1: 不通过
+          auditOpinion: obj.remark,
+          status: obj.status, // 1: 通过, -1: 不通过
+          userId: obj.userId
         }
       });
     };
@@ -318,12 +342,16 @@
       });
     };
 
-    this.picUpload = function(obj) {
+    this.upload = function(obj) {
       return $http({
         method: 'POST',
         url: APISERVER + '/file/upload',
         header: headers,
-        data: obj.file
+        data: {
+          userId: obj.userId,
+          file: obj.file,
+          fileType: obj.fileType
+        }
       });
     };
 
@@ -333,6 +361,7 @@
         url: APISERVER + '/storeinfo/applicationShop',
         header: headers,
         data: {
+          userId: obj.userId,
           storeId: obj.storeId,
           fileUrls: obj.fileUrls
         }
@@ -342,15 +371,29 @@
     // 开店(上架)申请列表
     this.storeApplyList = function(obj) {
       return $http({
-        method: 'GET',
-        url: APISERVER + '/storeinfo/applicationAccount/list/' + obj.type // 3: 待申请, 4: 申请中, 5: 申请成功, 6: 申请失败
+        method: 'POST',
+        url: APISERVER + '/storeinfo/applicationAccount/list', // 3: 待申请, 4: 申请中, 5: 申请成功, 6: 申请失败
+        headers: headers,
+        data: {
+          type: obj.type,
+          userId: obj.userId,
+          page: obj.pageIndex || 1,
+          pageCount: obj.itemsPerPage || 10,
+        }
       });
     };
 
-    this.picAuditList = function(obj) {
+    this.storeAuditList = function(obj) {
       return $http({
-        method: 'GET',
-        url: APISERVER + '/storeinfo/myApproval/list/' + obj.type // 2: 待审批, 3: 已审批
+        method: 'POST',
+        url: APISERVER + '/storeinfo/myApproval/list', // 2: 待审批, 3: 已审批
+        headers: headers,
+        data: {
+          type: obj.type,
+          userId: obj.userId,
+          page: obj.pageIndex || 1,
+          pageCount: obj.itemsPerPage || 10,
+        }
       });
     };
 

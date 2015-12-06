@@ -1,4 +1,4 @@
-<ion-view view-title="开店权/经销权审核">
+<ion-view view-title="地址审核">
 
   <section class="tabs-top tabs-background-light crm-tabs">
     <div class="tab-nav tabs">
@@ -22,12 +22,10 @@
       <a class="item item-icon-right" ng-repeat="item in items" ng-click="list.select(item.id)">
         <div class="row row-no-padding">
           <div class="col">
-            <div><span class="gray">姓名: </span>{{item.name}}</div>
-            <div><span class="gray">电话: </span>{{item.phone}}</div>
+            <span class="gray">姓名: </span>{{item.name}}
           </div>
           <div class="col">
-            <div><span class="gray">合作类型: </span>{{item.applyType | applyRole}}</div>
-            <div><span class="gray">付款类型: </span>{{item.paymentType | payment}}</div>
+            <span class="gray">电话: </span>{{item.phone}}
           </div>
         </div>
         <i class="icon ion-ios-arrow-right gray"></i>

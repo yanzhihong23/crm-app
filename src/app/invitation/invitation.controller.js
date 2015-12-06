@@ -69,7 +69,8 @@
               },
               status: {
                 id: result.userState
-              } 
+              },
+              remark: result.remark 
             };
           } else {
             $log.error('get invitation error');
@@ -86,6 +87,8 @@
 
     function save() {
       if(id) { // update
+        vm.info.id = id;
+        vm.info.userId = userId;
         ApiService.updateInvitation(vm.info).success(function(data) {
           if(data.flag === 1) {
             utils.goBack();

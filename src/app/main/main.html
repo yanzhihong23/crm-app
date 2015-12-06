@@ -38,7 +38,7 @@
     
     <!-- 主管 -->
     <section class="list margin-vertical" ng-if="home.roleId==2">
-      <ion-item class="item-icon-right" ui-sref="list({type:'infoAudit'})">
+      <ion-item class="item-icon-right" ui-sref="list:audit:rights">
         <h2>信息审核</h2>
         <p>审批部分非标准金额信息</p>
         <i class="icon ion-ios-arrow-right gray"></i>
@@ -56,12 +56,12 @@
 
     <!-- 运营 -->
     <section class="list margin-vertical" ng-if="home.roleId==6">
-      <ion-item class="item-icon-right" ui-sref="list({type:'addrAudit'})">
+      <ion-item class="item-icon-right" ui-sref="list:audit:account">
         <h2>店铺地址审核</h2>
         <p>审核通过后立即获得开店权</p>
         <i class="icon ion-ios-arrow-right gray"></i>
       </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list({type:'picAudit'})">
+      <ion-item class="item-icon-right" ui-sref="list:audit:grounding">
         <h2>店铺图片审核</h2>
         <p>审核通过后立即开店成功</p>
         <i class="icon ion-ios-arrow-right gray"></i>

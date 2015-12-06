@@ -27,7 +27,7 @@
           vm.bankList = data.data.result.map(function(obj) {
             return {
               name: obj.bankName,
-              id: obj.bankMsgId
+              id: obj.bankCode
             };
           });
         }
