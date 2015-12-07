@@ -91,7 +91,7 @@
               id: obj.payBankCode
             },
             bankBranch: obj.paySubbranchBank,
-            bankAccount: obj.bankNumome,
+            bankAccount: obj.bankNumone,
 
             alipayAccount: obj.payAlipayNum
           }

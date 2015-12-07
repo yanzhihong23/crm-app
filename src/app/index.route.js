@@ -81,7 +81,7 @@
         controllerAs: 'add'
       })
       .state('rights:pay', {
-        url: '/rights/pay',
+        url: '/rights/pay/:id',
         templateUrl: 'app/rights/pay/pay.html',
         controller: 'RightsPayController',
         controllerAs: 'add'
@@ -105,7 +105,7 @@
       //   controllerAs: 'result'
       // })
       .state('account:add', {
-        url: '/account/add/:id',
+        url: '/account/add/:id/:type',
         templateUrl: 'app/account/add/add.html',
         controller: 'AccountAddController',
         controllerAs: 'add'
@@ -123,13 +123,13 @@
         controllerAs: 'login'
       })
       .state('grounding:upload', {
-        url: '/grounding/upload/:id',
+        url: '/grounding/upload/:type/:id',
         templateUrl: 'app/grounding/upload/upload.html',
         controller: 'UploadController',
         controllerAs: 'upload'
       })
       .state('grounding:preview', {
-        url: '/grounding/preview/:id',
+        url: '/grounding/preview/:type/:id',
         templateUrl: 'app/grounding/preview/preview.html',
         controller: 'PreviewController',
         controllerAs: 'preview'
@@ -163,6 +163,12 @@
         templateUrl: 'app/bank/bank.html',
         controller: 'BankController',
         controllerAs: 'bank'
+      })
+      .state('user', {
+        url: '/user',
+        templateUrl: 'app/user/user.html',
+        controller: 'UserController',
+        controllerAs: 'user'
       })
       ;
 

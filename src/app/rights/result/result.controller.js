@@ -11,6 +11,7 @@
     vm.id = id;
 
     vm.triggerApply = triggerApply;
+    vm.finalPay = finalPay;
 
     getDetail();
 
@@ -92,6 +93,10 @@
           $log.error('trigger rights apply error');
         }
       });
+    }
+
+    function finalPay() {
+      $state.go('rights:pay', {id: id});
     }
   }
 })();

@@ -13,8 +13,9 @@
       // username: '18616725872', // ceo
       // password: 'zjdd1234',
       // username: '13249832508', // 销售主管
-      username: '13020189461', // 销售
+      // username: '13020189461', // 销售
       // username: '13092673467', // 财务
+      username: '13325425167', // 运营审核
       password: '123456'
     };
 

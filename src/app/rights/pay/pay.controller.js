@@ -6,8 +6,9 @@
     .controller('RightsPayController', RightsPayController);
 
   /** @ngInject */
-  function RightsPayController($log, $ionicActionSheet, $state, localStorageService, ApiService, UserService, BankService, utils) {
+  function RightsPayController($log, $rootScope, $ionicActionSheet, $state, $stateParams, localStorageService, ApiService, UserService, BankService, utils) {
     var vm = this,
+        id = $stateParams.id,
         selfPays = [
           {text: '是', id: 1},
           {text: '否', id: 0}
@@ -23,17 +24,41 @@
           { text: '定金', id: 0 }
         ];
 
-    vm.info = localStorageService.get('rightsApplyInfo');
-    vm.info.selfPay = selfPays[0];
-    vm.info.payMode = payModes[0];
-    vm.info.payType = payTypes[0];
-    vm.info.bank = BankService.selected;
+    vm.title = id ? '支付尾款' : '申请开店权/经销权';
+
     vm.showSelfPayAction = showSelfPayAction;
     vm.showPayModeAction = showPayModeAction;
     vm.showPayTypeAction = showPayTypeAction;
     vm.next = next;
 
-    $log.debug(vm.info);
+    init();
+
+    function init() {
+      if(id) { // final pay
+        ApiService.rightsApplyDetail({id: id}).success(function(data) {
+          if(data.flag === 1) {
+            var result = data.data.result;
+            vm.info = {
+              id: id,
+              contractAmount: +result.contractAmount,
+              paidAmount: +result.paidMoney + +result.needPaymoney
+            };
+            vm.info.payAmount = vm.info.contractAmount - vm.info.paidAmount;
+
+            vm.info.selfPay = selfPays[0];
+            vm.info.payMode = payModes[0];
+            vm.info.payType = payTypes[0];
+            vm.info.bank = BankService.selected;
+          }
+        });
+      } else {
+        vm.info = localStorageService.get('rightsApplyInfo');
+        vm.info.selfPay = selfPays[0];
+        vm.info.payMode = payModes[0];
+        vm.info.payType = payTypes[0];
+        vm.info.bank = BankService.selected;
+      }
+    }
 
     function showSelfPayAction() {
       var selfPayAction = $ionicActionSheet.show({
@@ -85,9 +110,28 @@
 
     function next() {
       $log.debug(vm.info);
-      vm.info.date = moment().format('YYYY-MM-DD');
-      localStorageService.set('rightsApplyInfo', vm.info);
-      $state.go('rights:preview');
+
+      if(id) { // final pay
+        utils.confirm({
+          content: '请再次确认提交的信息',
+          onOk: function() {
+            ApiService.finalPay(vm.info).success(function(data) {
+              if(data.flag === 1) {
+                $rootScope.$broadcast('reload:list:apply:rights');
+                $state.go('list:apply:rights', {},{reload: true});
+              } else {
+                utils.alert({
+                  content: data.msg
+                });
+              }
+            })
+          }
+        });
+      } else {
+        vm.info.date = moment().format('YYYY-MM-DD');
+        localStorageService.set('rightsApplyInfo', vm.info);
+        $state.go('rights:preview');
+      }
     }
   }
 })();

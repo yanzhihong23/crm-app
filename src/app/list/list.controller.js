@@ -63,7 +63,7 @@
     }
   }
 
-  function RightsApplyListController($log, $state, $scope, ApiService, UserService) {
+  function RightsApplyListController($log, $state, $scope, $rootScope, ApiService, UserService) {
     var vm = this, pageIndex, itemsPerPage, userId = UserService.getUserId();
 
     vm.status = 0;
@@ -76,8 +76,10 @@
       init();
     });
 
-    // init();
-
+    $rootScope.$on('reload:list:apply:rights', function() {
+      init();
+    });
+    
     function init() {
       $log.debug('init');
       pageIndex = 1;
@@ -168,6 +170,7 @@
       ApiService.rightsAuditList({
         status: vm.status,
         roleId: user.roleId,
+        userId: user.userId,
         pageIndex: pageIndex,
         itemsPerPage: itemsPerPage
       }).success(function(data) {

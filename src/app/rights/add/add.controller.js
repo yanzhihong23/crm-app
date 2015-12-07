@@ -52,7 +52,7 @@
       return vm.info.dealerCount;
     }, function(val) {
       if(val) {
-        vm.info.dealerCount = Math.min(vm.dealerCountLimt || 0, val);
+        vm.info.dealerCount = Math.min(vm.dealerCountLimt || 1, val);
       }
     });
 

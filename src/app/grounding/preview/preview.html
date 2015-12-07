@@ -1,6 +1,7 @@
-<ion-view view-title="店铺图片预览" id="upload_view">
-  <ion-content>
-    <article class="margin text-center">
+<ion-view view-title="店铺信息预览" id="upload_view">
+  <ion-content ng-class="{'has-bottom': preview.info.status==-1&&preview.roleId!=6}">
+    <div class="item item-divider">店铺图片</div>
+    <article class="margin text-center upload">
       <div class="row row-center">
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
@@ -10,19 +11,70 @@
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">仓库货物照片</div>
+          <img ng-src="{{preview.imgs[1]}}" class="preview" alt="">
         </div>
       </div>
       <div class="row row-center">
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">货配车辆照片</div>
+          <img ng-src="{{preview.imgs[2]}}" class="preview" alt="">
         </div>
         <div class="col col-center item">
           <div class="icon ion-ios-plus-empty"></div>
-          <div class="gray">上传更多</div>
+          <div class="gray">手持身份证清晰照</div>
+          <img ng-src="{{preview.imgs[3]}}" class="preview" alt="">
         </div>
       </div>
     </article>
 
+    <article class="list margin-vertical">
+      <div class="item item-divider">商家版帐号</div>
+      <div class="item">
+        用户名
+        <span class="item-note">{{preview.user.username}}</span>
+      </div>
+      <div class="item">
+        密码
+        <span class="item-note">{{preview.user.password}}</span>
+      </div>
+    </article>
+
+    <article ng-if="preview.isAudit && preview.info.status==0">
+      <div class="padding-horizontal padding-bottom assertive">
+        注: 请确认图片是否符合要求，若不符合请标明原因
+      </div>
+      <div class="item item-input">
+        <span class="input-label">不通过原因</span>
+        <textarea rows="1" ng-model="preview.remark" maxlength="140" placeholder="如：图片不清晰"></textarea>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-block button-balanced" ng-click="preview.audit(1)">审核通过</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="preview.audit(-1)">审核不通过</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="list" ng-if="preview.info.status!=0">
+      <div class="item assertive">
+        审批结果
+        <span class="item-note assertive">{{preview.info.statusStr}}</span>
+      </div>
+      <div class="item">
+        审批意见
+        <span class="item-note">
+          {{preview.info.remark}}
+        </span>
+      </div>
+    </article>
   </ion-content>
+
+  <section class="bottom" ng-if="preview.info.status==-1&&preview.roleId!=6">
+    <div class="padding">
+      <button class="button button-block button-balanced" ng-click="preview.modify()">立即修改</button>
+    </div>
+  </section>
 </ion-view>

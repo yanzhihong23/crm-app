@@ -7,14 +7,26 @@
 
   /** @ngInject */
   function AccountAddController($rootScope, $state, $stateParams, utils, AreaService, ApiService, UserService, $log) {
-    var vm = this, id = $stateParams.id, user = UserService.getUser();
+    var vm = this, 
+        id = $stateParams.id, 
+        isUpdate = $stateParams.type === 'update',
+        user = UserService.getUser();
 
+    vm.title = isUpdate ? '店铺地址修改' : '店铺地址申请';
     vm.submit = submit;
     vm.selectArea = selectArea;
 
     init();
 
     function init() {
+      if(isUpdate) {
+        initUpdate();
+      } else {
+        initAdd();
+      }
+    }
+
+    function initAdd() {
       ApiService.rightsApplyDetail({id: id}).success(function(data) {
         if(data.flag === 1) {
           var obj = data.data.result;
@@ -36,7 +48,7 @@
                 id: obj.districtId,
                 name: obj.district
               }
-            },
+            }
           };
 
           AreaService.selected = vm.info.area;
@@ -44,7 +56,47 @@
           AreaService.getDistrictList(obj.cityId);
           AreaService.getStreetList(obj.districtId);
         }
-      })
+      });
+    }
+
+    function initUpdate() {
+      ApiService.accountApplyDetail({id: id}).success(function(data) {
+        if(data.flag === 1) {
+          var detail = data.data.detail;
+          vm.info = {
+            companyName: detail.companyName,
+            realname: detail.applyName,
+            idNo: detail.personNum,
+            phone: detail.phone,
+            area: {
+              province: {
+                id: detail.capital,
+                name: detail.capitalName
+              },
+              city: {
+                id: detail.city,
+                name: detail.cityName
+              },
+              district: {
+                id: detail.district,
+                name: detail.districtName
+              },
+              street: {
+                id: detail.street,
+                name: detail.streetName
+              }
+            },
+            address: detail.detailAddress,
+            village: detail.village,
+            remark: detail.addressAuditOpinion
+          };
+
+          AreaService.selected = vm.info.area;
+          AreaService.getCityList(detail.capital);
+          AreaService.getDistrictList(detail.city);
+          AreaService.getStreetList(detail.district);
+        }
+      });
     }
 
     function selectArea(type) {
@@ -97,10 +149,12 @@
     function doApply() {
       vm.info.storeId = id;
       vm.info.userId = user.userId;
+      vm.info.update = isUpdate;
       ApiService.addAccountApply(vm.info).success(function(data) {
         if(data.flag === 1) {
-          $rootScope.$broadcast('reload:list:rights:apply');
-          utils.goBack();
+          $rootScope.$broadcast('reload:list:account:apply');
+          var deep = isUpdate ? -2 : -1;
+          utils.goBack(deep);
         } else {
           $log.error('account apply error');
         }

@@ -58,7 +58,7 @@
             // data format
             result.forEach(function(obj) {
               var item = {
-                id: obj.storeId,
+                id: obj.shopId || obj.storeId,
                 name: obj.applyName,
                 phone: obj.phone,
                 date: moment(obj.addressApprovalTime).format('YYYY-MM-DD')
@@ -128,7 +128,7 @@
 
             result.forEach(function(obj) {
               var item = {
-                id: obj.storeId,
+                id: obj.shopId,
                 name: obj.applyName,
                 phone: obj.phone,
                 date: moment(obj.applicationTime).format('YYYY-MM-DD')

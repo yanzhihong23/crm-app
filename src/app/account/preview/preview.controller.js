@@ -14,6 +14,7 @@
     vm.isAudit = isAudit;
     vm.user = user;
     vm.audit = audit;
+    vm.modify = modify;
 
     init();
 
@@ -55,6 +56,10 @@
 
         }
       });
+    }
+
+    function modify() {
+      $state.go('account:add', {type: 'update', id: id});
     }
 
   }

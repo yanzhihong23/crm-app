@@ -9,13 +9,48 @@
   function UploadController($log, ApiService, $scope, $rootScope, $state, $stateParams, UserService, utils) {
     var vm = this, 
         id = $stateParams.id,
+        isUpdate = $stateParams.type === 'update',
         userId = UserService.getUserId();
 
     vm.file = {};
+    vm.user = {};
+    vm.disabled = true;
 
     vm.save = save;
 
+    init();
     handler();
+
+    $scope.$watch(function() {
+      return vm.file;
+    }, function(val) {
+      if(val.onePreview && val.twoPreview && val.threePreview && val.fourPreview) {
+        vm.disabled = false;
+      }
+    }, true);
+
+    function init() {
+      if(isUpdate) {
+        ApiService.shopDetail({id: id}).success(function(data) {
+          if(data.flag === 1) {
+            var detail = data.data.detail;
+            var imgs = data.data.imgs.map(function(obj) {
+              return obj.imgUrl;
+            });
+
+            vm.user = {
+              username: detail.username,
+              password: detail.password
+            };
+
+            vm.file.onePreview = imgs[0];
+            vm.file.twoPreview = imgs[1];
+            vm.file.threePreview = imgs[2];
+            vm.file.fourPreview = imgs[3];
+          }
+        });
+      }
+    }
 
     function handler() {
       var arr = ['one', 'two', 'three', 'four'];
@@ -48,13 +83,17 @@
 
     function save() {
       ApiService.openStoreApply({
+        update: isUpdate, 
         userId: userId,
-        storeId: id,
-        fileUrls: [vm.file.onePreview]
+        id: id,
+        username: vm.user.username,
+        password: vm.user.password,
+        fileUrls: [vm.file.onePreview, vm.file.twoPreview, vm.file.threePreview, vm.file.fourPreview]
       }).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:grounding:apply');
-          utils.goBack();
+          var deep = isUpdate ? -2 : -1;
+          utils.goBack(deep);
         }
       });
     }

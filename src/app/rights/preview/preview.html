@@ -1,5 +1,5 @@
 <ion-view view-title="{{preview.title}}">
-  <ion-content ng-class="{'has-bottom': !preview.id || preview.isAudit}">
+  <ion-content ng-class="{'has-bottom': !preview.id || preview.type=='audit'}">
     <article class="list margin-vertical">
       <div class="item">
         时间
@@ -98,6 +98,7 @@
         <span class="item-note">{{preview.info.payAmount | currency:'￥'}}</span>
       </div>
     </article>
+
   </ion-content>
 
   <section class="bottom" ng-if="!preview.id">
@@ -114,13 +115,13 @@
   </section>
   
   <!-- 主管 -->
-  <section class="bottom" ng-if="preview.type='audit' && preview.user.roleId==2">
+  <section class="bottom" ng-if="preview.type=='audit' && preview.user.roleId==2">
     <div class="row">
       <div class="col">
         <button class="col button button-block button-balanced" ng-click="preview.audit(1)">审核通过</button>
       </div>
       <div class="col">
-        <button class="col button button-block button-assertive" ng-click="preview.audit(0)">审核不通过</button>
+        <button class="col button button-block button-assertive" ng-click="preview.audit(2)">审核不通过</button>
       </div>
     </div>
   </section>

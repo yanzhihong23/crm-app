@@ -163,7 +163,6 @@
         header: headers,
         data: {
           userId: obj.userId,
-          whetherSelf: obj.selfPay.id,
           applyType: obj.applyType.id,
           applyPersonType: obj.applicantType.id,
           agencyType: obj.agencyType.id,
@@ -178,6 +177,7 @@
           urgencyPhone: obj.emergencyPhone,
           companyname: obj.companyName,
 
+          whetherSelf: obj.selfPay.id,
           payWay: obj.payMode.id,
           paymoneyType: obj.payType.id,
           contractAmount: obj.contractAmount,
@@ -190,6 +190,33 @@
           cityId: obj.area.city.id,
           district: obj.area.district.name,
           districtId: obj.area.district.id,
+
+          payPersonName: obj.payerName,
+
+          payBankName: obj.bank && obj.bank.name, // TODO
+          payBankCode: obj.bank && obj.bank.id,
+          paySubbranchBank: obj.bankBranch,
+          bankNumone: obj.bankAccount,
+
+          payAlipayNum: obj.alipayAccount
+        }
+      });
+    };
+
+    this.finalPay = function(obj) {
+      return $http({
+        method: 'POST',
+        url: APISERVER + '/applyFlow/payRemainMoney',
+        headers: headers,
+        data: {
+          applyStoreId: obj.id,
+
+          whetherSelf: obj.selfPay.id,
+          payWay: obj.payMode.id,
+          paymoneyType: obj.payType.id,
+          contractAmount: obj.contractAmount,
+          paidMoney: obj.paidAmount,
+          needPaymoney: obj.payAmount,
 
           payPersonName: obj.payerName,
 
@@ -244,7 +271,7 @@
     this.addAccountApply = function(obj) {
       return $http({
         method: 'POST',
-        url: APISERVER + '/storeinfo/add',
+        url: APISERVER + '/storeinfo/' + (obj.update ? 'reApply' : 'add'),
         header: headers,
         data: {
           applyName: obj.realname,
@@ -256,8 +283,9 @@
           street: obj.area.street.id,
           detailAddress: obj.address,
           village: obj.village,
-          applyStoreId: obj.storeId,
-          userId: obj.userId
+          userId: obj.userId,
+          applyStoreId: obj.storeId, // add
+          storeId: obj.storeId // update
         }
       });
     };
@@ -266,6 +294,13 @@
       return $http({
         method: 'GET',
         url: APISERVER + '/storeinfo/detail/' + obj.id
+      });
+    };
+
+    this.shopDetail = function(obj) {
+      return $http({
+        method: 'GET',
+        url: APISERVER + '/storeinfo/shopDetail/' + obj.id
       });
     };
 
@@ -278,7 +313,8 @@
         headers: headers,
         data: {
           roleId: obj.roleId,
-          whoCheck: obj.roleId,
+          userId: obj.userId,
+          // whoCheck: obj.userId,
           applyStatus: obj.status,
           page: obj.pageIndex || 1,
           pageCount: obj.itemsPerPage || 10
@@ -335,9 +371,10 @@
         url: APISERVER + '/storeinfo/imgAudit',
         header: headers,
         data: {
-          storeId: obj.storeId,
-          auditOpinion: obj.auditOpinion,
-          status: obj.status // 1: 通过, -1: 不通过
+          shopId: obj.shopId,
+          auditOpinion: obj.remark,
+          status: obj.status, // 1: 通过, -1: 不通过
+          userId: obj.userId
         }
       });
     };
@@ -358,12 +395,15 @@
     this.openStoreApply = function(obj) {
       return $http({
         method: 'POST',
-        url: APISERVER + '/storeinfo/applicationShop',
+        url: APISERVER + '/storeinfo/' + (obj.update ? 'reApplicationShop ' : 'applicationShop'),
         header: headers,
         data: {
           userId: obj.userId,
-          storeId: obj.storeId,
-          fileUrls: obj.fileUrls
+          username: obj.username,
+          password: obj.password,
+          fileUrls: obj.fileUrls,
+          storeId: obj.id, // add
+          shopId: obj.id // update
         }
       });
     };
