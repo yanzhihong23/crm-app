@@ -25,7 +25,7 @@
 
     <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
       <header class="list-header">{{date}}</header>
-      <a class="item item-icon-right" ng-repeat="item in items" ng-click="list.select(item.id)">
+      <a class="item item-icon-right" ng-repeat="item in items" ng-click="list.select(item.id, item.detailId)">
         <div class="row row-no-padding">
           <div class="col">
             <span class="gray">姓名: </span>{{item.name}}

@@ -105,7 +105,7 @@
       //   controllerAs: 'result'
       // })
       .state('account:add', {
-        url: '/account/add/:id/:type',
+        url: '/account/add/:id/:type/:detailId',
         templateUrl: 'app/account/add/add.html',
         controller: 'AccountAddController',
         controllerAs: 'add'

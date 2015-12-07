@@ -9,6 +9,7 @@
   function AccountAddController($rootScope, $state, $stateParams, utils, AreaService, ApiService, UserService, $log) {
     var vm = this, 
         id = $stateParams.id, 
+        detailId = $stateParams.detailId,
         isUpdate = $stateParams.type === 'update',
         user = UserService.getUser();
 
@@ -147,7 +148,7 @@
     }
 
     function doApply() {
-      vm.info.storeId = id;
+      vm.info.storeId = detailId || id;
       vm.info.userId = user.userId;
       vm.info.update = isUpdate;
       ApiService.addAccountApply(vm.info).success(function(data) {

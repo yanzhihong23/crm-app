@@ -24,9 +24,9 @@
         init();
       });
 
-      function select(id) {
+      function select(id, detailId) {
         if(vm.status === -1) {
-          $state.go('account:add', {id: id});
+          $state.go('account:add', {id: id, detailId: detailId});
         } else {
           $state.go('account:preview', {id: id});
         }
@@ -53,36 +53,33 @@
       }
 
       function loadNotApplied() {
-        ApiService.rightsApplyList({
-          type: 1,
+        ApiService.accountApplyList({
+          type: -1,
           userId: userId,
           pageIndex: pageIndex,
           itemsPerPage: itemsPerPage
         }).success(function(data) {
           if(data.flag === 1) {
-            var result = data.data.result;
+            var result = data.data.data;
             if(result.length < itemsPerPage) {
               vm.hasMoreData = false;
             }
 
             // data format
-            result.filter(function(obj) {
-              return obj.paymoneyType == 1; // 过滤定金
-            }).forEach(function(obj) {
+            result.forEach(function(obj) {
               var item = {
                 name: obj.applyName,
                 phone: obj.phone,
-                applyType: obj.applyType,
-                paymentType: obj.paymoneyType,
-                date: obj.createdDate,
-                id: obj.applyStoreId
+                date: moment(obj.createdDate).format('YYYY-MM-DD'),
+                id: obj.applyStoreId,
+                detailId: obj.applyStoreDetailId
               };
 
-              if(!vm.map[obj.createdDate]) {
-                vm.map[obj.createdDate] = [];
+              if(!vm.map[item.date]) {
+                vm.map[item.date] = [];
               }
 
-              vm.map[obj.createdDate].push(item);
+              vm.map[item.date].push(item);
             });
           }
         }).finally(function() {
