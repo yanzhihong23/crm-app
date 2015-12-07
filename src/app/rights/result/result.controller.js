@@ -12,6 +12,7 @@
 
     vm.triggerApply = triggerApply;
     vm.finalPay = finalPay;
+    vm.reApply = reApply;
 
     getDetail();
 
@@ -75,7 +76,10 @@
 
             alipayAccount: obj.payAlipayNum,
 
-            posNo: obj.possNum
+            posNo: obj.possNum,
+
+            managerCheck: obj.managersCheck,
+            financeCheck: obj.financeCheck
           }
 
           localStorageService.set('rightsApplyPreview', vm.info);
@@ -97,6 +101,10 @@
 
     function finalPay() {
       $state.go('rights:pay', {id: id});
+    }
+
+    function reApply() {
+      $state.go('rights:add');
     }
   }
 })();
