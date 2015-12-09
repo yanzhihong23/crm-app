@@ -97,7 +97,20 @@
         付款金额
         <span class="item-note">{{preview.info.payAmount | currency:'￥'}}</span>
       </div>
+      <div class="item" ng-if="preview.info.posNo">
+        POS流水号
+        <span class="item-note">{{preview.info.posNo}}</span>
+      </div>
     </article>
+
+    <div class="list margin-vertical" ng-if="preview.type=='audited'">
+      <div class="item">
+        审批结果
+        <span class="item-note assertive" ng-if="preview.user.roleId==2">{{preview.info.managerCheck==1?'通过':'不通过'}}</span>
+        <span class="item-note assertive" ng-if="preview.user.roleId==4">{{preview.info.financeCheck==1?'通过':'不通过'}}</span>
+      </div>
+
+    </div>
 
   </ion-content>
 
