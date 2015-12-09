@@ -132,10 +132,10 @@
 
     function doAudit(status) {
       ApiService.rightsAudit({
-        userId: user.userId,
-        roleId: user.roleId,
-        status: status,
-        storeId: id
+        userId: user.userId + '',
+        roleId: user.roleId + '',
+        status: status + '',
+        storeId: id + ''
       }).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:audit:rights');
