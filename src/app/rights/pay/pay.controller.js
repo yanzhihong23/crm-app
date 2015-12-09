@@ -118,6 +118,7 @@
           onOk: function() {
             ApiService.finalPay(vm.info).success(function(data) {
               if(data.flag === 1) {
+                RightsApplyService.reset();
                 $rootScope.$broadcast('reload:list:apply:rights');
                 utils.goBack(-3);
               } else {

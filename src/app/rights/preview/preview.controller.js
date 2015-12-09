@@ -6,7 +6,7 @@
     .controller('RightsPreviewController', RightsPreviewController);
 
   /** @ngInject */
-  function RightsPreviewController($rootScope, $log, $state, $stateParams, $filter, ApiService, localStorageService, UserService, utils) {
+  function RightsPreviewController($rootScope, $log, $state, $stateParams, $filter, ApiService, localStorageService, UserService, RightsApplyService, utils) {
     var vm = this, 
         id = $stateParams.id, 
         type = $stateParams.type,
@@ -106,8 +106,9 @@
       vm.info.userId = user.userId;
       ApiService.addRightsApply(vm.info).success(function(data) {
         if(data.flag === 1) {
-          utils.disableBack();
-          $state.go('list:apply:rights', {},{reload: true});
+          RightsApplyService.reset();
+          $rootScope.$broadcast('reload:list:apply:rights');
+          utils.goBack(-4);
         } else {
           $log.error('add rights apply error');
         }
