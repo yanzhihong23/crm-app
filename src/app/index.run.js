@@ -21,6 +21,9 @@
     $rootScope.$on('$stateChangeStart', function(evt, toState, fromState, fromParams) {
       switch(toState.name) {
         case 'login':
+          if($rootScope.user) {
+            evt.preventDefault();
+          }
           break;
         default:
           if(!$rootScope.user) {
