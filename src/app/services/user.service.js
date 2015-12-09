@@ -24,6 +24,7 @@
     };
 
     this.logout = function() {
+      $rootScope.user = null;
       localStorageService.clearAll();
       
       utils.disableBack();
