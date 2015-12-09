@@ -36,15 +36,22 @@
     vm.showAgencyTypeAction = showAgencyTypeAction;
     vm.next = next;
     vm.selectArea = selectArea;
+    vm.disabled = disabled;
 
     $scope.$watch(function() {
       return vm.info.area;
     }, function(val) {
-      if(val.city && val.city.id) {
+      if(val.district && val.district.id) {
         $log.debug(val);
-        ApiService.dealerCountLimit({id: val.city.id}).success(function(data) {
+        ApiService.dealerCountLimit({cityId: val.city.id, districtId: val.district.id}).success(function(data) {
           if(data.flag === 1) {
-            vm.dealerCountLimt = data.data.result && data.data.result.dealershipNumAble;
+            vm.dealerCountLimt = data.data && data.data.dealershipAble;
+
+            if(vm.dealerCountLimt === 0 && vm.info.applyType.id === 0) {
+              utils.alert({
+                content: '该地区经销权已售罄'
+              });
+            }
           }
         });
       } 
@@ -54,9 +61,23 @@
       return vm.info.dealerCount;
     }, function(val) {
       if(val) {
-        vm.info.dealerCount = Math.min(vm.dealerCountLimt || 1, val);
+        vm.info.dealerCount = Math.min(vm.dealerCountLimt || 0, val);
       }
     });
+
+    function disabled() {
+      if(!vm.info.area.district) {
+        return true;
+      }
+
+      if(!vm.info.storeCount && !vm.info.dealerCount) {
+        return true;
+      }
+
+      if(vm.info.storeCount <= 0 && vm.info.dealerCount <= 0) {
+        return true;
+      }
+    }
 
     function showApplyTypeAction() {
       var applyTypeAction = $ionicActionSheet.show({
