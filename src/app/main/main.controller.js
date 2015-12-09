@@ -6,10 +6,19 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $state, UserService, ApiService, $ionicNavBarDelegate) {
-    var vm = this, user = UserService.getUser();
+  function MainController($log, $state, $rootScope, UserService, ApiService, $ionicNavBarDelegate) {
+    var vm = this, user;
 
-    vm.roleId = user.roleId;
+    init();
+
+    $rootScope.$on('login:succ', function() {
+      init();
+    });
+
+    function init() {
+      user = UserService.getUser();
+      vm.roleId = user.roleId;
+    }
     
     // switch(user.roleId) {
     //   case 2: // 销售主管

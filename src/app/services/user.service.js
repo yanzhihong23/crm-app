@@ -11,6 +11,8 @@
   	this.setUser = function(user) {
       $rootScope.user = user;
       localStorageService.set('user', user);
+
+      $rootScope.$broadcast('login:suc');
     };
 
     this.getUser = function() {

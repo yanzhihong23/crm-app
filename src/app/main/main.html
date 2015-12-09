@@ -5,7 +5,7 @@
     </a>
   </ion-nav-buttons>
   <ion-content>
-    <section class="list margin-vertical" ng-if="home.roleId==2||home.roleId==3">
+    <section class="list margin-vertical" ng-if="user.roleId==2||user.roleId==3">
       <a class="item item-icon-right" ui-sref="list:apply:rights">
         <h2>申请开店权/经销权</h2>
         <p>提交申请，立即付款，审核通过后立即获得开店权</p>
@@ -23,7 +23,7 @@
       </ion-item>
     </section>
 
-    <section class="list margin-vertical" ng-if="home.roleId==2||home.roleId==3">
+    <section class="list margin-vertical" ng-if="user.roleId==2||user.roleId==3">
       <ion-item class="item-icon-right" ui-sref="list:client">
         <h2>客户信息报备</h2>
         <p>私密及时的客户信息记录本</p>
@@ -37,7 +37,7 @@
     </section>
     
     <!-- 主管 -->
-    <section class="list margin-vertical" ng-if="home.roleId==2">
+    <section class="list margin-vertical" ng-if="user.roleId==2">
       <ion-item class="item-icon-right" ui-sref="list:audit:rights">
         <h2>信息审核</h2>
         <p>审批部分非标准金额信息</p>
@@ -46,7 +46,7 @@
     </section>
     
     <!-- 财务 -->
-    <section class="list margin-vertical" ng-if="home.roleId==4">
+    <section class="list margin-vertical" ng-if="user.roleId==4">
       <ion-item class="item-icon-right" ui-sref="list:audit:rights">
         <h2>开店权/经销权审核</h2>
         <p>审核通过后立即获得开店权</p>
@@ -55,7 +55,7 @@
     </section>
 
     <!-- 运营 -->
-    <section class="list margin-vertical" ng-if="home.roleId==6">
+    <section class="list margin-vertical" ng-if="user.roleId==6">
       <ion-item class="item-icon-right" ui-sref="list:audit:account">
         <h2>店铺地址审核</h2>
         <p>审核通过后立即获得开店权</p>
