@@ -236,7 +236,8 @@
         url: APISERVER + '/applyFlow/queryDealershipNumAble',
         headers: headers,
         data: {
-          cityId: obj.id
+          cityId: obj.cityId,
+          districtId: obj.districtId
         }
       });
     };
