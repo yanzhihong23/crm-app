@@ -6,7 +6,7 @@
     .controller('RightsPayController', RightsPayController);
 
   /** @ngInject */
-  function RightsPayController($log, $rootScope, $ionicActionSheet, $state, $stateParams, localStorageService, ApiService, UserService, BankService, utils) {
+  function RightsPayController($log, $rootScope, $ionicActionSheet, $state, $stateParams, localStorageService, ApiService, UserService, BankService, RightsApplyService, utils) {
     var vm = this,
         id = $stateParams.id,
         selfPays = [
@@ -52,7 +52,8 @@
           }
         });
       } else {
-        vm.info = localStorageService.get('rightsApplyInfo');
+        // vm.info = localStorageService.get('rightsApplyInfo');
+        vm.info = RightsApplyService.info;
         vm.info.selfPay = selfPays[0];
         vm.info.payMode = payModes[0];
         vm.info.payType = payTypes[0];
@@ -118,13 +119,13 @@
             ApiService.finalPay(vm.info).success(function(data) {
               if(data.flag === 1) {
                 $rootScope.$broadcast('reload:list:apply:rights');
-                $state.go('list:apply:rights', {},{reload: true});
+                utils.goBack(-3);
               } else {
                 utils.alert({
                   content: data.msg
                 });
               }
-            })
+            });
           }
         });
       } else {

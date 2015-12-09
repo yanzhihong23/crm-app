@@ -6,7 +6,7 @@
     .controller('RightsAddController', RightsAddController);
 
   /** @ngInject */
-  function RightsAddController($log, $ionicActionSheet, $state, $scope, AreaService, ApiService, localStorageService, utils) {
+  function RightsAddController($log, $ionicActionSheet, $state, $scope, AreaService, ApiService, localStorageService, RightsApplyService, utils) {
     var vm = this,
         applyTypes = [
           { text: '经销权', id: 0 },
@@ -28,6 +28,8 @@
       agencyType: agencyTypes[0],
       area: AreaService.selected
     };
+
+    RightsApplyService.info = vm.info;
 
     vm.showApplyTypeAction = showApplyTypeAction;
     vm.showApplicantTypeAction = showApplicantTypeAction;

@@ -7,7 +7,7 @@
     .controller('ClientPreviewController', ClientPreviewController);
 
   /** @ngInject */
-  function ClientAddController($log, $state, $ionicActionSheet, ApiService, UserService, utils) {
+  function ClientAddController($rootScope, $log, $state, $ionicActionSheet, ApiService, UserService, utils) {
     var vm = this, 
         applyRoles = [
           { text: '经销商', id: 0 },
@@ -42,8 +42,9 @@
       vm.info.userId = UserService.getUserId();
       ApiService.addClient(vm.info).success(function(data) {
         if(data.flag === 1) {
-          utils.disableBack();
-          $state.go('list:client', null, {reload: true});
+          $rootScope.$broadcast('reload:client:list');
+          utils.goBack();
+          // $state.go('list:client', null, {reload: true});
         } else {
           $log.error('add client error');
         }

@@ -6,10 +6,11 @@
     .controller('RightsInputController', RightsInputController);
 
   /** @ngInject */
-  function RightsInputController($log, $state, localStorageService) {
+  function RightsInputController($log, $state, localStorageService, RightsApplyService) {
     var vm = this;
 
-    vm.info = localStorageService.get('rightsApplyInfo');
+    // vm.info = localStorageService.get('rightsApplyInfo');
+    vm.info = RightsApplyService.info;
 
     $log.debug(vm.info);
 
