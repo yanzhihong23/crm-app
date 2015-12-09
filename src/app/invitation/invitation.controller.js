@@ -6,7 +6,7 @@
     .controller('InvitationController', InvitationController);
 
   /** @ngInject */
-  function InvitationController($state, $stateParams, $ionicActionSheet, ApiService, UserService, utils) {
+  function InvitationController($state, $stateParams, $rootScope, $ionicActionSheet, ApiService, UserService, utils) {
     var vm = this, 
         id = $stateParams.id,
         userId = UserService.getUserId(),
@@ -91,6 +91,7 @@
         vm.info.userId = userId;
         ApiService.updateInvitation(vm.info).success(function(data) {
           if(data.flag === 1) {
+            $rootScope.$broadcast('reload:invitation:list');
             utils.goBack();
           } else {
             $log.error('update invitation error');
@@ -100,6 +101,7 @@
         vm.info.userId = userId;
         ApiService.addInvitation(vm.info).success(function(data) {
           if(data.flag === 1) {
+            $rootScope.$broadcast('reload:invitation:list');
             utils.goBack();
           } else {
             $log.error('add invitation error');

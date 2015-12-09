@@ -77,6 +77,7 @@
     });
 
     $rootScope.$on('reload:list:apply:rights', function() {
+      $log.debug('reload:list:apply:rights');
       init();
     });
     
@@ -207,13 +208,17 @@
     }
   }
 
-  function ClientListController($log, $scope, $state, ApiService, UserService) {
+  function ClientListController($log, $scope, $rootScope, $state, ApiService, UserService) {
     var vm = this, pageIndex, itemsPerPage;
 
     vm.doRefresh = init;
     vm.loadMore = load;
 
     init();
+
+    $rootScope.$on('reload:client:list', function() {
+      init();
+    });
 
     function init() {
       $log.debug('init');
@@ -262,7 +267,7 @@
     }
   }
 
-  function InvitationListController($log, $scope, $state, ApiService, UserService) {
+  function InvitationListController($log, $scope, $rootScope, $state, ApiService, UserService) {
     var vm = this, pageIndex, itemsPerPage;
 
     vm.status = 0;
@@ -273,6 +278,10 @@
     $scope.$watch(function() {
       return vm.status;
     }, function(val, old) {
+      init();
+    });
+
+    $rootScope.$on('reload:invitation:list', function() {
       init();
     });
 
