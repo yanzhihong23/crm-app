@@ -126,6 +126,25 @@ $border-color: #d5d5d5;
   height: 50%;
 }
 
+input:disabled{
+  background: $white;
+}
+
+// date picker
+.ionic-datepicker{
+  .selected_date_full, .color_blue .icon{
+     color: $balanced;
+  }
+  .date_selected{
+    color: $white;
+    background: $balanced !important;
+  }
+  .today .pointer_events_none{
+    color: $white;
+  }
+} 
+
+
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */

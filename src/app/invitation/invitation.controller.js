@@ -11,15 +11,50 @@
         id = $stateParams.id,
         userId = UserService.getUserId(),
         applyRoles = [{ text: '经销商', id: 0 }, { text: '小店', id: 1 }],
-        statusList = [{ text: '已邀约', id: 0 }, { text: '已到访', id: 1 }];
+        statusList = [{ text: '已邀约', id: 0 }, { text: '已到访', id: 1 }],
+        monthList = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        weekDaysList = ["日", "一", "二", "三", "四", "五", "六"];
 
     vm.title = !id ? '添加邀约' : '邀约详情';
+
+    vm.datepickerObject = {
+      titleLabel: '预计到访日期',  //Optional
+      todayLabel: '今天',  //Optional
+      closeLabel: '关闭',  //Optional
+      setLabel: '选定',  //Optional
+      setButtonType : 'button-balanced',  //Optional
+      todayButtonType : 'button-balanced',  //Optional
+      closeButtonType : 'button-balanced',  //Optional
+      inputDate: new Date(),  //Optional
+      mondayFirst: false,  //Optional
+      // disabledDates: disabledDates, //Optional
+      weekDaysList: weekDaysList, //Optional
+      monthList: monthList, //Optional
+      templateType: 'popup', //Optional
+      showTodayButton: 'false', //Optional
+      modalHeaderColor: 'bar-balanced', //Optional
+      modalFooterColor: 'bar-balanced', //Optional
+      from: new Date(), //Optional
+      to: new Date(2016, 12, 25),  //Optional
+      callback: function (val) {  //Mandatory
+        datePickerCallback(val);
+      },
+      dateFormat: 'yyyy-MM-dd', //Optional
+      closeOnSelect: true, //Optional
+    };
 
     vm.save = save;
     vm.showApplyRoleAction = showApplyRoleAction;
     vm.showStatusAction = showStatusAction;
 
     init();
+
+    function datePickerCallback(val) {
+      if(val) {
+        vm.datepickerObject.inputDate = val;
+        vm.info.visitDate = moment(val).format('YYYY-MM-DD');
+      }
+    }
 
     function showApplyRoleAction() {
       var applyRoleAction = $ionicActionSheet.show({

@@ -12,7 +12,9 @@
         </div>
         <div class="item item-input">
           <span class="input-label">预计到访时间</span>
-          <input type="text" ng-model="invitation.info.visitDate" placeholder="2015-12-25" required>
+          <ionic-datepicker input-obj="invitation.datepickerObject">
+            <input type="text" ng-model="invitation.info.visitDate" placeholder="2015-12-25" disabled required>
+          </ionic-datepicker>
         </div>
         <div class="item item-input item-icon-right" ng-click="invitation.showApplyRoleAction()">
           <span class="input-label">申请角色</span>
