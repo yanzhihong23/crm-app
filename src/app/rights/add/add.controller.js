@@ -21,15 +21,12 @@
           { text: '非独家', id: 1 }
         ];
 
-
-    vm.info = {
-      applyType: applyTypes[0],
-      applicantType: applicantTypes[0],
-      agencyType: agencyTypes[0],
-      area: AreaService.selected
-    };
-
-    RightsApplyService.info = vm.info;
+    vm.info = RightsApplyService.info;
+    vm.info.applyType = applyTypes[0];
+    vm.info.applicantType = applicantTypes[0];
+    vm.info.agencyType = agencyTypes[0];
+    vm.info.area = AreaService.selected;
+    
 
     vm.showApplyTypeAction = showApplyTypeAction;
     vm.showApplicantTypeAction = showApplicantTypeAction;

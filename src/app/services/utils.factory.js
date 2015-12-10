@@ -53,7 +53,7 @@
 				  subTitle: obj.subTitle || '',
 				  template: obj.content || '',
 				  templateUrl: obj.contentUrl || '',
-				  okText: obj.okText || '确认',
+				  okText: obj.okText || '知道了',
 				  okType: obj.okType || 'button-balanced'
 				});
 				alertPopup.then(function(res) {

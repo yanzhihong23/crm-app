@@ -6,7 +6,7 @@
     .controller('RightsResultController', RightsResultController);
 
   /** @ngInject */
-  function RightsResultController($log, ApiService, $state, $stateParams, localStorageService, FormatService) {
+  function RightsResultController($log, ApiService, $state, $stateParams, localStorageService, FormatService, RightsApplyService) {
     var vm = this, id = $stateParams.id;
     vm.id = id;
 
@@ -43,6 +43,7 @@
     }
 
     function reApply() {
+      RightsApplyService.info.reApply = true;
       $state.go('rights:add');
     }
   }

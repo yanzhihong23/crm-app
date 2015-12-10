@@ -24,7 +24,8 @@
 
     function init() {
       if(!id) { // add new
-        vm.info = localStorageService.get('rightsApplyInfo');
+        // vm.info = localStorageService.get('rightsApplyInfo');
+        vm.info = RightsApplyService.info;
       } else {
         if(/audit/.test(type)) {
           getDetail();
@@ -50,9 +51,10 @@
       vm.info.userId = user.userId;
       ApiService.addRightsApply(vm.info).success(function(data) {
         if(data.flag === 1) {
-          RightsApplyService.reset();
           $rootScope.$broadcast('reload:list:apply:rights');
-          utils.goBack(-4);
+          var deep = vm.info.reApply ? -5 : -4;
+          RightsApplyService.reset();
+          utils.goBack(deep);
         } else {
           $log.error('add rights apply error');
         }

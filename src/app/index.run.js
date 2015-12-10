@@ -39,6 +39,13 @@
       document.documentElement.scrollLeft = document.body.scrollLeft = 0;
     });
 
+    $rootScope.$on('storeInfoError', function(evt, msg) {
+      utils.alert({
+        title: '出错了~',
+        content: msg
+      });
+    });
+
     $rootScope.logout = function() {
       $log.debug('logout');
 

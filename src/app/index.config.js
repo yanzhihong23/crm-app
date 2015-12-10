@@ -23,7 +23,7 @@
           if(response.data && +response.data.flag === -1) {
           	// zjtoken and storeId not match
           	$log.error('store info error');
-          	$rootScope.$broadcast('storeInfoError');
+          	$rootScope.$broadcast('storeInfoError', response.data.msg);
           }
 
           return response;
