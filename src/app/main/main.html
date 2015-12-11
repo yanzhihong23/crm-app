@@ -1,71 +1,91 @@
-<ion-view view-title="CRM">
+<ion-view view-title="CRM" id="main_view">
   <ion-nav-buttons side="right">
     <a class="button" ui-sref="user">
       <i class="icon ion-person"></i>
     </a>
   </ion-nav-buttons>
   <ion-content>
-    <section class="list margin-vertical" ng-if="user.roleId==2||user.roleId==3">
-      <a class="item item-icon-right" ui-sref="list:apply:rights">
-        <h2>申请开店权/经销权</h2>
-        <p>提交申请，立即付款，审核通过后立即获得开店权</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </a>
-      <ion-item class="item-icon-right" ui-sref="list:apply:account">
-        <h2>申请开户</h2>
-        <p>获得开店权后即可选择具体小区申请开户</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list:apply:grounding">
-        <h2>申请开店</h2>
-        <p>小区地址审核通过后，即可申请店铺上架开始赚钱</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
+    <section ng-if="user.roleId==2||user.roleId==3">
+      <div class="card">
+        <a class="item item-avatar"  ui-sref="list:apply:rights">
+          <img src="assets/images/seal.png">
+          <h2>申请开店权/经销权</h2>
+          <p>提交申请，立即付款，审核通过后立即获得开店权</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a class="item item-avatar"  ui-sref="list:apply:account">
+          <img src="assets/images/cert-01.png">
+          <h2>申请开户</h2>
+          <p>获得开店权后即可选择具体小区申请开户</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a class="item item-avatar"  ui-sref="list:apply:grounding">
+          <img src="assets/images/store.png">
+          <h2>申请开店</h2>
+          <p>小区地址审核通过后，即可申请店铺上架开始赚钱</p>
+        </a>
+      </div>
     </section>
 
-    <section class="list margin-vertical" ng-if="user.roleId==2||user.roleId==3">
-      <ion-item class="item-icon-right" ui-sref="list:client">
-        <h2>客户信息报备</h2>
-        <p>私密及时的客户信息记录本</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list:invitation">
-        <h2>邀约记录</h2>
-        <p>邀约用户洽谈的贴心备忘录</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
-    </section>
-    
     <!-- 主管 -->
-    <section class="list margin-vertical" ng-if="user.roleId==2">
-      <ion-item class="item-icon-right" ui-sref="list:audit:rights">
-        <h2>信息审核</h2>
-        <p>审批部分非标准金额信息</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
+    <section ng-if="user.roleId==2">
+      <div class="card">
+        <a class="item item-avatar"  ui-sref="list:audit:rights">
+          <img src="assets/images/cert-02.png">
+          <h2>信息审核</h2>
+          <p>审批部分非标准金额信息</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="row row-no-padding text-center" ng-if="user.roleId==2||user.roleId==3">
+      <div class="card col">
+        <a class="item padding-vertical" ui-sref="list:client">
+          <h2>客户信息报备</h2>
+          <p>私密及时的客户信息记录本</p>
+          <img src="assets/images/client.png" width="50" class="padding-top" alt="">
+        </a>
+      </div>
+      <div class="card col" >
+        <a class="item padding-vertical" ui-sref="list:invitation">
+          <h2>邀约记录</h2>
+          <p>邀约用户洽谈的贴心备忘录</p>
+          <img src="assets/images/invite.png" width="50" class="padding-top" alt="">
+        </a>
+      </div>
     </section>
     
     <!-- 财务 -->
-    <section class="list margin-vertical" ng-if="user.roleId==4">
-      <ion-item class="item-icon-right" ui-sref="list:audit:rights">
-        <h2>开店权/经销权审核</h2>
-        <p>审核通过后立即获得开店权</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
+    <section ng-if="user.roleId==4">
+      <div class="card">
+        <a class="item item-avatar" ui-sref="list:audit:rights">
+          <img src="assets/images/seal.png">
+          <h2>开店权/经销权审核</h2>
+          <p>审核通过后立即获得开店权</p>
+        </a>
+      </div>
     </section>
 
     <!-- 运营 -->
     <section class="list margin-vertical" ng-if="user.roleId==6">
-      <ion-item class="item-icon-right" ui-sref="list:audit:account">
-        <h2>店铺地址审核</h2>
-        <p>审核通过后立即获得开店权</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
-      <ion-item class="item-icon-right" ui-sref="list:audit:grounding">
-        <h2>店铺图片审核</h2>
-        <p>审核通过后立即开店成功</p>
-        <i class="icon ion-ios-arrow-right gray"></i>
-      </ion-item>
+      <div class="card">
+        <a class="item item-avatar" ui-sref="list:audit:account">
+          <img src="assets/images/cert-01.png">
+          <h2>店铺地址审核</h2>
+          <p>审核通过后立即获得开店权</p>
+        </a>
+      </div>
+      <div class="card">
+        <a class="item item-avatar" ui-sref="list:audit:grounding">
+          <img src="assets/images/store.png">
+          <h2>店铺图片审核</h2>
+          <p>审核通过后立即开店成功</p>
+        </a>
+      </div>
     </section>
 
 

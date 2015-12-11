@@ -1,0 +1,29 @@
+#main_view{
+  .card{
+    margin: 10px;
+    box-shadow: none;
+    border-radius: 5px;
+    border: solid 1px $border-color;
+  }
+  .item p{
+    white-space: normal;
+    font-size: 12.5px;
+  }
+  .item-avatar > img:first-child{
+    max-width: 60px;
+    max-height: 60px;
+  }
+  .item-avatar{
+    padding-left: 92px;
+    min-height: 92px;
+  }
+  .item.padding-vertical{
+    padding: 16px 0 10px;
+  }
+  .row .card.col{
+    margin-top: 0;
+    &:first-child{
+      margin-right: 0px;
+    }
+  }
+}
