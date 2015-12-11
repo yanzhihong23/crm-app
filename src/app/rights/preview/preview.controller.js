@@ -6,7 +6,7 @@
     .controller('RightsPreviewController', RightsPreviewController);
 
   /** @ngInject */
-  function RightsPreviewController($rootScope, $log, $state, $stateParams, $filter, ApiService, localStorageService, UserService, RightsApplyService, FormatService, utils) {
+  function RightsPreviewController($rootScope, $log, $state, $stateParams, $filter, ApiService, localStorageService, UserService, RightsApplyService, FormatService, AreaService, utils) {
     var vm = this, 
         id = $stateParams.id, 
         type = $stateParams.type,
@@ -52,9 +52,16 @@
       ApiService.addRightsApply(vm.info).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:apply:rights');
-          var deep = vm.info.reApply ? -5 : -4;
-          RightsApplyService.reset();
-          utils.goBack(deep);
+
+          // utils.alert({
+          //   content: '请及时到财务处交款，实际交款成功后请发起【提交财务审核】，等待财务审核！',
+          //   callback: function() {
+              var deep = vm.info.reApply ? -5 : -4;
+              RightsApplyService.reset();
+              AreaService.reset();
+              utils.goBack(deep);
+          //   }
+          // });
         } else {
           $log.error('add rights apply error');
         }

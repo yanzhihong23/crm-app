@@ -21,8 +21,11 @@
           { text: '非独家', id: 1 }
         ];
 
+    // RightsApplyService.reset();
+    AreaService.reset();
+
     vm.info = RightsApplyService.info;
-    vm.info.applyType = applyTypes[0];
+    vm.info.applyType = applyTypes[1];
     vm.info.applicantType = applicantTypes[0];
     vm.info.agencyType = agencyTypes[0];
     vm.info.area = AreaService.selected;

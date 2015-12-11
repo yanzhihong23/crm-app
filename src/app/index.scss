@@ -13,6 +13,9 @@ $gray: #9B9B9B;
 $white: #fff;
 $dark:  #374252;
 
+$input-color-placeholder: $gray;
+$input-color: $balanced;
+
 $button-border-width: 0;
 $sheet-options-text-color: #32B77D;
 
@@ -35,6 +38,10 @@ $border-color: #d5d5d5;
 
 .item, .input-label{
   font-size: 14px;
+}
+
+.item-note{
+  color: $balanced;
 }
 
 .popup-head{
@@ -84,6 +91,14 @@ $border-color: #d5d5d5;
   margin-bottom: 10px;
 }
 
+.margin-top{
+  margin-top: 10px;
+}
+
+.margin-bottom{
+  margin-bottom: 10px;
+}
+
 .bar-header{
   border-bottom-width: 0;
 }
@@ -126,9 +141,11 @@ $border-color: #d5d5d5;
   height: 50%;
 }
 
-input:disabled{
+input:disabled, input[readonly]:not(.cloned-text-input){
   background: $white;
 }
+
+
 
 // date picker
 .ionic-datepicker{

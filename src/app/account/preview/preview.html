@@ -66,18 +66,21 @@
       </div>
     </article>
 
-    <article class="list" ng-if="preview.info.status">
+    <article class="list margin-bottom" ng-if="preview.info.status">
       <div class="item assertive">
         审批结果
         <span class="item-note assertive">{{preview.info.statusStr}}</span>
       </div>
-      <div class="item">
+      <div class="item" ng-if="preview.info.remark">
         审批意见
         <span class="item-note">
           {{preview.info.remark}}
         </span>
       </div>
     </article>
+
+    <div class="assertive padding-left" ng-if="!preview.isAudit">请于地址审核通过后三天内上传店铺资料申请开店</div>
+
   </ion-content>
 
   <section class="bottom" ng-if="preview.info.status==-1&&preview.user.roleId!=6">

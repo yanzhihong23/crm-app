@@ -58,6 +58,18 @@
         vm.info.payMode = payModes[0];
         vm.info.payType = payTypes[0];
         vm.info.bank = BankService.selected;
+
+        vm.info.payerName = vm.info.realname;
+
+        if(vm.info.applyType && vm.info.applyType.id === 1) {
+          vm.info.contractAmount = 30000*vm.info.storeCount;
+          vm.info.paidAmount = 0;
+          vm.info.payAmount = vm.info.contractAmount;
+        } else {
+          vm.info.contractAmount = null;
+          vm.info.paidAmount = null;
+          vm.info.payAmount = null;
+        }
       }
     }
 
@@ -94,6 +106,10 @@
     }
 
     function showPayTypeAction() {
+      if(vm.info.applyType && vm.info.applyType.id === 1) {
+        return;
+      }
+
       var payTypeAction = $ionicActionSheet.show({
         buttons: payTypes,
         // destructiveText: 'Delete',
@@ -120,7 +136,7 @@
               if(data.flag === 1) {
                 RightsApplyService.reset();
                 $rootScope.$broadcast('reload:list:apply:rights');
-                utils.goBack(-3);
+                utils.goBack(-2);
               } else {
                 utils.alert({
                   content: data.msg

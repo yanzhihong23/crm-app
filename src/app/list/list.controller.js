@@ -63,7 +63,7 @@
     }
   }
 
-  function RightsApplyListController($log, $state, $scope, $rootScope, ApiService, UserService) {
+  function RightsApplyListController($log, $state, $scope, $rootScope, ApiService, UserService, RightsApplyService) {
     var vm = this, pageIndex, itemsPerPage, userId = UserService.getUserId();
 
     vm.status = 0;
@@ -88,6 +88,8 @@
       vm.map = {};
       vm.hasMoreData = true;
       load();
+
+      RightsApplyService.reset();
     }
 
     function load() {

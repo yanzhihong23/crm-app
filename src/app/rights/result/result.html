@@ -17,7 +17,7 @@
         </div>
       </section>
         
-      <section class="tips padding" ng-if="!result.info.isTriggered&&result.info.checkerId==4">
+      <section class="tips padding" ng-if="!result.info.isTriggered&&result.info.checkerId==4&&result.info.financeCheck==0">
         <div class="gray padding-vertical">
           <i class="icon ion-information-circled"></i>
           提醒：请及时到财务处交款，实际交款成功后请发起收款申请提交财务，等待财务审核！
@@ -29,7 +29,21 @@
         </div>
 
         <div class="padding">
-          <button class="button button-block button-balanced" ng-click="result.triggerApply()">发起收款申请</button>
+          <button class="button button-block button-balanced" ng-click="result.triggerApply()">提交财务审核</button>
+        </div>
+      </section>
+
+      <section class="tips padding" ng-if="result.info.payType.id==0&&result.info.financeCheck==1">
+        <div class="gray padding-vertical">
+          <i class="icon ion-information-circled"></i>
+          定金已支付成功，请及时联系财务领取相应票据。
+        </div>
+        <div class="assertive padding-vertical">
+          <i class="icon ion-alert-circled"></i>
+          该区域的开店权将为您保留3天，请于3天内交足余款，获得开店权。
+        </div>
+        <div class="padding">
+          <button class="button button-block button-balanced" ng-click="result.finalPay()">去支付尾款</button>
         </div>
       </section>
     </article>
@@ -52,20 +66,6 @@
           <button class="button button-block button-balanced" ng-click="result.generateContract()">立即生成合同</button>
         </div>
       </section>
-
-      <section class="tips padding" ng-if="result.info.payType.id==0">
-        <div class="gray padding-vertical">
-          <i class="icon ion-information-circled"></i>
-          定金已支付成功，请及时联系财务领取相应票据。
-        </div>
-        <div class="assertive padding-vertical">
-          <i class="icon ion-alert-circled"></i>
-          该区域的开店权将为您保留3天，请于3天内交足余款，获得开店权。
-        </div>
-        <div class="padding">
-          <button class="button button-block button-balanced" ng-click="result.finalPay()">去支付尾款</button>
-        </div>
-      </section>
     </article>
 
     <!-- 主管审核不通过 -->
@@ -86,7 +86,6 @@
           <button class="button button-block button-balanced" ng-click="result.reApply()">重新申请</button>
         </div>
       </section>
-      
     </article>
     
   </ion-content>

@@ -16,6 +16,7 @@
     vm.getCityList = getCityList;
     vm.getDistrictList = getDistrictList;
     vm.getStreetList = getStreetList;
+    vm.reset = reset;
 
     getProvinceList();
 
@@ -97,6 +98,10 @@
           });
         }
       });
+    }
+
+    function reset() {
+      vm.selected = {};
     }
 
 

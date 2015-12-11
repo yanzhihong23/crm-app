@@ -1,10 +1,15 @@
-<ion-view view-title="{{add.title}}" cache-view="false">
+<ion-view view-title="{{add.title}}">
   <form name="payForm" ng-submit="add.next()">
     <ion-content class="has-bottom">
       <article class="list margin-vertical">
-        <div class="item item-icon-right" ng-click="add.showSelfPayAction()">
+        <!-- <div class="item item-icon-right" ng-click="add.showSelfPayAction()">
           是否本人付款
           <span class="item-note">{{add.info.selfPay.text}}</span>
+          <i class="icon ion-ios-arrow-down gray"></i>
+        </div> -->
+        <div class="item item-icon-right" ng-click="add.showPayTypeAction()">
+          付款类型
+          <span class="item-note">{{add.info.payType.text}}</span>
           <i class="icon ion-ios-arrow-down gray"></i>
         </div>
         <div class="item item-icon-right" ng-click="add.showPayModeAction()">
@@ -12,27 +17,13 @@
           <span class="item-note">{{add.info.payMode.text}}</span>
           <i class="icon ion-ios-arrow-down gray"></i>
         </div>
-        <div class="item item-icon-right" ng-click="add.showPayTypeAction()">
-          付款类型
-          <span class="item-note">{{add.info.payType.text}}</span>
-          <i class="icon ion-ios-arrow-down gray"></i>
-        </div>
-        <!-- 非本人支付 -->
-        <div class="item item-input" ng-if="add.info.selfPay.id==0">
-          <span class="input-label">付款人姓名</span>
-          <input type="text" ng-model="add.info.payerName" class="text-right" placeholder="请填写" maxlength="20" required>
-        </div>
-        <!-- 支付宝支付 -->
-        <div class="item item-input" ng-if="add.info.payMode.id==1">
-          <span class="input-label">付款支付宝帐号</span>
-          <input type="text" ng-model="add.info.alipayAccount" class="text-right" placeholder="请填写" maxlength="20" required>
-        </div>
+        
         <!-- 银行卡转账 -->
         <section ng-if="add.info.payMode.id==0">
           <a class="item item-icon-right" ui-sref="bank">
             付款银行
             <span class="item-note">{{add.info.bank.name || '请选择'}}</span>
-            <i class="icon ion-ios-arrow-down gray"></i>
+            <i class="icon ion-ios-arrow-right gray"></i>
           </a>
           <div class="item item-input">
             <span class="input-label">付款支行</span>
@@ -43,18 +34,29 @@
             <input type="tel" ng-model="add.info.bankAccount" class="text-right" placeholder="请填写" maxlength="19" required>
           </div>
         </section>
+
+        <!-- 非本人支付 -->
+        <div class="item item-input">
+          <span class="input-label">付款人姓名</span>
+          <input type="text" ng-model="add.info.payerName" class="text-right" placeholder="请填写" maxlength="20" required>
+        </div>
+        <!-- 支付宝支付 -->
+        <div class="item item-input" ng-if="add.info.payMode.id==1">
+          <span class="input-label">付款支付宝帐号</span>
+          <input type="text" ng-model="add.info.alipayAccount" class="text-right" placeholder="请填写" maxlength="20" required>
+        </div>
         
         <div class="item item-input">
           <span class="input-label">合同金额(元)</span>
-          <input type="number" ng-model="add.info.contractAmount" class="text-right" placeholder="请填写" required>
+          <input type="number" ng-model="add.info.contractAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
-        <div class="item item-input">
+        <div class="item item-input" ng-if="add.info.applyType.id!=1">
           <span class="input-label">已付金额(元)</span>
-          <input type="number" ng-model="add.info.paidAmount" class="text-right" placeholder="请填写" required>
+          <input type="number" ng-model="add.info.paidAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
         <div class="item item-input">
           <span class="input-label">付款金额(元)</span>
-          <input type="number" ng-model="add.info.payAmount" class="text-right" placeholder="请填写" required>
+          <input type="number" ng-model="add.info.payAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
       </article>
     </ion-content>
