@@ -63,7 +63,8 @@
           name: obj.inviteuserName,
           idNo: obj.personNumber,
           phone: obj.inviteuserMobile,
-          applyRole: obj.applyRole == 0 ? '经销商' : '小店'
+          applyRole: obj.applyRole == 0 ? '经销商' : '小店',
+          date: obj.createDate
         };
       } else {
         $log.error('get client info error');
