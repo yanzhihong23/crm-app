@@ -110,6 +110,7 @@ $border-color: #d5d5d5;
   }
   .icon{
     right: 5px;
+    font-size: 22px;
   }
   &.item-input .input-label+.item-note{
     padding-left: 12px;
@@ -143,6 +144,10 @@ $border-color: #d5d5d5;
 
 input:disabled, input[readonly]:not(.cloned-text-input){
   background: $white;
+}
+
+.small{
+  font-size: 90%;
 }
 
 

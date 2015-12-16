@@ -28,10 +28,25 @@
 
 .list header.list-header{
   line-height: 30px;
-  padding-left: 16px;
-  background: $white;
+  padding: 0 16px;
+  background: $balanced;
+  color: $white;
   margin: 0;
-  color: $gray;
   border-top: solid 1px $border-color;
+}
+
+.rights-list{
+  .item{
+    line-height: 2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &.item-icon-left .icon:first-child{
+      left: 15px;
+    }
+  }
+}
+
+.list-view .list .item:nth-child(odd){
+  background: #f5f6f7;
 }
 

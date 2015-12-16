@@ -1,4 +1,4 @@
-<ion-view view-title="申请开店权/经销权">
+<ion-view view-title="申请开店权/经销权" class="rights-list list-view">
 
   <ion-nav-buttons side="right">
     <a class="button" ui-sref="rights:add">
@@ -25,16 +25,14 @@
 
     <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
       <header class="list-header">{{date}}</header>
-      <a class="item item-icon-right" ng-repeat="item in items" ui-sref="rights:result({id: item.id})">
+      <a class="item item-icon-left item-icon-right" ng-repeat="item in items" ui-sref="rights:result({id: item.id})">
+        <i class="icon"><img ng-src="assets/images/iconfont-{{item.applyType==1?'persons':'shop'}}.png" width="25" alt=""></i>
         <div class="row row-no-padding">
-          <div class="col">
-            <div><span class="gray">姓名: </span>{{item.name}}</div>
-            <div><span class="gray">电话: </span>{{item.phone}}</div>
-          </div>
-          <div class="col">
-            <div><span class="gray">合作类型: </span>{{item.applyType | applyRole}}</div>
-            <div><span class="gray">付款类型: </span>{{item.paymentType | payment}}</div>
-          </div>
+          <div class="col">申请人: {{item.name}}({{item.phone}})</div>
+        </div>
+        <div class="row row-no-padding gray small">
+          <div class="col">合作类型: {{item.applyType | applyRole}}</div>
+          <div class="col">付款类型: {{item.paymentType | payment}}</div>
         </div>
         <i class="icon ion-ios-arrow-right gray"></i>
       </a>
