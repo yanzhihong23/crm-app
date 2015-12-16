@@ -1,28 +1,38 @@
 <ion-view view-title="店铺资料上传" id="upload_view">
   <form name="userForm">
     <ion-content class="has-bottom">
+      <article class="list margin-bottom">
+        <div class="item item-divider">申请商家版帐号</div>
+        <div class="item item-input">
+          <input type="text" ng-model="upload.user.username" placeholder="用户名" maxlength="20" required>
+        </div>
+        <div class="item item-input">
+          <input type="text" ng-model="upload.user.password" placeholder="密码（8位英文字母和数字的组合）" minlength="8" maxlength="8" required>
+        </div>
+      </article>
+
       <div class="item item-divider">上传店铺图片
-        <div class="assertive"><small>请严格按照提示要求上传图片，确保审核快速通过</small></div>
+        <div class="assertive"><small>合照人应与身份证照片保持一致</small></div>
       </div>
       <article class="margin text-center upload">
         <div class="row row-center">
           <div class="col col-center item">
             <div class="icon ion-ios-plus-empty"></div>
-            <div class="gray">店面照片</div>
+            <div class="gray">身份证照片</div>
             <input type="file" accept="image/*" ng-model="upload.file.one" base-sixty-four-input>
             <img ng-src="{{upload.file.onePreview}}" class="preview" alt="">
             <div class="pre">
-              店面照片
+              身份证照片
               <img src="assets/images/camera.png" width="32px" alt="">
             </div>
           </div>
           <div class="col col-center item">
             <div class="icon ion-ios-plus-empty"></div>
-            <div class="gray">仓库货物照片</div>
+            <div class="gray">人货合照</div>
             <input type="file" accept="image/*" ng-model="upload.file.two" base-sixty-four-input>
             <img ng-src="{{upload.file.twoPreview}}" class="preview" alt="">
             <div class="pre">
-              仓库货物照片
+              人货合照
               <img src="assets/images/camera.png" width="32px" alt="">
             </div>
           </div>
@@ -30,11 +40,11 @@
         <div class="row row-center">
           <div class="col col-center item">
             <div class="icon ion-ios-plus-empty"></div>
-            <div class="gray">配货车辆照片</div>
+            <div class="gray">人车合照</div>
             <input type="file" accept="image/*" ng-model="upload.file.three" base-sixty-four-input>
             <img ng-src="{{upload.file.threePreview}}" class="preview" alt="">
             <div class="pre">
-              配货车辆照片
+              人车合照
               <img src="assets/images/camera.png" width="32px" alt="">
             </div>
           </div>
@@ -48,16 +58,6 @@
               <img src="assets/images/camera.png" width="32px" alt="">
             </div>
           </div>
-        </div>
-      </article>
-
-      <article class="list margin-vertical">
-        <div class="item item-divider">申请商家版帐号</div>
-        <div class="item item-input">
-          <input type="text" ng-model="upload.user.username" placeholder="用户名" maxlength="20" required>
-        </div>
-        <div class="item item-input">
-          <input type="text" ng-model="upload.user.password" placeholder="密码（8位英文字母和数字的组合）" minlength="8" maxlength="8" required>
         </div>
       </article>
 
