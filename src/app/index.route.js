@@ -14,16 +14,16 @@
         controller: 'MainController',
         controllerAs: 'home'
       })
-      // .state('list', {
-      //   url: '/list/:type',
-      //   templateUrl: 'app/list/list.html',
-      //   controller: 'ListController',
-      //   controllerAs: 'list'
-      // })
       .state('list:apply:rights', {
         url: '/list/apply/rights',
-        templateUrl: 'app/list/rights.apply.html',
+        templateUrl: 'app/rights/list/apply.html',
         controller: 'RightsApplyListController',
+        controllerAs: 'list'
+      })
+      .state('list:audit:rights', {
+        url: '/list/audit/rights',
+        templateUrl: 'app/rights/list/audit.html',
+        controller: 'RightsAuditListController',
         controllerAs: 'list'
       })
       .state('list:apply:account', {
@@ -60,12 +60,6 @@
         url: '/list/invitation',
         templateUrl: 'app/list/invitation.html',
         controller: 'InvitationListController',
-        controllerAs: 'list'
-      })
-      .state('list:audit:rights', {
-        url: '/list/audit/rights',
-        templateUrl: 'app/list/rights.audit.html',
-        controller: 'RightsAuditListController',
         controllerAs: 'list'
       })
       .state('rights:add', {
