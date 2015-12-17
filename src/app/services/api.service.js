@@ -223,7 +223,7 @@
           payBankName: obj.bank && obj.bank.name, // TODO
           payBankCode: obj.bank && obj.bank.id,
           paySubbranchBank: obj.bankBranch,
-          bankNumome: obj.bankAccount,
+          bankNumone: obj.bankAccount,
 
           payAlipayNum: obj.alipayAccount
         }
