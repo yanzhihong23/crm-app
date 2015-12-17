@@ -10,13 +10,13 @@
     var vm = this;
 
     vm.user = {
-      // username: '18616725872', // ceo
-      // password: 'zjdd1234',
-      // username: '13249832508', // 销售主管
       // username: '13020189461', // 销售
-      // username: '13092673467', // 财务
-      username: '13325425167', // 运营审核
-      password: '123456'
+      // username: '18521352006', // 销售主管
+      // username: '13681945800', // 财务
+      // username: '15757631778', // 运营审核
+      // username: '13817889024', // 运营审核
+      // username: '13795200571', // 经销商
+      // password: 'zjdd1234'
     };
 
     vm.submit = submit;
@@ -24,8 +24,6 @@
     function submit() {
       ApiService.login(vm.user).success(function(data) {
         if(+data.flag === 1) {
-          // toastr.success('登录成功', 'Toastr fun!');
-
           var info = data.data;
           vm.user.isLeader = info.isLeader === '1';
           vm.user.realName = info.username;

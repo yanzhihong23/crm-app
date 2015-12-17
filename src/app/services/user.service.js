@@ -12,7 +12,7 @@
       $rootScope.user = user;
       localStorageService.set('user', user);
 
-      $rootScope.$broadcast('login:suc');
+      $rootScope.$broadcast('login:succ');
     };
 
     this.getUser = function() {

@@ -6,7 +6,7 @@
     .controller('RightsAddController', RightsAddController);
 
   /** @ngInject */
-  function RightsAddController($log, $ionicActionSheet, $state, $scope, AreaService, ApiService, localStorageService, RightsApplyService, utils) {
+  function RightsAddController($log, $ionicActionSheet, $state, $scope, $rootScope, AreaService, ApiService, localStorageService, RightsApplyService, utils) {
     var vm = this,
         applyTypes = [
           { text: '经销权', id: 0 },
@@ -80,6 +80,10 @@
     }
 
     function showApplyTypeAction() {
+      if($rootScope.user.roleId === 7) {
+        return;
+      }
+      
       var applyTypeAction = $ionicActionSheet.show({
         buttons: applyTypes,
         // destructiveText: 'Delete',
