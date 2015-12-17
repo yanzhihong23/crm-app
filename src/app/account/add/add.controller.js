@@ -6,8 +6,9 @@
     .controller('AccountAddController', AccountAddController);
 
   /** @ngInject */
-  function AccountAddController($rootScope, $state, $stateParams, utils, AreaService, ApiService, UserService, $log) {
+  function AccountAddController($scope, $rootScope, $state, $stateParams, $ionicModal, utils, AreaService, ApiService, UserService, $log) {
     var vm = this, 
+        mapModal,
         id = $stateParams.id, 
         detailId = $stateParams.detailId,
         isUpdate = $stateParams.type === 'update',
@@ -16,6 +17,9 @@
     vm.title = isUpdate ? '店铺地址修改' : '店铺地址申请';
     vm.submit = submit;
     vm.selectArea = selectArea;
+    vm.showMap = showMap;
+    vm.hideModal = hideModal;
+    vm.confirm = confirm;
 
     init();
 
@@ -51,6 +55,10 @@
               }
             }
           };
+
+          addDistrictWatcher();
+
+          // getOpenedStores(obj.district);
 
           AreaService.selected = vm.info.area;
           AreaService.getCityList(obj.capitalId);
@@ -158,6 +166,58 @@
           utils.goBack(deep);
         } else {
           $log.error('account apply error');
+        }
+      });
+    }
+
+    function showMap() {
+      $ionicModal.fromTemplateUrl('app/components/map/map.modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        mapModal = modal;
+        modal.show();
+      });
+    }
+
+    function hideModal() {
+      mapModal.remove();
+    }
+
+    function confirm() {
+      if(vm.info.point) {
+        console.log(vm.info.point);
+        mapModal.remove();
+      } else {
+        utils.alert({
+          content: '选择无效'
+        });
+      }
+    }
+
+    function getOpenedStores(districtName) {
+      ApiService.getOpenedStores({district: districtName})
+        .success(function(data) {
+          if(data.flag === 1) {
+            vm.openedStores = data.data.map(function(obj) {
+              return {
+                lat: obj.latitude,
+                lng: obj.longitude,
+                name: obj.name
+              };
+            });
+
+            $log.debug(vm.openedStores);
+          }
+        });
+    }
+
+    function addDistrictWatcher() {
+      $scope.$watch(function() {
+        return vm.info.area.district;
+      }, function(val) {
+        if(val && val.name) {
+          getOpenedStores(val.name);
         }
       });
     }

@@ -1,0 +1,17 @@
+<ion-modal-view id="map_modal">
+  <!-- <ion-header-bar>
+    <h1 class="title">Baidu Map</h1>
+  </ion-header-bar> -->
+  <ion-content>
+    <b-map opened="add.openedStores" address="add.info.address" village="add.info.village" ng-model="add.info.point" city="add.info.area.city.name"></b-map>
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-balanced">
+    <div class="buttons" ng-click="add.hideModal()">
+      <button class="button">关闭</button>
+    </div>
+    <h1 class="title">地图选址</h1>
+    <div class="buttons" ng-click="add.confirm()">
+      <button class="button">选好了</button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

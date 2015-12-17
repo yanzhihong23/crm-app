@@ -438,6 +438,17 @@
       });
     };
 
+    this.getOpenedStores = function(obj) {
+      return $http({
+        method: 'POST',
+        url: APISERVER + '/community/listByCityName',
+        headers: headers,
+        data: {
+          cityName: obj.district
+        }
+      });
+    }
+
     $log.debug('ApiService end');
     
   }
