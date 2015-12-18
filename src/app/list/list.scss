@@ -23,6 +23,9 @@
   }
   &+.scroll-content{
     top: 84px;
+    .platform-cordova.platform-ios &{
+      top: 104px;
+    }
   }
 }
 

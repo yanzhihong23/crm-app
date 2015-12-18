@@ -150,6 +150,16 @@ input:disabled, input[readonly]:not(.cloned-text-input){
   font-size: 90%;
 }
 
+.platform-ios, .platform-android{
+  textarea{
+    text-indent: 0;
+  }
+}
+
+.nav-bar-block .back-button.button-clear{
+  padding-left: 5px;
+}
+
 
 
 // date picker
