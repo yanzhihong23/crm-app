@@ -21,7 +21,7 @@
       user = $rootScope.user;
 
       vm.rights = {
-        sale: user.roleId == 2 || user.roleId == 3 || user.roleId == 7 || user.orgId == 11,
+        sale: /[1,2,3,7]/.test(user.roleId) || user.orgId == 11,
         manager: user.userId == 98,
         finance: user.roleId == 4,
         operate: user.roleId == 6
