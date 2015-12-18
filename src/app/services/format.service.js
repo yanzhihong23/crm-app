@@ -63,6 +63,8 @@
           bankBranch: obj.paySubbranchBank,
           bankAccount: obj.bankNumone,
 
+          payerName: obj.payPersonName,
+
           alipayAccount: obj.payAlipayNum,
 
           posNo: obj.possNum,
