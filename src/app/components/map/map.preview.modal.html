@@ -1,0 +1,11 @@
+<ion-modal-view id="map_modal">
+  <ion-content>
+    <b-map opened="add.openedStores" address="preview.info.address" village="preview.info.village" ng-model="preview.info.point" city="preview.info.city" district="preview.info.districtId" preview="true"></b-map>
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-balanced">
+    <h1 class="title">选址预览</h1>
+    <div class="buttons" ng-click="preview.hideModal()">
+      <button class="button">关闭</button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

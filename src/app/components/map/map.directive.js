@@ -6,16 +6,19 @@
     .directive('bMap', bMap);
 
   /** @ngInject */
-  function bMap($log, utils) {
+  function bMap($log, utils, ApiService) {
     var directive = {
       restrict: 'E',
+      replace: true,
       template: '<div id="allmap"></div>',
       scope: {
         opened: '=',
         address: '=',
         village: '=',
         validPoint: '=ngModel',
-        city: '='
+        city: '=',
+        district: '=',
+        preview: '='
       },
       link: function(scope, element, attr) {
         var stores = scope.opened, 
@@ -58,15 +61,36 @@
         }
 
         function addStores() {
-          var icon = new BMap.Icon('assets/images/pin.png', new BMap.Size(34, 46), {
-            anchor: new BMap.Size(17, 46)
-          });
+          var stores;
+          var render = function() {
+            var icon = new BMap.Icon('assets/images/pin.png', new BMap.Size(34, 46), {
+              anchor: new BMap.Size(17, 46)
+            });
 
-          for(var i=0, len=stores&&stores.length; i<len; i++){
-            var p = stores[i];
-            var marker = new BMap.Marker(new BMap.Point(p.lng, p.lat), {icon: icon});
-            map.addOverlay(marker);
-          }
+            for(var i=0, len=stores&&stores.length; i<len; i++){
+              var p = stores[i];
+              var marker = new BMap.Marker(new BMap.Point(p.lng, p.lat), {icon: icon});
+              map.addOverlay(marker);
+            }
+          };
+
+
+          ApiService.getOpenedStores({id: scope.district})
+            .success(function(data) {
+              if(data.flag === 1) {
+                stores = data.data.map(function(obj) {
+                  return {
+                    lat: obj.latitude,
+                    lng: obj.longitude,
+                    name: obj.name
+                  };
+                });
+
+                render();
+
+                $log.debug(stores);
+              }
+            });
         }
 
         function addSearchResults() {
@@ -108,8 +132,20 @@
 
         setTimeout(function() {
           init();
-          doSearch();
           addStores();
+
+          if(scope.preview) {
+            results = [{
+              name: scope.village,
+              address: scope.address,
+              lat: scope.validPoint.lat,
+              lng: scope.validPoint.lng
+            }];
+
+            // addSearchResults();
+          } else {
+            doSearch();
+          }
         }, 100);
         
       }

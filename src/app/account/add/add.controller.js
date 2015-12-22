@@ -56,10 +56,6 @@
             }
           };
 
-          addDistrictWatcher();
-
-          // getOpenedStores(obj.district);
-
           AreaService.selected = vm.info.area;
           AreaService.getCityList(obj.capitalId);
           AreaService.getDistrictList(obj.cityId);
@@ -193,33 +189,6 @@
           content: '选择无效'
         });
       }
-    }
-
-    function getOpenedStores(districtName) {
-      ApiService.getOpenedStores({district: districtName})
-        .success(function(data) {
-          if(data.flag === 1) {
-            vm.openedStores = data.data.map(function(obj) {
-              return {
-                lat: obj.latitude,
-                lng: obj.longitude,
-                name: obj.name
-              };
-            });
-
-            $log.debug(vm.openedStores);
-          }
-        });
-    }
-
-    function addDistrictWatcher() {
-      $scope.$watch(function() {
-        return vm.info.area.district;
-      }, function(val) {
-        if(val && val.name) {
-          getOpenedStores(val.name);
-        }
-      });
     }
 
     $log.debug('AccountAddController end');

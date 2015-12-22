@@ -42,9 +42,14 @@
         详细地址
         <span class="item-note">{{preview.info.address}}</span>
       </div>
-      <div class="item">
+      <div class="item item-icon-right">
         小区名
         <span class="item-note">{{preview.info.village}}</span>
+        <i class="icon ion-map assertive" ng-click="preview.showMap()"></i>
+      </div>
+      <div class="item">
+        小区户数
+        <span class="item-note">{{preview.info.households}}</span>
       </div>
     </article>
 

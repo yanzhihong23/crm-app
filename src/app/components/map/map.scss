@@ -7,3 +7,11 @@
     overflow: hidden;
   }
 }
+
+// fix offsetParent null
+html, body{
+  height: 100%;
+}
+.modal-backdrop.active {
+  position: relative; 
+}

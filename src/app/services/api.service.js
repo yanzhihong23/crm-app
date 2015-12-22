@@ -284,6 +284,11 @@
           street: obj.area.street.id,
           detailAddress: obj.address,
           village: obj.village,
+
+          households: obj.households,
+          latitude: obj.point.lat,
+          longitude: obj.point.lng,
+          
           userId: obj.userId,
           applyStoreId: obj.storeId, // add
           storeId: obj.storeId // update
@@ -440,12 +445,8 @@
 
     this.getOpenedStores = function(obj) {
       return $http({
-        method: 'POST',
-        url: APISERVER + '/community/listByCityName',
-        headers: headers,
-        data: {
-          cityName: obj.district
-        }
+        method: 'GET',
+        url: APISERVER + '/community/list/' + obj.id
       });
     }
 

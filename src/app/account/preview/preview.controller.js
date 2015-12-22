@@ -6,15 +6,18 @@
     .controller('AccountPreviewController', AccountPreviewController);
 
   /** @ngInject */
-  function AccountPreviewController($rootScope, $state, $stateParams, ApiService, UserService, utils) {
+  function AccountPreviewController($log, $rootScope, $scope, $state, $stateParams, $ionicModal, ApiService, UserService, utils) {
     var vm = this, id = $stateParams.id,
         isAudit = $stateParams.type === 'audit',
-        user = UserService.getUser();
+        user = UserService.getUser(),
+        mapModal;
 
     vm.isAudit = isAudit;
     vm.user = user;
     vm.audit = audit;
     vm.modify = modify;
+    vm.showMap = showMap;
+    vm.hideModal = hideModal;
 
     init();
 
@@ -30,9 +33,16 @@
             province: detail.capitalName,
             city: detail.cityName,
             district: detail.districtName,
+            districtId: detail.district,
             street: detail.streetName,
             address: detail.detailAddress,
             village: detail.village,
+
+            households: detail.households,
+            point: {
+              lat: detail.latitude,
+              lng: detail.longitude
+            },
 
             remark: detail.addressAuditOpinion,
             status: detail.addressAuditStatus,
@@ -60,6 +70,20 @@
 
     function modify() {
       $state.go('account:add', {type: 'update', id: id});
+    }
+
+    function showMap() {
+      $ionicModal.fromTemplateUrl('app/components/map/map.preview.modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        mapModal = modal;
+        modal.show();
+      });
+    }
+
+    function hideModal() {
+      mapModal.remove();
     }
 
   }

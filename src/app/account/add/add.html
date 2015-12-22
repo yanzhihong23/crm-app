@@ -44,8 +44,12 @@
         </div>
         <div class="item item-input item-icon-right">
           <span class="input-label">小区名</span>
-          <input type="text" ng-model="add.info.village" placeholder="请输入小区名" maxlength="20" style="padding-left: 12px" required>
+          <input type="text" ng-model="add.info.village" placeholder="请输入小区名" minlength="2" maxlength="20" style="padding-left: 12px" required>
           <i class="icon ion-map balanced" ng-click="add.showMap()" ng-if="!inputForm.$invalid"></i>
+        </div>
+        <div class="item item-input">
+          <span class="input-label">小区户数</span>
+          <input type="tel" ng-model="add.info.households" placeholder="请输入小区户数" maxlength="5" required>
         </div>
       </article>
     </ion-content>
