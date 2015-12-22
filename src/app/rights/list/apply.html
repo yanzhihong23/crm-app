@@ -14,6 +14,9 @@
       <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
         <span class="tab-title">申请成功</span>
       </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == -2}" ng-click="list.status=-2">
+        <span class="tab-title">申请失败</span>
+      </a>
     </div>
   </section>
 
