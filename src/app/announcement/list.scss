@@ -1,0 +1,16 @@
+#announce_list{
+  .item-icon-left{
+    padding-left: 34px;
+  }
+  .icon.icon-dot:before{
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: $assertive;
+  }
+  .list .item:nth-child(even){
+    background: #f5f6f7;
+  }
+}

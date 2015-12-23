@@ -1,0 +1,8 @@
+<ion-view cache-view="false">
+  <ion-nav-title>{{detail.info.title || '公告详情'}}</ion-nav-title>
+  <ion-content>
+    <p class="padding" ng-bind-html="detail.info.content"></p>
+
+    <div class="text-right padding-right">{{detail.info.date}}</div>
+  </ion-content>
+</ion-view>

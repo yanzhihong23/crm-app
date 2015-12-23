@@ -6,6 +6,14 @@
         <span class="item-note">{{user.info.username}}</span>
       </div>
     </div>
+
+    <div class="list margin-vertical" ng-if="user.info.canAddAnnouncemnet">
+      <a class="item item-icon-right" ui-sref="announcement:add">
+        添加公告
+        <i class="icon ion-ios-arrow-right gray"></i>
+      </a>
+    </div>
+
     <div class="list margin-vertical">
       <div class="item">
         版本号

@@ -10,6 +10,7 @@
     var vm = this;
 
     vm.info = $rootScope.user;
+    vm.info.canAddAnnouncemnet = vm.info.roleId === 1;
 
     vm.logout = function() {
       UserService.logout();

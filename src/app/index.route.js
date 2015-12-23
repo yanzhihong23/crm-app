@@ -164,6 +164,24 @@
         controller: 'UserController',
         controllerAs: 'user'
       })
+      .state('announcement', {
+        url: '/announcement/:publish',
+        templateUrl: 'app/announcement/list.html',
+        controller: 'AnnouncementListController',
+        controllerAs: 'list'
+      })
+      .state('announcement:add', {
+        url: '/announcement/add',
+        templateUrl: 'app/announcement/add.html',
+        controller: 'AnnouncementAddController',
+        controllerAs: 'add'
+      })
+      .state('announcement:detail', {
+        url: '/announcement/detail/:id',
+        templateUrl: 'app/announcement/detail.html',
+        controller: 'AnnouncementDetailController',
+        controllerAs: 'detail'
+      })
       ;
 
     $urlRouterProvider.otherwise('/');
