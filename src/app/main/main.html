@@ -14,7 +14,7 @@
       <div class="card">
         <a class="item item-avatar"  ui-sref="list:apply:rights">
           <img src="assets/images/seal.png">
-          <h2>申请开店权/经销权</h2>
+          <h2>申请开店权<span ng-if="user.roleId!==7">/经销权</span></h2>
           <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         </a>
       </div>
