@@ -87,7 +87,7 @@
         controllerAs: 'preview'
       })
       .state('rights:result', {
-        url: '/rights/result/:id',
+        url: '/rights/result/:id/:type',
         templateUrl: 'app/rights/result/result.html',
         controller: 'RightsResultController',
         controllerAs: 'result'

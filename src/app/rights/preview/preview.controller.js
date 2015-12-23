@@ -24,7 +24,6 @@
 
     function init() {
       if(!id) { // add new
-        // vm.info = localStorageService.get('rightsApplyInfo');
         vm.info = RightsApplyService.info;
       } else {
         if(/audit/.test(type)) {
@@ -47,21 +46,18 @@
     }
 
     function submit() {
-      // $state.go('rights:result');
+      
       vm.info.userId = user.userId;
       ApiService.addRightsApply(vm.info).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:apply:rights');
+          var id = data.data.applyStoreId,
+              type = vm.info.reApply ? 'reApply' : 'new';
 
-          // utils.alert({
-          //   content: '请及时到财务处交款，实际交款成功后请发起【提交财务审核】，等待财务审核！',
-          //   callback: function() {
-              var deep = vm.info.reApply ? -5 : -4;
-              RightsApplyService.reset();
-              AreaService.reset();
-              utils.goBack(deep);
-          //   }
-          // });
+          RightsApplyService.reset();
+          AreaService.reset();
+
+          $state.go('rights:result', {id: id, type: type});
         } else {
           $log.error('add rights apply error');
         }
