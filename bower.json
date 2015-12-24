@@ -10,7 +10,7 @@
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
     "angular": "~1.4.2",
-    "ionic": "~1.1.1",
+    "ionic": "1.2.0",
     "angular-local-storage": "~0.2.3",
     "angular-md5": "~0.1.10",
     "angular-base64-upload": "~0.1.13",

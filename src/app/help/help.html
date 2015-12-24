@@ -1,0 +1,23 @@
+<ion-view view-title="帮助中心">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        使用教程视频
+      </div>
+      <div class="item item-text-wrap text-center" ng-click="help.showVideo()">
+        <i class="icon ion-play balanced" style="font-size: 50px"></i>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="item item-divider">
+        缴款银行信息
+      </div>
+      <div class="item item-text-wrap">
+        <div class="padding-vertical">开户银行：{{help.info.bank}}</div>
+        <div class="padding-vertical">账户名称：{{help.info.accountName}}</div>
+        <div class="padding-vertical">银行账号：{{help.info.bankAccount}}</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

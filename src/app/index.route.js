@@ -87,7 +87,7 @@
         controllerAs: 'preview'
       })
       .state('rights:result', {
-        url: '/rights/result/:id',
+        url: '/rights/result/:id/:type',
         templateUrl: 'app/rights/result/result.html',
         controller: 'RightsResultController',
         controllerAs: 'result'
@@ -157,6 +157,30 @@
         templateUrl: 'app/user/user.html',
         controller: 'UserController',
         controllerAs: 'user'
+      })
+      .state('announcement', {
+        url: '/announcement/:publish',
+        templateUrl: 'app/announcement/list.html',
+        controller: 'AnnouncementListController',
+        controllerAs: 'list'
+      })
+      .state('announcement:add', {
+        url: '/announcement/add',
+        templateUrl: 'app/announcement/add.html',
+        controller: 'AnnouncementAddController',
+        controllerAs: 'add'
+      })
+      .state('announcement:detail', {
+        url: '/announcement/detail/:id',
+        templateUrl: 'app/announcement/detail.html',
+        controller: 'AnnouncementDetailController',
+        controllerAs: 'detail'
+      })
+      .state('help', {
+        url: '/help',
+        templateUrl: 'app/help/help.html',
+        controller: 'HelpController',
+        controllerAs: 'help'
       })
       ;
 

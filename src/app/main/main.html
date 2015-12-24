@@ -1,15 +1,20 @@
-<ion-view view-title="CRM" id="main_view">
-  <ion-nav-buttons side="right">
+<ion-view view-title="眼镜蛇" id="main_view">
+  <ion-nav-buttons side="left">
     <a class="button" ui-sref="user">
       <i class="icon ion-person"></i>
     </a>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="button" ui-sref="announcement">
+      <i class="icon ion-ios-bell"></i>
+    </a>
+  </ion-nav-buttons>
   <ion-content>
-    <section ng-if="user.roleId==2||user.roleId==3">
+    <section ng-if="home.rights.sale">
       <div class="card">
         <a class="item item-avatar"  ui-sref="list:apply:rights">
           <img src="assets/images/seal.png">
-          <h2>申请开店权/经销权</h2>
+          <h2>申请开店权<span ng-if="user.roleId!==7">/经销权</span></h2>
           <p>提交申请，立即付款，审核通过后立即获得开店权</p>
         </a>
       </div>
@@ -32,7 +37,7 @@
     </section>
 
     <!-- 主管 -->
-    <section ng-if="user.roleId==2">
+    <section ng-if="home.rights.manager">
       <div class="card">
         <a class="item item-avatar"  ui-sref="list:audit:rights">
           <img src="assets/images/cert-02.png">
@@ -42,7 +47,7 @@
       </div>
     </section>
 
-    <section class="row row-no-padding text-center" ng-if="user.roleId==2||user.roleId==3">
+    <section class="row row-no-padding text-center" ng-if="home.rights.sale">
       <div class="card col">
         <a class="item padding-vertical" ui-sref="list:client">
           <h2>客户信息报备</h2>
@@ -60,7 +65,7 @@
     </section>
     
     <!-- 财务 -->
-    <section ng-if="user.roleId==4">
+    <section ng-if="home.rights.finance">
       <div class="card">
         <a class="item item-avatar" ui-sref="list:audit:rights">
           <img src="assets/images/seal.png">
@@ -71,7 +76,7 @@
     </section>
 
     <!-- 运营 -->
-    <section class="list margin-vertical" ng-if="user.roleId==6">
+    <section class="list margin-vertical" ng-if="home.rights.operate">
       <div class="card">
         <a class="item item-avatar" ui-sref="list:audit:account">
           <img src="assets/images/cert-01.png">

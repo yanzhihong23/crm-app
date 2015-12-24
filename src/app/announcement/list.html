@@ -1,0 +1,27 @@
+<ion-view view-title="{{list.title}}" id="announce_list">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="list.doRefresh()">
+    </ion-refresher>
+
+    <article class="list margin-vertical">
+      <a class="item item-icon-right" ng-class="{'item-icon-left': !list.isPublish}" ng-repeat="item in list.items" ng-click="list.detail($index)">
+        <i class="icon icon-dot" ng-show="!item.read" ng-if="!list.isPublish"></i>
+        {{item.title}}
+        <span class="item-note gray">{{item.date}}</span>
+        <i class="icon ion-ios-arrow-right gray"></i>
+      </a>
+    </article>
+
+    <div class="full-height row text-center row-center" ng-if="!list.items.length">
+      <div class="col col-center">暂无公告</div>
+    </div>
+
+    <ion-infinite-scroll
+      ng-if="list.hasMoreData"
+      on-infinite="list.loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

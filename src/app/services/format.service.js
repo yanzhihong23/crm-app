@@ -63,13 +63,17 @@
           bankBranch: obj.paySubbranchBank,
           bankAccount: obj.bankNumone,
 
+          payerName: obj.payPersonName,
+
           alipayAccount: obj.payAlipayNum,
 
           posNo: obj.possNum,
 
           managerCheck: obj.managersCheck,
           financeCheck: obj.financeCheck,
-          checkerId: obj.whoCheck
+          checkerId: obj.whoCheck,
+
+          failType: obj.applyStoreFailReason
         };
       } else {
         return {};

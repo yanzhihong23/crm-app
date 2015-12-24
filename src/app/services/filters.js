@@ -9,7 +9,8 @@
     .filter('applicantType', applicantType)
     .filter('agencyType', agencyType)
     .filter('inviteStatus', inviteStatus)
-    .filter('applyRole', applyRole);
+    .filter('applyRole', applyRole)
+    .filter('card', card);
 
   /** @ngInject */
   function applyType() {
@@ -89,5 +90,15 @@
     return function(id) {
       return map[id] || id;
     };
+  }
+
+  function card() {
+    return function(str) {
+      if(str && str.length >= 16) {
+        return str.substr(0, 4) + ' ' + str.substr(4, 4) + ' ' + str.substr(8, 4) + ' ' + str.substr(12, 4) + ' ' + str.substr(16);
+      } else {
+        return str;
+      }
+    }
   }
 })();

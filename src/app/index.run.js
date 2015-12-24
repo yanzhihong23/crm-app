@@ -6,7 +6,10 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, $ionicLoading, $state, utils, UserService) {
+  function runBlock($log, $rootScope, $ionicLoading, $location, $state, utils, UserService, JsBridgeService) {
+    // init js bridge
+    JsBridgeService.init();
+
     $rootScope.$on('loading:show', function() {
       $ionicLoading.show();
     });
@@ -52,6 +55,28 @@
       $rootScope.user = null;
       UserService.logout();
     };
+
+    $rootScope.$ionicGoBack = function() {
+      var deep = -1, isAndroid = ionic.Platform.isAndroid();
+      if($state.current.name === 'rights:result') {
+        var type = $state.params.type;
+        if(type === 'reApply') {
+          deep = -6;
+        } else if(type === 'new') {
+          deep = -5;
+        }
+      } else if(isAndroid && $state.current.name === 'home') {
+        JsBridgeService.exit();
+        return;
+      }
+
+      utils.goBack(deep);
+    };
+
+    document.addEventListener('backbutton', function() {
+      alert('back');
+    });
+
 
     $log.debug('runBlock end');
   }

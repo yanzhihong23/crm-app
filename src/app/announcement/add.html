@@ -1,0 +1,29 @@
+<ion-view view-title="添加公告" cache-view="false">
+  <ion-nav-buttons side="right">
+    <a class="button" ui-sref="announcement({publish: true})">
+      已发布
+    </a>
+  </ion-nav-buttons>
+
+  <form name="announceForm"  ng-submit="add.submit()">
+    <ion-content class="has-bottom">
+      <div class="list margin-vertical">
+        <div class="item item-input">
+          <input type="text" class="black" ng-model="add.info.title" placeholder="公告标题" required />
+        </div>
+      </div>
+      <div class="list margin-vertical">
+        <div class="item item-input">
+          <textarea class="black" ng-model="add.info.content" rows="8" placeholder="公告内容" required></textarea>
+        </div>
+      </div>
+      <div class="padding-left assertive small">注：此处添加的公告将发送给所有的招商人员及经销商</div>
+    </ion-content>
+
+    <section class="bottom">
+      <div class="padding">
+        <button class="button button-block button-assertive" ng-disabled="announceForm.$invalid">发布</button>
+      </div>
+    </section>
+  </form>
+</ion-view>

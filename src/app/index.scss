@@ -12,11 +12,13 @@ $stable: #9b9b9b;
 $gray: #9B9B9B;
 $white: #fff;
 $dark:  #374252;
+$black: #111;
 
 $input-color-placeholder: $gray;
 $input-color: $balanced;
 
 $button-border-width: 0;
+$card-border-radius: 5px;
 $sheet-options-text-color: #32B77D;
 
 @import "../../bower_components/ionic/scss/ionic";
@@ -69,6 +71,10 @@ $border-color: #d5d5d5;
 
 .gray{
   color: $gray;
+}
+
+.black{
+  color: $black;
 }
 
 .pane,
@@ -126,6 +132,9 @@ $border-color: #d5d5d5;
   bottom: 0;
   width: 100%;
   background: #f2f2f2;
+  .keyboard-open.platform-android &{
+    display: none;
+  }
 }
 
 .scroll-content.has-bottom{
@@ -150,6 +159,27 @@ input:disabled, input[readonly]:not(.cloned-text-input){
   font-size: 90%;
 }
 
+.platform-ios, .platform-android{
+  textarea{
+    text-indent: 0;
+  }
+}
+
+.nav-bar-block .back-button.button-clear{
+  padding-left: 5px;
+}
+
+input.black, textarea.black{
+  color: $black;
+}
+
+.white-bg{
+  background: $white;
+}
+
+.black-bg{
+  background: $black;
+}
 
 
 // date picker

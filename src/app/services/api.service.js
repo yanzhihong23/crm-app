@@ -223,7 +223,7 @@
           payBankName: obj.bank && obj.bank.name, // TODO
           payBankCode: obj.bank && obj.bank.id,
           paySubbranchBank: obj.bankBranch,
-          bankNumome: obj.bankAccount,
+          bankNumone: obj.bankAccount,
 
           payAlipayNum: obj.alipayAccount
         }
@@ -449,7 +449,14 @@
         method: 'GET',
         url: APISERVER + '/community/list/' + obj.id
       });
-    }
+    };
+
+    this.help = function() {
+      return $http({
+        method: 'GET',
+        url: APISERVER + '/helpCenter'
+      });
+    };
 
     $log.debug('ApiService end');
     

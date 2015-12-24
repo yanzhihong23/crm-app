@@ -81,7 +81,8 @@
           safari = /safari/.test(userAgent),
           ios = /iphone|ipod|ipad/.test(userAgent),
           xwalk = /crosswalk/.test(userAgent);
-      if(ios && standalone) {
+
+      if(ios && standalone || /isWebview/.test(location.href)) {
         document.querySelector('body').className += ' platform-cordova ';
       }
     </script>
