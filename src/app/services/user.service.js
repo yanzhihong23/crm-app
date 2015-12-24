@@ -6,11 +6,13 @@
     .service('UserService', UserService);
 
   /** @ngInject */
-  function UserService(localStorageService, $state, $rootScope, utils) {
+  function UserService(localStorageService, $state, $rootScope, utils, JsBridgeService) {
     
   	this.setUser = function(user) {
       $rootScope.user = user;
       localStorageService.set('user', user);
+
+      JsBridgeService.send({userId: user.userId});
 
       $rootScope.$broadcast('login:succ');
     };
