@@ -71,7 +71,9 @@
 
           managerCheck: obj.managersCheck,
           financeCheck: obj.financeCheck,
-          checkerId: obj.whoCheck
+          checkerId: obj.whoCheck,
+
+          failType: obj.applyStoreFailReason
         };
       } else {
         return {};

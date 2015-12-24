@@ -10,7 +10,7 @@
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-load-a balanced"></i> -->
-            <img src="assets/images/building.png" width="190" alt="">
+            <img src="assets/images/building.png" width="180" alt="">
           </div>
           <div>恭喜您，您的申请已提交！</div>
           <div ng-if="result.info.isTriggered">请耐心等待财务审核！</div>
@@ -57,7 +57,7 @@
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-checkmark-circled balanced"></i> -->
-            <img src="assets/images/opening.png" width="190" alt="">
+            <img src="assets/images/opening.png" width="180" alt="">
           </div>
           <div>恭喜您，付款已确认！</div>
         </div>
@@ -75,26 +75,35 @@
     </article>
 
     <!-- 主管审核不通过 -->
-    <article class="full-height" ng-if="result.info.managerCheck==2">
+    <article class="full-height" ng-if="result.info.managerCheck==2 || result.info.failType>=5">
       <section class="row row-center text-center info">
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-ios-close assertive"></i> -->
-            <img src="assets/images/closed.png" width="190" alt="">
+            <img src="assets/images/closed.png" width="180" alt="">
           </div>
-          <div>抱歉，该信息未通过审核！</div>
+          <div>
+            该申请已作废！<br>
+            <small ng-if="result.info.failType==5">您未在提出申请后3天内成功付款！</small>
+            <small ng-if="result.info.failType==6">您未在支付定金后3天内交足余款！</small>
+            <small ng-if="result.info.failType==7">您提交的信息未通过主管审核！</small>
+          </div>
         </div>
       </section>
 
       <section class="tips padding">
-        <!-- <div class="assertive">
+        <div class="assertive" ng-if="result.info.failType==6">
           <i class="icon ion-information-circled"></i>
-          该信息未通过审核，请重新申请！
+          已支付的定金请及时到财务处申请退回
+        </div>
+        <!-- <div class="padding">
+          <button class="button button-block button-balanced" ng-click="result.reApply()">重新申请</button>
         </div> -->
-        <div class="padding">
+      </section>
+
+      <div class="padding bottom">
           <button class="button button-block button-balanced" ng-click="result.reApply()">重新申请</button>
         </div>
-      </section>
     </article>
     
   </ion-content>
