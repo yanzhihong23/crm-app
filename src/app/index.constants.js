@@ -5,9 +5,7 @@
   angular
     .module('crmApp')
     .constant('moment', moment)
-    // .constant('HOST', 'http://b2b.zaijiadd.com')
-    .constant('HOST', 'http://192.168.11.61')
-    // .constant('HOST', 'http://192.168.11.61:8080')
+    .constant('HOST', 'http://b2b-test.zaijiadd.com')
     .factory('APISERVER', function($location, HOST) {
     	var host = /zaijiadd.com/.test($location.host()) ? $location.protocol() + '://' + $location.host() + ($location.port() ? ':' + $location.port() : '') : HOST;
 
