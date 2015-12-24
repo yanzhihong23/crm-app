@@ -38,14 +38,14 @@
           <span class="item-note">{{add.info.area.street.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
-        <div class="item item-input">
-          <span class="input-label">详细地址</span>
-          <input type="text" ng-model="add.info.address" placeholder="请输入详细地址" maxlength="30" required>
-        </div>
         <div class="item item-input item-icon-right">
           <span class="input-label">小区名</span>
           <input type="text" ng-model="add.info.village" placeholder="请输入小区名" minlength="2" maxlength="20" style="padding-left: 12px" required>
-          <i class="icon ion-map balanced" ng-click="add.showMap()" ng-if="!inputForm.$invalid"></i>
+          <i class="icon ion-map balanced" ng-click="add.showMap()" ng-if="add.info.village"></i>
+        </div>
+        <div class="item item-input">
+          <span class="input-label">详细地址</span>
+          <input type="text" ng-model="add.info.address" placeholder="请输入详细地址" maxlength="30" required>
         </div>
         <div class="item item-input">
           <span class="input-label">小区户数</span>
@@ -56,7 +56,7 @@
 
     <section class="bottom">
       <div class="padding">
-        <button type="submit" class="button button-block button-balanced" ng-disabled="inputForm.$invalid || !add.info.point">提交</button>
+        <button type="submit" class="button button-block button-balanced" ng-disabled="inputForm.$invalid || !add.info.point || !add.info.area.district.name">提交</button>
       </div>
     </section>
   </form>
