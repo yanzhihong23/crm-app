@@ -53,13 +53,16 @@
                 id: obj.districtId,
                 name: obj.district
               }
-            }
+            },
+            point: {}
           };
 
           AreaService.selected = vm.info.area;
           AreaService.getCityList(obj.capitalId);
           AreaService.getDistrictList(obj.cityId);
           AreaService.getStreetList(obj.districtId);
+
+          addWatcher();
         }
       });
     }
@@ -101,6 +104,30 @@
           AreaService.getDistrictList(detail.city);
           AreaService.getStreetList(detail.district);
         }
+      });
+    }
+
+    function addWatcher() {
+      $scope.$watch(function() {
+        return vm.info.point;
+      }, function(val) {
+        if(val && val.lat) {
+          vm.info.village = val.name;
+          vm.info.address = val.address;
+        }
+      }, true);
+
+
+      $scope.$watch(function() {
+        return vm.info.village;
+      }, function(val) {
+        if(val) {
+          vm.info.point = {};
+        }
+      });
+
+      $rootScope.$on('point', function(evt, point) {
+        vm.info.point = point;
       });
     }
 
@@ -181,8 +208,7 @@
     }
 
     function confirm() {
-      if(vm.info.point) {
-        console.log(vm.info.point);
+      if(vm.info.point && vm.info.point.lat) {
         mapModal.remove();
       } else {
         utils.alert({

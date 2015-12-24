@@ -6,7 +6,7 @@
     .directive('bMap', bMap);
 
   /** @ngInject */
-  function bMap($log, utils, ApiService) {
+  function bMap($log, $rootScope, utils, ApiService) {
     var directive = {
       restrict: 'E',
       replace: true,
@@ -51,7 +51,7 @@
             } else {
               utils.alert({
                 title: '出错了~',
-                content: '输入的地址或小区名无效'
+                content: '输入的小区名无效'
               });
             }
             console.log(results);
@@ -105,10 +105,10 @@
             return function(e) {
               var p = new BMap.Point(point.lng, point.lat)
               map.openInfoWindow(infoWindow, p);
-              // map.panTo(point);
               map.panTo(p);
 
-              scope.validPoint = point;
+              // scope.validPoint = point;
+              $rootScope.$broadcast('point', point);
 
               $log.debug(point);
             };
@@ -130,7 +130,8 @@
             marker.addEventListener('click', helper(infoWindow, point));
 
             if(i === 0) {
-              helper(infoWindow, point)();
+              setTimeout(helper(infoWindow, point), 500);
+              // helper(infoWindow, point)();
             }
           }
         }
