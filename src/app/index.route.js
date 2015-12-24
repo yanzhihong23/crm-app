@@ -92,12 +92,6 @@
         controller: 'RightsResultController',
         controllerAs: 'result'
       })
-      // .state('result', {
-      //   url: '/result',
-      //   templateUrl: 'app/result/result.html',
-      //   controller: 'ResultController',
-      //   controllerAs: 'result'
-      // })
       .state('account:add', {
         url: '/account/add/:id/:type/:detailId',
         templateUrl: 'app/account/add/add.html',

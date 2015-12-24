@@ -26,18 +26,6 @@
           {{preview.info.street}}
         </span>
       </div>
-      <!-- <div class="item">
-        城市
-        <span class="item-note">{{preview.info.city}}</span>
-      </div>
-      <div class="item">
-        区/县
-        <span class="item-note">{{preview.info.district}}</span>
-      </div>
-      <div class="item">
-        街道
-        <span class="item-note">{{preview.info.street}}</span>
-      </div> -->
       <div class="item">
         详细地址
         <span class="item-note">{{preview.info.address}}</span>
@@ -58,6 +46,10 @@
         注: 请确认该店铺地址可用，若不可用请标明原因
       </div>
       <div class="item item-input">
+        <span class="input-label">该小区户数</span>
+        <input type="tel" ng-model="preview.households" maxlength="5">
+      </div>
+      <div class="item item-input">
         <span class="input-label">不通过原因</span>
         <textarea rows="1" ng-model="preview.remark" maxlength="140" placeholder="如：该地址已经被使用"></textarea>
       </div>
@@ -75,6 +67,12 @@
       <div class="item assertive">
         审批结果
         <span class="item-note assertive">{{preview.info.statusStr}}</span>
+      </div>
+      <div class="item" ng-if="preview.info.householdsAudit">
+        审批意见
+        <span class="item-note">
+          {{preview.info.householdsAudit}}
+        </span>
       </div>
       <div class="item" ng-if="preview.info.remark">
         审批意见

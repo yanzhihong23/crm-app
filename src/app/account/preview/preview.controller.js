@@ -39,6 +39,7 @@
             village: detail.village,
 
             households: detail.households,
+            householdsAudit: detail.householdsOperation,
             point: {
               lat: detail.latitude,
               lng: detail.longitude
@@ -57,7 +58,8 @@
         userId: user.userId,
         storeId: id,
         status: status,
-        remark: vm.remark
+        remark: vm.remark,
+        households: vm.households
       }).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:account:audit');

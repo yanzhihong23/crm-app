@@ -69,6 +69,8 @@
 
             for(var i=0, len=stores&&stores.length; i<len; i++){
               var p = stores[i];
+              if(!p.state) return;
+              
               var marker = new BMap.Marker(new BMap.Point(p.lng, p.lat), {icon: icon});
               map.addOverlay(marker);
             }
@@ -82,7 +84,8 @@
                   return {
                     lat: obj.latitude,
                     lng: obj.longitude,
-                    name: obj.name
+                    name: obj.name,
+                    state: obj.state
                   };
                 });
 
@@ -100,8 +103,10 @@
 
           var helper = function(infoWindow, point) {
             return function(e) {
-              map.openInfoWindow(infoWindow, point);
-              map.panTo(point);
+              var p = new BMap.Point(point.lng, point.lat)
+              map.openInfoWindow(infoWindow, p);
+              // map.panTo(point);
+              map.panTo(p);
 
               scope.validPoint = point;
 
@@ -109,7 +114,7 @@
             };
           };
 
-          for(var i=0, len=results&&results.length; i<len; i++){
+          for(var i = 0, len = results&&results.length; i < len; i++){
             var point = results[i];
             var marker = new BMap.Marker(point, {icon: icon});
             var opts = {
@@ -124,7 +129,7 @@
 
             marker.addEventListener('click', helper(infoWindow, point));
 
-            if(i===0) {
+            if(i === 0) {
               helper(infoWindow, point)();
             }
           }
@@ -141,6 +146,8 @@
               lat: scope.validPoint.lat,
               lng: scope.validPoint.lng
             }];
+
+            setTimeout(addSearchResults, 500);
 
             // addSearchResults();
           } else {

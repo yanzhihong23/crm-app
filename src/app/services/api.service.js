@@ -365,6 +365,7 @@
         data: {
           storeId: obj.storeId,
           auditOpinion: obj.remark,
+          householdsOperation: obj.households,
           status: obj.status, // 1: 通过, -1: 不通过
           userId: obj.userId
         }
