@@ -20,6 +20,7 @@
     vm.showMap = showMap;
     vm.hideModal = hideModal;
     vm.confirm = confirm;
+    vm.villageChanged = villageChanged;
 
     init();
 
@@ -103,6 +104,8 @@
           AreaService.getCityList(detail.capital);
           AreaService.getDistrictList(detail.city);
           AreaService.getStreetList(detail.district);
+
+          addWatcher();
         }
       });
     }
@@ -118,17 +121,13 @@
       }, true);
 
 
-      $scope.$watch(function() {
-        return vm.info.village;
-      }, function(val) {
-        if(val) {
-          vm.info.point = {};
-        }
-      });
-
       $rootScope.$on('point', function(evt, point) {
         vm.info.point = point;
       });
+    }
+
+    function villageChanged() {
+      vm.info.point = {};
     }
 
     function selectArea(type) {
