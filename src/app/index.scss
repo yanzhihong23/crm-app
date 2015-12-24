@@ -18,6 +18,7 @@ $input-color-placeholder: $gray;
 $input-color: $balanced;
 
 $button-border-width: 0;
+$card-border-radius: 5px;
 $sheet-options-text-color: #32B77D;
 
 @import "../../bower_components/ionic/scss/ionic";
@@ -131,6 +132,9 @@ $border-color: #d5d5d5;
   bottom: 0;
   width: 100%;
   background: #f2f2f2;
+  .keyboard-open.platform-android &{
+    display: none;
+  }
 }
 
 .scroll-content.has-bottom{
@@ -167,6 +171,14 @@ input:disabled, input[readonly]:not(.cloned-text-input){
 
 input.black, textarea.black{
   color: $black;
+}
+
+.white-bg{
+  background: $white;
+}
+
+.black-bg{
+  background: $black;
 }
 
 

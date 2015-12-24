@@ -182,6 +182,12 @@
         controller: 'AnnouncementDetailController',
         controllerAs: 'detail'
       })
+      .state('help', {
+        url: '/help',
+        templateUrl: 'app/help/help.html',
+        controller: 'HelpController',
+        controllerAs: 'help'
+      })
       ;
 
     $urlRouterProvider.otherwise('/');

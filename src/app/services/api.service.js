@@ -438,6 +438,13 @@
       });
     };
 
+    this.help = function() {
+      return $http({
+        method: 'GET',
+        url: APISERVER + '/helpCenter'
+      });
+    };
+
     $log.debug('ApiService end');
     
   }
