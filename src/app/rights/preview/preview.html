@@ -128,7 +128,7 @@
   </section>
   
   <!-- 主管 -->
-  <section class="bottom" ng-if="preview.type=='audit' && preview.user.roleId==2">
+  <section class="bottom" ng-if="preview.type=='audit' && user.orgId==11">
     <div class="row">
       <div class="col">
         <button class="col button button-block button-balanced" ng-click="preview.audit(1)">审核通过</button>
