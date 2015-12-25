@@ -10,29 +10,33 @@
           <span class="input-label">姓名</span>
           <input type="text" ng-model="add.info.realname" placeholder="申请者姓名" maxlength="20" required>
         </div>
-        <div class="item item-input">
+        <div class="item item-input input-validate">
           <span class="input-label">身份证号</span>
-          <input type="text" ng-model="add.info.idNo" placeholder="申请者身份证号" ng-pattern="pattern.id" maxlength="18" required>
+          <input type="text" name="idNo" ng-model="add.info.idNo" placeholder="申请者身份证号" ng-pattern="pattern.id" maxlength="18" required>
+          <i class="icon ion-ios-close assertive" ng-if="inputForm.idNo.$dirty&&inputForm.idNo.$invalid"></i>
         </div>
-        <div class="item item-input">
+        <div class="item item-input input-validate">
           <span class="input-label">联系电话</span>
-          <input type="text" ng-model="add.info.phone" placeholder="11位手机号码" ng-pattern="pattern.phone" maxlength="11" required>
+          <input type="text" name="phone" ng-model="add.info.phone" placeholder="11位手机号码" ng-pattern="pattern.phone" maxlength="11" required>
+          <i class="icon ion-ios-close assertive" ng-if="inputForm.phone.$dirty&&inputForm.phone.$invalid"></i>
         </div>
         <div class="item item-input">
           <span class="input-label">邮寄地址</span>
           <input type="text" ng-model="add.info.postAddr" placeholder="xx路yy号" maxlength="30" required>
         </div>
-        <div class="item item-input">
+        <div class="item item-input input-validate">
           <span class="input-label">邮箱</span>
-          <input type="text" ng-model="add.info.email" placeholder="example@eg.com" ng-pattern="pattern.email" maxlength="30" required>
+          <input type="text" name="email" ng-model="add.info.email" placeholder="example@eg.com" ng-pattern="pattern.email" maxlength="30" required>
+          <i class="icon ion-ios-close assertive" ng-if="inputForm.email.$dirty&&inputForm.email.$invalid"></i>
         </div>
         <div class="item item-input">
           <span class="input-label">紧急联系人</span>
           <input type="text" ng-model="add.info.emergencyContact" placeholder="点点" maxlength="20" required>
         </div>
-        <div class="item item-input">
+        <div class="item item-input input-validate">
           <span class="input-label">紧急联系人电话</span>
-          <input type="text" ng-model="add.info.emergencyPhone" placeholder="13988888888" ng-pattern="pattern.phone" maxlength="11" required>
+          <input type="text" name="emergencyPhone" ng-model="add.info.emergencyPhone" placeholder="13988888888" ng-pattern="pattern.phone" maxlength="11" required>
+          <i class="icon ion-ios-close assertive" ng-if="inputForm.emergencyPhone.$dirty&&inputForm.emergencyPhone.$invalid"></i>
         </div>
       </article>
     </ion-content>

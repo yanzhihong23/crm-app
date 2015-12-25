@@ -29,9 +29,10 @@
             <span class="input-label">付款支行</span>
             <input type="text" ng-model="add.info.bankBranch" class="text-right" placeholder="请填写" maxlength="20" required>
           </div>
-          <div class="item item-input">
+          <div class="item item-input input-validate">
             <span class="input-label">银行帐号</span>
-            <input type="tel" ng-model="add.info.bankAccount" class="text-right" placeholder="请填写" maxlength="19" required>
+            <input type="tel" name="card" ng-model="add.info.bankAccount" class="text-right" placeholder="请填写" ng-pattern="pattern.card" maxlength="19" required>
+            <i class="icon ion-ios-close assertive" ng-if="payForm.card.$dirty&&payForm.card.$invalid"></i>
           </div>
         </section>
 
