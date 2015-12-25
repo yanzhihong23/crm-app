@@ -26,7 +26,7 @@
         </div>
         <div class="item item-input input-validate">
           <span class="input-label">邮箱</span>
-          <input type="text" name="email" ng-model="add.info.email" placeholder="example@eg.com" ng-pattern="pattern.email" maxlength="30" required>
+          <input type="email" name="email" ng-model="add.info.email" placeholder="example@eg.com" ng-pattern="pattern.email" maxlength="30" required>
           <i class="icon ion-ios-close assertive" ng-if="inputForm.email.$dirty&&inputForm.email.$invalid"></i>
         </div>
         <div class="item item-input">
@@ -35,7 +35,7 @@
         </div>
         <div class="item item-input input-validate">
           <span class="input-label">紧急联系人电话</span>
-          <input type="text" name="emergencyPhone" ng-model="add.info.emergencyPhone" placeholder="13988888888" ng-pattern="pattern.phone" maxlength="11" required>
+          <input type="tel" name="emergencyPhone" ng-model="add.info.emergencyPhone" placeholder="13988888888" ng-pattern="pattern.phone" maxlength="11" required>
           <i class="icon ion-ios-close assertive" ng-if="inputForm.emergencyPhone.$dirty&&inputForm.emergencyPhone.$invalid"></i>
         </div>
       </article>
