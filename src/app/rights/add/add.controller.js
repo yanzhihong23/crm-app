@@ -46,6 +46,7 @@
         ApiService.dealerCountLimit({cityId: val.city.id, districtId: val.district.id}).success(function(data) {
           if(data.flag === 1) {
             vm.dealerCountLimt = data.data && data.data.dealershipAble;
+            vm.dealerPrice = data.data.money;
 
             if(vm.dealerCountLimt === 0 && vm.info.applyType.id === 0) {
               utils.alert({
@@ -62,6 +63,7 @@
     }, function(val) {
       if(val) {
         vm.info.dealerCount = Math.min(vm.dealerCountLimt || 0, val);
+        vm.info.contractAmount = +vm.info.dealerCount*vm.dealerPrice;
       }
     });
 

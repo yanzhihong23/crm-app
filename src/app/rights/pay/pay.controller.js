@@ -66,7 +66,7 @@
           vm.info.paidAmount = 0;
           vm.info.payAmount = vm.info.contractAmount;
         } else {
-          vm.info.contractAmount = null;
+          // vm.info.contractAmount = null;
           vm.info.paidAmount = null;
           vm.info.payAmount = null;
         }
