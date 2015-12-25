@@ -3,7 +3,7 @@
     <div class="item item-divider">店铺图片</div>
     <article class="margin text-center upload">
       <div class="row row-center">
-        <div class="col col-center item">
+        <div class="col col-center item" ng-click="preview.showPic(0)">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">身份证照片</div>
           <img ng-src="{{preview.imgs[0]}}" class="preview" alt="">
@@ -12,7 +12,7 @@
             <img src="assets/images/camera.png" width="32px" alt="">
           </div>
         </div>
-        <div class="col col-center item">
+        <div class="col col-center item" ng-click="preview.showPic(1)">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">人货合照</div>
           <img ng-src="{{preview.imgs[1]}}" class="preview" alt="">
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="row row-center">
-        <div class="col col-center item">
+        <div class="col col-center item" ng-click="preview.showPic(2)">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">人车合照</div>
           <img ng-src="{{preview.imgs[2]}}" class="preview" alt="">
@@ -32,7 +32,7 @@
             <img src="assets/images/camera.png" width="32px" alt="">
           </div>
         </div>
-        <div class="col col-center item">
+        <div class="col col-center item" ng-click="preview.showPic(3)">
           <div class="icon ion-ios-plus-empty"></div>
           <div class="gray">其他</div>
           <img ng-src="{{preview.imgs[3]}}" class="preview" alt="">

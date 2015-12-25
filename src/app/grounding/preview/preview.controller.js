@@ -6,8 +6,9 @@
     .controller('PreviewController', PreviewController);
 
   /** @ngInject */
-  function PreviewController($log, ApiService, $scope, $rootScope, $state, $stateParams, UserService, utils) {
+  function PreviewController($log, ApiService, $scope, $rootScope, $state, $stateParams, $ionicModal, UserService, utils) {
     var vm = this,
+        picModal,
         id = $stateParams.id,
         user = UserService.getUser();
 
@@ -16,6 +17,8 @@
     vm.roleId = user.roleId;
     vm.audit = audit;
     vm.modify = modify;
+    vm.showPic = showPic;
+    vm.hide = hide;
 
     init();
 
@@ -69,6 +72,21 @@
 
     function modify() {
       $state.go('grounding:upload', {type: 'update', id: id});
+    }
+
+    function showPic(index) {
+      vm.pic = vm.imgs[index];
+      $ionicModal.fromTemplateUrl('app/grounding/preview/pic.modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        picModal = modal;
+        picModal.show();
+      });
+    }
+
+    function hide() {
+      picModal.hide();
     }
     
   }
