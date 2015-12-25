@@ -1,9 +1,9 @@
 #result{
   .info{
-    height: 50%;
+    height: 45%;
     line-height: 2;
     background: $white;
-    font-size: 18px;
+    font-size: 16px;
     .waiting .icon{
       font-size: 40px;
     }
@@ -39,4 +39,8 @@
   -ms-animation: rotating 2s linear infinite;
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
+}
+
+.popup-lg .popup{
+  width: 86%;
 }

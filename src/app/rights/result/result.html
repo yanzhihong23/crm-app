@@ -10,7 +10,7 @@
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-load-a balanced"></i> -->
-            <img src="assets/images/building.png" width="180" alt="">
+            <img src="assets/images/building.png" width="140" alt="">
           </div>
           <div>恭喜您，您的申请已提交！</div>
           <div ng-if="result.info.isTriggered">请耐心等待财务审核！</div>
@@ -21,18 +21,18 @@
       </section>
         
       <section class="tips padding" ng-if="!result.info.isTriggered&&result.info.checkerId==4&&result.info.financeCheck==0">
-        <div class="gray padding-vertical">
+        <div class="assertive padding-vertical">
           <i class="icon ion-information-circled"></i>
-          提醒：请及时到财务处交款，实际交款成功后请发起收款申请提交财务，等待财务审核！
+          请及时付款，付款成功后点击［已付款］提交财务，等待财务审核！<a href="" ng-click="result.showPayAccount()">查看缴款银行信息</a>
         </div>
 
-        <div class="assertive padding-vertical">
+        <div class="gray padding-vertical">
           <i class="icon ion-alert-circled"></i>
           选择POS机刷卡方式付款的用户，请在刷卡时向工作人员提供POS刷卡流水号 
         </div>
 
         <div class="padding">
-          <button class="button button-block button-balanced" ng-click="result.triggerApply()">提交财务审核</button>
+          <button class="button button-block button-balanced" ng-click="result.triggerApply()">已付款</button>
         </div>
       </section>
 
@@ -57,16 +57,16 @@
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-checkmark-circled balanced"></i> -->
-            <img src="assets/images/opening.png" width="180" alt="">
+            <img src="assets/images/opening.png" width="140" alt="">
           </div>
           <div>恭喜您，付款已确认！</div>
         </div>
       </section>
 
       <section class="tips padding" ng-if="result.info.payType.id==1">
-        <div class="assertive">
+        <div class="assertive margin-bottom">
           <i class="icon ion-information-circled"></i>
-          付款已成功，请及时联系财务领取相应票据。
+          请及时将客户签字后的合同原件寄回公司，若在开店成功后7天内仍未收到有效合同，则该店铺将被冻结！
         </div>
         <div class="padding">
           <button class="button button-block button-balanced" ng-click="result.generateContract()">立即生成合同</button>
@@ -80,7 +80,7 @@
         <div class="col col-center">
           <div class="waiting">
             <!-- <i class="icon ion-ios-close assertive"></i> -->
-            <img src="assets/images/closed.png" width="180" alt="">
+            <img src="assets/images/closed.png" width="140" alt="">
           </div>
           <div>
             该申请已作废！<br>
@@ -101,7 +101,7 @@
         </div> -->
       </section>
 
-      <div class="padding bottom">
+      <div class="padding">
           <button class="button button-block button-balanced" ng-click="result.reApply()">重新申请</button>
         </div>
     </article>
