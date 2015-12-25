@@ -408,6 +408,8 @@
           userId: obj.userId,
           username: obj.username,
           password: obj.password,
+          shopName: obj.shopName,
+          payAlipayNum: obj.shopAlipay,
           fileUrls: obj.fileUrls,
           storeId: obj.id, // add
           shopId: obj.id // update

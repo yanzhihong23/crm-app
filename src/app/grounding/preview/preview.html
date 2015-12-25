@@ -56,6 +56,18 @@
       </div>
     </article>
 
+    <article class="list margin-vertical">
+      <div class="item item-divider">店铺信息</div>
+      <div class="item">
+        店铺名称
+        <span class="item-note">{{preview.user.shopName}}</span>
+      </div>
+      <div class="item">
+        店家支付宝帐号
+        <span class="item-note">{{preview.user.shopAlipay}}</span>
+      </div>
+    </article>
+
     <article ng-if="preview.isAudit && preview.info.status==0">
       <div class="padding-horizontal padding-bottom assertive">
         注: 请确认图片是否符合要求，若不符合请标明原因

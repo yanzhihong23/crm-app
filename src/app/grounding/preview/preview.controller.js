@@ -42,7 +42,9 @@
 
           vm.user = {
             username: detail.username,
-            password: detail.password
+            password: detail.password,
+            shopName: detail.shopName,
+            shopAlipay: detail.payAlipayNum
           };
 
         }

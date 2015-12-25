@@ -40,7 +40,9 @@
 
             vm.user = {
               username: detail.username,
-              password: detail.password
+              password: detail.password,
+              shopName: detail.shopName,
+              shopAlipay: detail.payAlipayNum
             };
 
             vm.file.onePreview = imgs[0];
@@ -82,14 +84,13 @@
     }
 
     function save() {
-      ApiService.openStoreApply({
-        update: isUpdate, 
-        userId: userId,
-        id: id,
-        username: vm.user.username,
-        password: vm.user.password,
-        fileUrls: [vm.file.onePreview, vm.file.twoPreview, vm.file.threePreview, vm.file.fourPreview]
-      }).success(function(data) {
+      var params = angular.copy(vm.user);
+      params.update = isUpdate;
+      params.userId = userId;
+      params.id = id;
+      params.fileUrls = [vm.file.onePreview, vm.file.twoPreview, vm.file.threePreview, vm.file.fourPreview];
+
+      ApiService.openStoreApply(params).success(function(data) {
         if(data.flag === 1) {
           $rootScope.$broadcast('reload:list:grounding:apply');
           var deep = isUpdate ? -2 : -1;
