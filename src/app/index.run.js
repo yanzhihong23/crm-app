@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope, $ionicLoading, $location, $state, utils, UserService, JsBridgeService) {
+  function runBlock($log, $rootScope, $ionicLoading, $location, $state, utils, UserService, JsBridgeService, PATTERN) {
     // init js bridge
     JsBridgeService.init();
 
@@ -20,6 +20,8 @@
 
     var user = UserService.getUser();
     $rootScope.user = $rootScope.user || user;
+
+    $rootScope.pattern = PATTERN;
 
     $rootScope.$on('$stateChangeStart', function(evt, toState, fromState, fromParams) {
       switch(toState.name) {
