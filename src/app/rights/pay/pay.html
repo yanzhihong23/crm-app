@@ -48,15 +48,15 @@
         
         <div class="item item-input">
           <span class="input-label">合同金额(元)</span>
-          <input type="number" ng-model="add.info.contractAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
+          <input type="tel" ng-model="add.info.contractAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
         <div class="item item-input" ng-if="add.info.applyType.id!=1">
           <span class="input-label">已付金额(元)</span>
-          <input type="number" ng-model="add.info.paidAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
+          <input type="tel" ng-model="add.info.paidAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
         <div class="item item-input">
           <span class="input-label">付款金额(元)</span>
-          <input type="number" ng-model="add.info.payAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
+          <input type="tel" ng-model="add.info.payAmount" class="text-right" placeholder="请填写" ng-readonly="add.info.applyType.id==1" required>
         </div>
       </article>
     </ion-content>
