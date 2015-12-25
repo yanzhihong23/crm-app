@@ -26,11 +26,18 @@
     };
 
     this.logout = function() {
+      var userId = $rootScope.user.userId;
+
       $rootScope.user = null;
       localStorageService.clearAll();
       
       utils.disableBack();
       $state.go('login');
+
+      JsBridgeService.send({
+        type: 'logout',
+        userId: userId
+      });
     };
   }
 })();

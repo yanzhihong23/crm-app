@@ -1,5 +1,5 @@
 <ion-view view-title="详细信息">
-  <ion-content ng-class="{'has-bottom': preview.info.status==-1}">
+  <ion-content ng-class="{'has-bottom': preview.info.status==-1&&preview.user.roleId!=6}">
     <article class="list margin-vertical">
       <div class="item" ng-if="preview.info.companyName">
         公司名字
