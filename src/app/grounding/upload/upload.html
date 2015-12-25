@@ -6,8 +6,9 @@
         <div class="item item-input">
           <input type="text" ng-model="upload.user.username" placeholder="用户名" maxlength="20" required>
         </div>
-        <div class="item item-input">
-          <input type="text" ng-model="upload.user.password" placeholder="密码（8位英文字母和数字的组合）" minlength="8" maxlength="8" required>
+        <div class="item item-input input-validate">
+          <input type="text" name="password" ng-model="upload.user.password" ng-pattern="pattern.password" placeholder="密码（8位英文字母和数字的组合）" minlength="8" maxlength="8" required>
+          <i class="icon ion-ios-close assertive" ng-if="userForm.password.$dirty&&userForm.password.$invalid"></i>
         </div>
       </article>
 
