@@ -8,8 +8,8 @@
     
     <section class="form">
       <form name="loginForm" ng-submit="login.submit()">
-        <input type="text" ng-model="login.user.username" maxlength="15" placeholder="用户名" required>
-        <input type="password" ng-model="login.user.password" maxlength="20" placeholder="密码" required>
+        <input type="tel" ng-model="login.user.username" ng-pattern="pattern.phone" maxlength="11" placeholder="用户名" required>
+        <input type="password" ng-model="login.user.password" ng-pattern="pattern.password" maxlength="8" placeholder="密码" required>
         <button type="submit" class="button button-balanced button-block" ng-disabled="loginForm.$invalid">登录</button>
       </form>
     </section>
