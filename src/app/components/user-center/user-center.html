@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="logo-wrapper text-center row row-center">
+    <div class="col col-center padding">
+      <img src="assets/images/logo.png" width="88" alt="">
+    </div>
+  </div>
+
+  <div class="list margin-vertical">
+    <div class="item item-icon-left">
+      <i class="icon ion-person energized"></i>
+      {{user.info.realName}}（{{user.info.username | phoneEncrypt}}）
+    </div>
+
+    <div class="item item-icon-left" ng-click="user.goToState('announcement:add')" ng-if="user.info.canAddAnnouncemnet"> 
+      <i class="icon ion-compose royal"></i>
+      添加公告
+    </div>
+
+    <div class="item item-icon-left" ng-click="user.goToState('help')">
+      帮助中心
+      <i class="icon ion-ios-briefcase balanced"></i>
+    </div>
+
+    <div class="item item-icon-left" ng-click="user.logout()">
+      <i class="icon ion-power assertive"></i>
+      退出登录
+    </div>
+  </div>
+
+  <div class="version">版本号：v1.1.0</div>
+</ion-content>

@@ -10,7 +10,8 @@
     .filter('agencyType', agencyType)
     .filter('inviteStatus', inviteStatus)
     .filter('applyRole', applyRole)
-    .filter('card', card);
+    .filter('card', card)
+    .filter('phoneEncrypt', phoneEncrypt);
 
   /** @ngInject */
   function applyType() {
@@ -99,6 +100,16 @@
       } else {
         return str;
       }
-    }
+    };
+  }
+
+  function phoneEncrypt() {
+    return function(str) {
+      if(str && str.length === 11) {
+        return str.substr(0, 3) + '****' + str.substr(7);
+      } else {
+        return str;
+      }
+    };
   }
 })();

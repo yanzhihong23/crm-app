@@ -6,8 +6,10 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $state, $rootScope, UserService, ApiService, $ionicNavBarDelegate) {
+  function MainController($log, $state, $rootScope, UserService, ApiService, $ionicSideMenuDelegate) {
     var vm = this, user;
+
+    vm.toggleMenu = toggleMenu;
 
     init();
 
@@ -26,6 +28,10 @@
         finance: user.roleId == 4,
         operate: user.roleId == 6
       };
+    }
+
+    function toggleMenu() {
+      $ionicSideMenuDelegate.toggleLeft();
     }
     
     // switch(user.roleId) {

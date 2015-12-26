@@ -1,0 +1,24 @@
+.menu{
+  background: $dark;
+  .bottom{
+    position: absolute;
+  }
+  .item-icon-left .icon{
+    font-size: 22px;
+  }
+
+  .item{
+    background: rgba(0,0,0,0);
+    color: $white;
+  }
+
+  .version{
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    color: $white;
+    text-align: center;
+    font-size: 12px;
+  }
+}

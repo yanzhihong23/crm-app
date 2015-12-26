@@ -152,12 +152,6 @@
         controller: 'BankController',
         controllerAs: 'bank'
       })
-      .state('user', {
-        url: '/user',
-        templateUrl: 'app/user/user.html',
-        controller: 'UserController',
-        controllerAs: 'user'
-      })
       .state('announcement', {
         url: '/announcement/:publish',
         templateUrl: 'app/announcement/list.html',
