@@ -67,7 +67,7 @@
         } else if(type === 'new') {
           deep = -5;
         }
-      } else if(isAndroid && $state.current.name === 'home') {
+      } else if(isAndroid && /home|login/.test($state.current.name)) {
         JsBridgeService.exit();
         return;
       }
