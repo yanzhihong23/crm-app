@@ -1,4 +1,7 @@
-.menu{
+.user-center{
+  .platform-cordova &{
+    padding-top: 20px;
+  }
   background: $dark;
   .bottom{
     position: absolute;
