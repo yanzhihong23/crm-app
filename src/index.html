@@ -96,6 +96,7 @@
 
       if(ios && standalone || /isWebview/.test(location.href)) {
         document.querySelector('body').className += ' platform-cordova ';
+        document.write('<script src="assets/scripts/cordova.js"><\/script>');
       }
     </script>
 
