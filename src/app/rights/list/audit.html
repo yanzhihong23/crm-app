@@ -20,7 +20,7 @@
     <article class="list margin-vertical" ng-repeat="(date, items) in list.map">
       <header class="list-header">{{date}}</header>
       <a class="item item-icon-left item-icon-right" ng-repeat="item in items" ng-click="list.select(item.id)">
-        <i class="icon"><img ng-src="assets/images/iconfont-{{item.applyType==1?'persons':'shop'}}.png" width="25" alt=""></i>
+        <i class="icon"><img ng-src="assets/images/iconfont-{{item.applyType==1?'shop':'persons'}}.png" width="25" alt=""></i>
         <div class="row row-no-padding">
           <div class="col">申请人: {{item.name}}({{item.phone}})</div>
         </div>
