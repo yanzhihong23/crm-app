@@ -139,6 +139,9 @@ $border-color: #d5d5d5;
 
 .scroll-content.has-bottom{
   bottom: 80px;
+  .keyboard-open.platform-android &{
+    bottom: 0;
+  }
 }
 
 .full-height{
