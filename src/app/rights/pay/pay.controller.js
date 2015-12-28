@@ -24,7 +24,7 @@
           { text: '定金', id: 0 }
         ];
 
-    vm.title = id ? '支付尾款' : '申请开店权/经销权';
+    vm.title = id ? '支付尾款' : '付款信息';
 
     vm.showSelfPayAction = showSelfPayAction;
     vm.showPayModeAction = showPayModeAction;
