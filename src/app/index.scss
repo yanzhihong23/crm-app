@@ -181,6 +181,10 @@ input.black, textarea.black{
   background: $black;
 }
 
+*::-webkit-scrollbar{
+  width: 0;
+}
+
 
 // date picker
 .ionic-datepicker{
