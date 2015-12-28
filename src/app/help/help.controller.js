@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function HelpController($log, $scope, $ionicModal, ApiService) {
-    var vm = this, videoModal;
+    var vm = this, videoModal, video;
 
     vm.showVideo = showVideo;
     vm.hide = hide;
@@ -18,19 +18,24 @@
       }
     });
 
+    $ionicModal.fromTemplateUrl('app/help/video.modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      videoModal = modal;
+    });
+
     function showVideo() {
-      $ionicModal.fromTemplateUrl('app/help/video.modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        videoModal = modal;
-        videoModal.show();
-      });
+      videoModal.show();
+      setTimeout(function() {
+        video = document.getElementById('tutorial_video');
+        video.play();
+      }, 1000);
     }
 
     function hide() {
-      videoModal.remove();
+      video.pause();
+      videoModal.hide();
     }
-
   }
 })();
