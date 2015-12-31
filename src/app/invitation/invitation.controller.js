@@ -6,7 +6,7 @@
     .controller('InvitationController', InvitationController);
 
   /** @ngInject */
-  function InvitationController($state, $stateParams, $rootScope, $ionicActionSheet, ApiService, UserService, utils) {
+  function InvitationController($state, $stateParams, $rootScope, $ionicActionSheet, ApiService, UserService, utils, RightsApplyService) {
     var vm = this, 
         id = $stateParams.id,
         userId = UserService.getUserId(),
@@ -43,9 +43,11 @@
       closeOnSelect: true, //Optional
     };
 
+    // public functions
     vm.save = save;
     vm.showApplyRoleAction = showApplyRoleAction;
     vm.showStatusAction = showStatusAction;
+    vm.applyRights = applyRights;
 
     init();
 
@@ -105,7 +107,9 @@
               status: {
                 id: result.userState
               },
-              remark: result.remark 
+              remark: result.remark,
+              msgId: result.msgid,
+              applied: !!result.nextStep
             };
           } else {
             $log.error('get invitation error');
@@ -143,6 +147,20 @@
           }
         });
       }
+    }
+
+    function applyRights() {
+      var applyTypeId = vm.info.applyRole.id;
+
+      RightsApplyService.reset();
+
+      RightsApplyService.setApplyType(applyTypeId);
+
+      RightsApplyService.info.realname = vm.info.name;
+      RightsApplyService.info.phone = vm.info.phone;
+      RightsApplyService.info.msgId = vm.info.msgId;
+
+      $state.go('rights:add');
     }
 
   }

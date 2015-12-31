@@ -10,6 +10,7 @@
   function RightsApplyListController($log, $state, $scope, $rootScope, ApiService, UserService, RightsApplyService) {
     var vm = this, pageIndex, itemsPerPage, userId = UserService.getUserId();
 
+    vm.canAdd = UserService.getUser().roleId === 7;
     vm.status = 0;
     vm.doRefresh = init;
     vm.loadMore = load;

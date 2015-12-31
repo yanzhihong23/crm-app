@@ -1,4 +1,11 @@
 <ion-view view-title="{{invitation.title}}">
+
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="invitation.applyRights()" ng-if="!invitation.info.applied">
+      申请{{invitation.info.applyRole.id?'开店权':'经销权'}}
+    </button>
+  </ion-nav-buttons>
+
   <form name="invitationForm" ng-submit="invitation.save()">
     <ion-content class="has-bottom">
       <article class="list margin-vertical">
@@ -33,7 +40,7 @@
       </article>
     </ion-content>
 
-    <section class="bottom">
+    <section class="bottom" ng-if="!invitation.info.applied">
       <div class="padding">
         <button type="submit" class="button button-block button-balanced" ng-disabled="invitationForm.$invalid">保存</button>
       </div>

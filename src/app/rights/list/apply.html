@@ -1,7 +1,7 @@
 <ion-view view-title="申请开店权/经销权" class="rights-list list-view">
 
   <ion-nav-buttons side="right">
-    <a class="button" ui-sref="rights:add">
+    <a class="button" ui-sref="rights:add" ng-if="list.canAdd">
       添加
     </a>
   </ion-nav-buttons>

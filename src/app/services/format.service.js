@@ -73,7 +73,9 @@
           financeCheck: obj.financeCheck,
           checkerId: obj.whoCheck,
 
-          failType: obj.applyStoreFailReason
+          failType: obj.applyStoreFailReason,
+
+          msgId: obj.msgid
         };
       } else {
         return {};

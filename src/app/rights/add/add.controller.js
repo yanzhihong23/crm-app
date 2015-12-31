@@ -25,7 +25,10 @@
     AreaService.reset();
 
     vm.info = RightsApplyService.info;
-    vm.info.applyType = applyTypes[1];
+    if(!vm.info.applyType) {
+      RightsApplyService.setApplyType(1); // 小店
+    }
+    // vm.info.applyType = applyTypes[1];
     vm.info.applicantType = applicantTypes[0];
     vm.info.agencyType = agencyTypes[0];
     vm.info.area = AreaService.selected;

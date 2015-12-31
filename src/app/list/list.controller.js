@@ -67,6 +67,7 @@
   function InvitationListController($log, $scope, $rootScope, $state, ApiService, UserService) {
     var vm = this, pageIndex, itemsPerPage;
 
+    vm.canAdd = UserService.getUser().roleId == 7;
     vm.status = 0;
 
     vm.doRefresh = init;

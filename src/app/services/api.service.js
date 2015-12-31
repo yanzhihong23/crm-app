@@ -193,12 +193,14 @@
 
           payPersonName: obj.payerName,
 
-          payBankName: obj.bank && obj.bank.name, // TODO
+          payBankName: obj.bank && obj.bank.name,
           payBankCode: obj.bank && obj.bank.id,
           paySubbranchBank: obj.bankBranch,
           bankNumone: obj.bankAccount,
 
-          payAlipayNum: obj.alipayAccount
+          payAlipayNum: obj.alipayAccount,
+
+          msgid: obj.msgId
         }
       });
     };
