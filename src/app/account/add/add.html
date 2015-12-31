@@ -37,7 +37,7 @@
         </div>
         <div class="item item-input item-icon-right" ng-click="add.selectArea('street')">
           <span class="input-label">街道</span>
-          <span class="item-note">{{add.info.area.street.name || '请选择'}}</span>
+          <span class="item-note" ng-class="{assertive: !add.info.area.street.name}">{{add.info.area.street.name || '请选择'}}</span>
           <i class="icon ion-ios-arrow-right gray"></i>
         </div>
         <div class="item item-input item-icon-right">
