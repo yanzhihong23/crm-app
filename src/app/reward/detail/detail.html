@@ -1,0 +1,113 @@
+<ion-view view-title="{{detail.title}}" cache-view="false">
+  <ion-content ng-class="{'has-bottom': !detail.info.status || preview.type=='audit'}">
+    <article class="list margin-vertical">
+      <div class="item">
+        奖励类型
+        <span class="item-note">{{detail.info.reward.type}}</span>
+      </div>
+      <div class="item">
+        奖励金额
+        <span class="item-note">{{detail.info.reward.amount | currency: ''}}</span>
+      </div>
+      <div class="item">
+        经销商 
+        <span class="item-note">{{detail.info.reward.to}}</span>
+      </div>
+    </article>
+
+    <article class="list margin-vertical">
+      <div class="item">
+        店铺帐号
+        <span class="item-note">{{detail.info.store.id}}</span>
+      </div>
+      <div class="item">
+        店铺名称
+        <span class="item-note">{{detail.info.store.name}}</span>
+      </div>
+      <div class="item">
+        店铺地址
+        <span class="item-note">{{detail.info.store.addr}}</span>
+      </div>
+      <div class="item">
+        店主姓名
+        <span class="item-note">{{detail.info.store.owner}}</span>
+      </div>
+      <div class="item">
+        开店时间
+        <span class="item-note">{{detail.info.store.date}}</span>
+      </div>
+    </article>
+
+    <article class="list margin-vertical">
+      <div class="item">
+        应收加盟费
+        <span class="item-note">{{detail.info.initial.fee | currency: ''}}</span>
+      </div>
+      <div class="item">
+        实收加盟费
+        <span class="item-note">{{detail.info.initial.feePaid | currency: ''}}</span>
+      </div>
+      <div class="item">
+        缴款时间
+        <span class="item-note">{{detail.info.initial.date}}</span>
+      </div>
+      <div class="assertive padding" ng-if="!detail.info.status">
+        <small>提醒：该申请只能申请一次，为了确保申请能顺利通过审核，请确认推广成功后再申请，否则一旦提交不得撤回</small>
+      </div>
+    </article>
+
+    <article class="list margin-vertical" ng-if="detail.info.status">
+      <div class="item">
+        收款银行
+        <span class="item-note">{{detail.info.bank.name}}</span>
+      </div>
+      <div class="item">
+        收款银行支行
+        <span class="item-note">{{detail.info.bank.branch}}</span>
+      </div>
+      <div class="item">
+        收款银行账户名
+        <span class="item-note">{{detail.info.bank.accountName}}</span>
+      </div>
+      <div class="item">
+        收款银行账号
+        <span class="item-note">{{detail.info.bank.accountNo}}</span>
+      </div>
+    </article>
+
+    <div class="list margin-vertical" ng-if="detail.info.status && user.roleId==6">
+      <div class="item">
+        审批结果
+        <span class="item-note balanced" ng-if="detail.info.status!=3">同意奖励</span>
+        <span class="item-note assertive" ng-if="detail.info.status==3">不同意奖励</span>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <section class="bottom" ng-if="!detail.info.status">
+    <div class="padding">
+      <button type="submit" class="button button-block button-balanced" ng-click="detail.apply()">去申请</button>
+    </div>
+  </section>
+
+  <!-- 财务 -->
+  <section class="bottom" ng-if="detail.isAudit && user.roleId==4">
+    <div class="padding">
+      <button type="submit" class="button button-block button-balanced" ng-click="detail.audit(2)">已打款</button>
+    </div>
+  </section>
+  
+  <!-- 运营 -->
+  <section class="bottom" ng-if="detail.isAudit && user.roleId==6">
+    <div class="row">
+      <div class="col">
+        <button class="col button button-block button-balanced" ng-click="detail.audit(2)">同意奖励并提交财务</button>
+      </div>
+      <div class="col">
+        <button class="col button button-block button-assertive" ng-click="detail.audit(3)">不同意奖励</button>
+      </div>
+    </div>
+  </section>
+</ion-view>

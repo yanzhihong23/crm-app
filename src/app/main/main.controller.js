@@ -24,6 +24,7 @@
 
       vm.rights = {
         sale: /[0,1,2,3,7]/.test(user.roleId) || user.orgId == 11,
+        dealer: user.roleId == 7,
         manager: user.userId == 98,
         finance: user.roleId == 4,
         operate: user.roleId == 6

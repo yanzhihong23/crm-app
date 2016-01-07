@@ -176,6 +176,25 @@
         controller: 'HelpController',
         controllerAs: 'help'
       })
+      // reward
+      .state('reward:list', {
+        url: '/reward/list/:type',
+        templateUrl: 'app/reward/list/list.html',
+        controller: 'RewardListController',
+        controllerAs: 'list'
+      })
+      .state('reward:detail', {
+        url: '/reward/detail/:type/:status/:id',
+        templateUrl: 'app/reward/detail/detail.html',
+        controller: 'RewardDetailController',
+        controllerAs: 'detail'
+      })
+      .state('reward:apply', {
+        url: '/reward/apply/:type/:id',
+        templateUrl: 'app/reward/apply/apply.html',
+        controller: 'RewardApplyController',
+        controllerAs: 'apply'
+      })
       ;
 
     $urlRouterProvider.otherwise('/');

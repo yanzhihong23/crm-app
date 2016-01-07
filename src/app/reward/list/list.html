@@ -1,0 +1,63 @@
+<ion-view view-title="{{list.type?'推广奖励':'开店奖励'}}" class="rights-list list-view">
+
+  <section class="tabs-top tabs-background-light crm-tabs">
+    <!-- 经销商 -->
+    <div class="tab-nav tabs" ng-if="user.roleId==7">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
+        <span class="tab-title">待申请</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
+        <span class="tab-title">申请中</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 2}" ng-click="list.status=2">
+        <span class="tab-title">申请成功</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 3}" ng-click="list.status=3">
+        <span class="tab-title">申请失败</span>
+      </a>
+    </div>
+    <!-- 运营 -->
+    <div class="tab-nav tabs" ng-if="user.roleId==6">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
+        <span class="tab-title">待审核</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
+        <span class="tab-title">已审核</span>
+      </a>
+    </div>
+    <!-- 财务 -->
+    <div class="tab-nav tabs" ng-if="user.roleId==4">
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 0}" ng-click="list.status=0">
+        <span class="tab-title">未打款</span>
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active': list.status == 1}" ng-click="list.status=1">
+        <span class="tab-title">已打款</span>
+      </a>
+    </div>
+  </section>
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="list.doRefresh()">
+    </ion-refresher>
+
+    <article class="list padding-vertical">
+      <a class="item item-icon-right" ng-repeat="item in list.items" ui-sref="reward:detail({id: item.id, type: list.type, status: list.status})">
+        <div class="row row-no-padding">
+          <div class="col">{{item.storeName}}</div>
+        </div>
+        <div class="row row-no-padding gray small">
+          <div class="col">{{item.storeAddr}}</div>
+        </div>
+        <i class="icon ion-ios-arrow-right gray"></i>
+      </a>
+    </article>
+
+    <ion-infinite-scroll
+      ng-if="list.hasMoreData"
+      on-infinite="list.loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
