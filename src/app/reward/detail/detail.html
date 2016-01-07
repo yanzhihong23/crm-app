@@ -1,5 +1,5 @@
 <ion-view view-title="{{detail.title}}" cache-view="false">
-  <ion-content ng-class="{'has-bottom': !detail.info.status || preview.type=='audit'}">
+  <ion-content ng-class="{'has-bottom': !detail.info.status || detail.isAudit}">
     <article class="list margin-vertical">
       <div class="item">
         奖励类型
@@ -76,7 +76,7 @@
     </article>
 
     <div class="list margin-vertical">
-      <div class="item" ng-if="detail.info.status && user.roleId==6">
+      <div class="item" ng-if="!detail.isAudit && user.roleId==6">
         审批结果
         <span class="item-note balanced" ng-if="detail.info.status!=3">同意奖励</span>
         <span class="item-note assertive" ng-if="detail.info.status==3">不同意奖励</span>
