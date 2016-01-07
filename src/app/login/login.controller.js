@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($log, ApiService, $state, UserService, utils) {
+  function LoginController($log, $scope, ApiService, $state, UserService, utils, $ionicNavBarDelegate) {
     var vm = this;
 
     vm.user = {
@@ -41,5 +41,13 @@
         }
       });
     }
+
+    $scope.$on('$ionicView.afterEnter', function() {
+      $ionicNavBarDelegate.showBar(false); 
+    });
+
+    $scope.$on('$ionicView.afterLeave', function() {
+      $ionicNavBarDelegate.showBar(true); 
+    });
   }
 })();
