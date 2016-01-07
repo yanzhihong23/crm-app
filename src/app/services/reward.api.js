@@ -84,7 +84,8 @@
         data: {
           applayAwardId: obj.id, // 奖励申请id
           userId: obj.userId,
-          roleApproveState: obj.status
+          roleApproveState: obj.status,
+          failReason: obj.comment
         }
       });
     }

@@ -6,7 +6,7 @@
     .controller('RewardDetailController', RewardDetailController);
 
   /** @ngInject */
-  function RewardDetailController($log, $state, $stateParams, $rootScope, RewardApi, moment, UserService, utils) {
+  function RewardDetailController($log, $state, $stateParams, $scope, $rootScope, RewardApi, moment, UserService, utils) {
     var vm = this,
         id = +$stateParams.id,
         type = +$stateParams.type,
@@ -14,7 +14,7 @@
         user = UserService.getUser();
 
     vm.isAudit = user.roleId !== 7 && !status;
-    
+
     if(user.roleId === 6) {
       vm.title = status ? '已审核' : '未审核';
     } else if(user.roleId === 4) {
@@ -47,6 +47,7 @@
           var info = data.data.applayAward;
           vm.info = {
             status: info.applyState,
+            comment: info.failReason,
             reward: {
               type: type ? '推广奖励' : '开店奖励',
               amount: info.awardMoney,
@@ -80,21 +81,37 @@
     }
 
     function audit(status) {
-      utils.confirm({
-        content: '请再次确认',
-        onOk: function() {
-          RewardApi.audit({
-            id: id,
-            userId: user.userId,
-            status: status
-          }).success(function(data) {
-            if(data.flag === 1) {
-              $rootScope.$broadcast('update:reward:list');
-              utils.goBack();
-            } else {
-              utils.alert(data.msg);
-            }
-          });
+      if(status === 3) {
+        utils.confirm({
+          scope: $scope,
+          title: '请说明不同意奖励的原因',
+          content: '<div class="item item-input"><input type="text" ng-model="detail.comment" placeholder="原因" maxlength="50"></div>',
+          onOk: function() {
+            doAudit(status);
+          }
+        });
+      } else {
+        utils.confirm({
+          content: '请再次确认',
+          onOk: function() {
+            doAudit(status);
+          }
+        });
+      }
+    }
+
+    function doAudit(status) {
+      RewardApi.audit({
+        id: id,
+        userId: user.userId,
+        status: status,
+        comment: vm.comment
+      }).success(function(data) {
+        if(data.flag === 1) {
+          $rootScope.$broadcast('update:reward:list');
+          utils.goBack();
+        } else {
+          utils.alert(data.msg);
         }
       });
     }

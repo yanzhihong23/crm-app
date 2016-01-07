@@ -62,6 +62,7 @@
 			},
 			confirm: function(obj) {
 				var confirmPopup = $ionicPopup.confirm({
+					scope: obj.scope,
 				  title: obj.title || '温馨提示',
 				  template: obj.content || '',
 				  cssClass: obj.cssClass || 'text-center',

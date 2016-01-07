@@ -75,11 +75,15 @@
       </div>
     </article>
 
-    <div class="list margin-vertical" ng-if="detail.info.status && user.roleId==6">
-      <div class="item">
+    <div class="list margin-vertical">
+      <div class="item" ng-if="detail.info.status && user.roleId==6">
         审批结果
         <span class="item-note balanced" ng-if="detail.info.status!=3">同意奖励</span>
         <span class="item-note assertive" ng-if="detail.info.status==3">不同意奖励</span>
+      </div>
+      <div class="item" ng-if="detail.info.status==3">
+        审批意见
+        <span class="item-note assertive">{{detail.info.comment || '无'}}</span>
       </div>
 
     </div>
